@@ -39,6 +39,9 @@ def pool() -> ConnectionPool:
 SCHEMA = f"""
 CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
+-- pg_trgm: збіг за назвою товару стійкий до відмінків і варіантів написання
+-- («тілом»/«тіла», «карбокситерапія»/«карбоксітерапія»).
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
 CREATE TABLE IF NOT EXISTS knowledge_articles (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

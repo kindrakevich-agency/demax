@@ -167,6 +167,84 @@ def retrieve(query: str) -> list[dict]:
     return out
 
 
+# Наміри, для яких картки товарів недоречні (питання не про продукт).
+NON_PRODUCT_INTENTS = {"seminar_info", "verification", "commercial", "complaint"}
+
+# Загальні слова, що є майже в кожній назві товару — для лексичного збігу
+# вони лише шумлять.
+STOPWORDS = {
+    "demax", "демакс", "засоби", "засіб", "средства", "средство", "products",
+    "product", "догляду", "догляд", "уход", "ухода", "care", "який", "яких",
+    "які", "какие", "какой", "which", "what", "does", "have", "тобто", "мене",
+    "мені", "будь", "ласка", "please", "розкажи", "расскажи", "tell", "about",
+    "пропонує", "предлагает", "offer", "offers", "підійде", "подойдёт", "suits",
+}
+
+
+def retrieve_products(query: str, limit: int = 3) -> list[dict]:
+    """Товари для карток — окремий гібридний пошук по сторінках /product/.
+
+    Основний RRF часто виграють оглядові сторінки категорій (у них більше
+    тексту), тож товарів із фото в контексті може не бути зовсім. Абсолютний
+    поріг схожості теж ненадійний: модель ембедінгів стискає діапазон
+    (нерелевантні «семінари» дають 0.50, точний збіг «молочко для тіла» —
+    0.54). Тому беремо RRF з векторного й повнотекстового пошуку: лексична
+    частина витягує саме ті товари, назва яких містить слова запиту.
+    """
+    qvec = embed_query(query)
+    with db.pool().connection() as conn:
+        knn = conn.execute(
+            "SELECT DISTINCT ON (a.id) a.id, a.title, a.source_url, a.image_url, a.price, "
+            "       1 - (c.embedding <=> %s) AS sim "
+            "FROM knowledge_chunks c JOIN knowledge_articles a ON a.id = c.article_id "
+            "WHERE a.status = 'published' AND a.is_product AND a.image_url IS NOT NULL "
+            "ORDER BY a.id, c.embedding <=> %s",
+            (qvec, qvec),
+        ).fetchall()
+        # Триграмний збіг слів запиту з назвою товару: на відміну від FTS з
+        # конфігурацією 'simple', він не залежить від відмінка й дрібних
+        # розбіжностей у написанні.
+        terms = [w for w in re.findall(r"\w{4,}", query.lower()) if w not in STOPWORDS]
+        fts = []
+        if terms:
+            fts = conn.execute(
+                "SELECT a.id, a.title, a.source_url, a.image_url, a.price, "
+                "       max(word_similarity(t.term, lower(a.title))) AS r "
+                "FROM knowledge_articles a, unnest(%s::text[]) AS t(term) "
+                "WHERE a.status = 'published' AND a.is_product AND a.image_url IS NOT NULL "
+                "GROUP BY a.id, a.title, a.source_url, a.image_url, a.price "
+                "HAVING max(word_similarity(t.term, lower(a.title))) > 0.45 "
+                "ORDER BY r DESC LIMIT 10",
+                (terms,),
+            ).fetchall()
+
+    knn_ranked = sorted(knn, key=lambda r: -float(r[5]))[:10]
+    scores: dict[str, float] = {}
+    rows: dict[str, tuple] = {}
+    for rank, r in enumerate(knn_ranked):
+        k = str(r[0])
+        scores[k] = scores.get(k, 0) + 1.0 / (10 + rank)
+        rows[k] = r
+    for rank, r in enumerate(fts):
+        k = str(r[0])
+        # Збіг у назві важить більше: саме він рятує запити на кшталт
+        # «догляд за тілом», де семантика розмита між усіма доглядовими.
+        scores[k] = scores.get(k, 0) + 3.0 / (10 + rank)
+        rows.setdefault(k, r)
+
+    top = sorted(scores.items(), key=lambda kv: -kv[1])[:limit]
+    return [
+        {
+            "article_id": str(rows[k][0]),
+            "title": rows[k][1],
+            "url": rows[k][2],
+            "image_url": rows[k][3],
+            "price": rows[k][4],
+        }
+        for k, _ in top
+    ]
+
+
 INTENTS = [
     (re.compile(r"семінар|вебінар|навчанн|обучени|семинар|тренинг|schedule|seminar", re.I), "seminar_info"),
     (re.compile(r"ціна|цін|стоимост|прайс|price|купит|замов|заказ|опт", re.I), "commercial"),
@@ -304,22 +382,23 @@ def answer(question: str, history: list[dict], language: str = "ru") -> dict:
         }
 
     seen: set[str] = set()
-    sources, products = [], []
+    sources = []
     for c in context:
         if c["article_id"] in seen:
             continue
         seen.add(c["article_id"])
         url = None if (c["source_url"] or "").startswith("pdf://") else c["source_url"]
         sources.append({"article_id": c["article_id"], "title": c["title"], "url": url})
-        # Товарні картки: показуємо у віджеті з фото, ціною й посиланням.
-        if c.get("is_product") and c.get("image_url"):
-            products.append({
-                "article_id": c["article_id"],
-                "title": c["title"],
-                "url": url,
-                "image_url": c["image_url"],
-                "price": c.get("price"),
-            })
+
+    # Картки товарів шукаємо окремо — див. retrieve_products(). Для питань
+    # не про продукцію (семінари, верифікація, ціни) картки не показуємо.
+    products: list[dict] = []
+    if intent not in NON_PRODUCT_INTENTS:
+        try:
+            products = retrieve_products(question)
+        except Exception:  # noqa: BLE001 — картки не критичні для відповіді
+            products = []
+
     return {
         "reply": reply,
         "intent": intent,
