@@ -30,13 +30,12 @@ jobs:
 
             echo "=== Backend: залежності ==="
             cd "$APP_DIR/demax-rag"
-            # Віртуальне оточення створює aaPanel Python Project Manager.
-            # Якщо його немає (перший деплой) — створюємо самі.
-            if [ ! -d venv ]; then
-              python3.12 -m venv venv
+            # Віртуальне оточення зареєстроване в aaPanel → Python Project.
+            if [ ! -d .venv ]; then
+              python3.12 -m venv .venv
             fi
-            ./venv/bin/pip install --upgrade pip
-            ./venv/bin/pip install -r requirements.txt
+            ./.venv/bin/pip install -q --upgrade pip
+            ./.venv/bin/pip install -q -r requirements.txt
 
             echo "=== Frontend: збірка ==="
             cd "$APP_DIR/demax-admin"
@@ -44,23 +43,18 @@ jobs:
             npm ci
             npm run build
 
-            echo "=== Перезапуск Python-проєкту ==="
-            # Спершу пробуємо через aaPanel (щоб панель бачила коректний стан),
-            # інакше — рестарт процесу напряму.
-            if command -v bt >/dev/null 2>&1; then
-              bt restart_project demax-rag 2>/dev/null || true
-            fi
-            pkill -f "uvicorn app.main:app" 2>/dev/null || true
-            sleep 2
-            cd "$APP_DIR/demax-rag"
-            nohup ./venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8100 \
-              >> /www/wwwlogs/demax-rag.log 2>&1 &
-            sleep 6
+            echo "=== Перезапуск API ==="
+            # Сервіс керується systemd (unit demax-rag.service), як і решта
+            # Python-сервісів на цьому сервері.
+            systemctl restart demax-rag
+            sleep 8
 
             echo "=== Перевірка ==="
             curl -fsS http://127.0.0.1:8100/v1/health || {
               echo "API не відповідає — дивіться /www/wwwlogs/demax-rag.log"
+              journalctl -u demax-rag -n 30 --no-pager
               exit 1
             }
+            nginx -s reload
 
             echo "=== Деплой завершено ==="
