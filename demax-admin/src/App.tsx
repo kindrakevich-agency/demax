@@ -20,6 +20,7 @@ import Analytics from './pages/Analytics'
 import Staff from './pages/Staff'
 import AuditLog from './pages/AuditLog'
 import SettingsPage from './pages/Settings'
+import Translations from './pages/Translations'
 
 export default function App() {
   return (
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/staff" element={<Staff />} />
             <Route path="/audit" element={<AuditLog />} />
+            <Route path="/translations" element={<Translations />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="*" element={<Dashboard />} />
           </Route>

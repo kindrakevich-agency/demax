@@ -9,8 +9,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useApp } from '../lib/app'
 import {
-  clearConversationId, readConversationId, renderMarkdown, sendChat,
-  useTypewriter, writeConversationId,
+  clearConversationId, fetchConversation, readConversationId, readOpenState, renderMarkdown,
+  sendChat, useTypewriter, writeConversationId, writeOpenState,
 } from './lib'
 import type { Source } from './lib'
 
@@ -88,7 +88,7 @@ function TypingIndicator() {
 
 /* ---------- one message ---------- */
 
-function Bubble({ msg, actionable, L }: { msg: Msg; actionable: boolean; L: (b: { ru: string; en: string }) => string }) {
+function Bubble({ msg, actionable, L }: { msg: Msg; actionable: boolean; L: (b: { uk: string; ru: string; en: string }) => string }) {
   const [copied, setCopied] = useState(false)
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null)
   const shownText = useTypewriter(msg.text, !!msg.animate)
@@ -142,7 +142,7 @@ function Bubble({ msg, actionable, L }: { msg: Msg; actionable: boolean; L: (b: 
       {!isTyping && msg.escalated && (
         <div className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-[12px] font-medium text-amber-800">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
-          {L({ ru: 'Передано менеджеру', en: 'Handed to a manager' })}
+          {L({ uk: 'Передано менеджеру', ru: 'Передано менеджеру', en: 'Handed to a manager' })}
         </div>
       )}
 
@@ -183,26 +183,68 @@ function Bubble({ msg, actionable, L }: { msg: Msg; actionable: boolean; L: (b: 
 
 export default function AssistantWidget() {
   const { L, lang } = useApp()
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(() => readOpenState())
   const [fullScreen, setFullScreen] = useState(false)
   const [messages, setMessages] = useState<Msg[]>([])
   const [streaming, setStreaming] = useState(false)
+  const [restoring, setRestoring] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [conversationId, setConversationId] = useState<string | null>(() => readConversationId())
   const [value, setValue] = useState('')
+  const restoredRef = useRef(false)
   const abortRef = useRef<AbortController | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const stick = useRef(true)
   const taRef = useRef<HTMLTextAreaElement>(null)
 
-  const greeting = L({ ru: 'Чем я могу помочь с уходом DEMAX?', en: 'How can I help with DEMAX care?' })
+  const greeting = L({ uk: 'Чим я можу допомогти з доглядом DEMAX?', ru: 'Чем я могу помочь с уходом DEMAX?', en: 'How can I help with DEMAX care?' })
   const starters = [
-    L({ ru: 'Какой крем подойдёт для сухой кожи?', en: 'Which cream suits dry skin?' }),
-    L({ ru: 'Что такое карбокситерапия DEMAX?', en: 'What is DEMAX carboxytherapy?' }),
-    L({ ru: 'Как ухаживать за кожей после пилинга?', en: 'How to care for skin after peeling?' }),
-    L({ ru: 'Какие семинары проводит DEMAX?', en: 'What seminars does DEMAX run?' }),
+    L({ uk: 'Який крем підійде для сухої шкіри?', ru: 'Какой крем подойдёт для сухой кожи?', en: 'Which cream suits dry skin?' }),
+    L({ uk: 'Що таке карбокситерапія DEMAX?', ru: 'Что такое карбокситерапия DEMAX?', en: 'What is DEMAX carboxytherapy?' }),
+    L({ uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How to care for skin after peeling?' }),
+    L({ uk: 'Які семінари проводить DEMAX?', ru: 'Какие семинары проводит DEMAX?', en: 'What seminars does DEMAX run?' }),
   ]
+
+  // Стан «відкрито» переживає перезавантаження сторінки.
+  useEffect(() => {
+    writeOpenState(open)
+  }, [open])
+
+  // Відновлення збереженої розмови при першому відкритті: показуємо
+  // попередню переписку замість того, щоб починати діалог наново.
+  useEffect(() => {
+    if (!open || restoredRef.current) return
+    restoredRef.current = true
+    if (!conversationId) return
+    const ac = new AbortController()
+    setRestoring(true)
+    void (async () => {
+      try {
+        const history = await fetchConversation(conversationId, ac.signal)
+        if (!history || history.length === 0) {
+          clearConversationId()
+          setConversationId(null)
+          return
+        }
+        setMessages(
+          history.map((m) => ({
+            kind: m.sender === 'customer' ? 'user' : 'assistant',
+            id: m.id,
+            text: m.content,
+            animate: false, // історію показуємо одразу, без ефекту друку
+            sources: m.sources,
+            confidence: m.confidence ?? undefined,
+          })),
+        )
+      } catch {
+        // мережевий збій — лишаємо порожній стан, розмова продовжиться далі
+      } finally {
+        setRestoring(false)
+      }
+    })()
+    return () => ac.abort()
+  }, [open, conversationId])
 
   // Snap to bottom on a new turn; follow the growing typewriter text.
   useEffect(() => {
@@ -306,7 +348,9 @@ export default function AssistantWidget() {
   }, [conversationId, lang])
 
   const hasUserMessages = messages.some((m) => m.kind === 'user')
-  const inEmptyState = !hasUserMessages
+  // Поки триває відновлення історії — не показуємо порожній стан із
+  // привітанням, інакше воно блимне перед збереженою розмовою.
+  const inEmptyState = !hasUserMessages && !restoring
 
   const lastAssistantIdx = (() => {
     for (let i = messages.length - 1; i >= 0; i--) if (messages[i].kind === 'assistant') return i
@@ -337,7 +381,7 @@ export default function AssistantWidget() {
               )}
             </button>
             <div className="flex-1 truncate px-2 text-center text-[15px] font-medium text-neutral-700">
-              {L({ ru: 'DEMAX Консультант', en: 'DEMAX Consultant' })}
+              {L({ uk: 'DEMAX Консультант', ru: 'DEMAX Консультант', en: 'DEMAX Consultant' })}
             </div>
             <button type="button" onClick={onNewConversation} aria-label="New conversation" className="mr-1.5 rounded-lg p-1.5 text-neutral-600 transition-colors hover:bg-neutral-300/60 hover:text-neutral-800">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" /><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" /></svg>
@@ -350,7 +394,7 @@ export default function AssistantWidget() {
           {/* EU AI Act transparency notice */}
           <div className="flex items-center gap-2 border-b border-neutral-200 bg-[#f4f4f4] px-4 py-2 pt-[74px] text-[12px] text-neutral-500" role="note">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" /><path d="M12 11v5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /><circle cx="12" cy="7.6" r="1" fill="currentColor" /></svg>
-            <span>{L({ ru: 'Вы общаетесь с ИИ-ассистентом', en: 'You are chatting with an AI assistant' })}</span>
+            <span>{L({ uk: 'Ви спілкуєтеся з ШІ-асистентом', ru: 'Вы общаетесь с ИИ-ассистентом', en: 'You are chatting with an AI assistant' })}</span>
           </div>
 
           {inEmptyState ? (
@@ -373,7 +417,7 @@ export default function AssistantWidget() {
           )}
 
           <div className="px-4 pb-4">
-            {inEmptyState && !streaming && (
+            {inEmptyState && !streaming && !restoring && (
               <div className="mb-3 grid grid-cols-2 gap-3">
                 {starters.map((s) => (
                   <button key={s} type="button" onClick={() => void startTurn(s)} className="rounded-2xl bg-[#e3e3e3] px-4 py-3 text-left text-[15px] leading-snug text-neutral-700 transition-colors hover:bg-[#d8d8d8]">
@@ -400,7 +444,7 @@ export default function AssistantWidget() {
                 value={value}
                 disabled={streaming}
                 maxLength={2000}
-                placeholder={L({ ru: 'Спросите о продуктах, уходе, семинарах…', en: 'Ask about products, care, seminars…' })}
+                placeholder={L({ uk: 'Запитайте про продукти, догляд, семінари…', ru: 'Спросите о продуктах, уходе, семинарах…', en: 'Ask about products, care, seminars…' })}
                 onChange={(e) => {
                   setValue(e.target.value)
                   autoSize()
@@ -433,11 +477,11 @@ export default function AssistantWidget() {
 
             {error ? (
               <p className="mt-2 text-center text-[12px] text-rose-600" role="alert">
-                {L({ ru: 'Не удалось получить ответ. RAG API запущен? (localhost:8100)', en: 'Failed to get a reply. Is the RAG API running? (localhost:8100)' })}
+                {L({ uk: 'Не вдалося отримати відповідь. RAG API запущено? (localhost:8100)', ru: 'Не удалось получить ответ. RAG API запущен? (localhost:8100)', en: 'Failed to get a reply. Is the RAG API running? (localhost:8100)' })}
               </p>
             ) : (
               <p className="mt-3 text-center text-[12px] text-neutral-400">
-                {L({ ru: 'ИИ может ошибаться. Проверяйте важную информацию.', en: 'AI can make mistakes. Please double-check responses.' })}
+                {L({ uk: 'ШІ може помилятися. Перевіряйте важливу інформацію.', ru: 'ИИ может ошибаться. Проверяйте важную информацию.', en: 'AI can make mistakes. Please double-check responses.' })}
               </p>
             )}
           </div>

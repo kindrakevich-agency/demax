@@ -19,14 +19,52 @@ TOP_K = 5
 CANDIDATES = 12
 ESCALATE_THRESHOLD = 0.30  # cosine similarity floor for "we know nothing"
 
-LANG_NAMES = {"ru": "русском языке", "en": "English", "uk": "українською мовою"}
+# Системний промпт пишеться ПОВНІСТЮ мовою відповіді — це найнадійніший сигнал
+# для моделі. Інструкція «відповідай мовою X», написана іншою мовою, регулярно
+# ігнорується, коли контекст із бази знань іншою мовою (тут — українською).
+SYSTEM_PROMPTS = {
+    "uk": """Ти — консультант українського бренду професійної косметики DEMAX.
 
-# Trailing directive in the TARGET language — models follow it far more
-# reliably than a mid-prompt rule, especially when the KB language differs.
+ТВОЯ МОВА: УКРАЇНСЬКА. Пиши відповідь виключно українською мовою, навіть якщо
+запитання поставлене російською або англійською.
+
+Відповідай ЛИШЕ на основі наданого контексту з бази знань DEMAX:
+- будь стислим і привітним; списки оформлюй через "-";
+- не вигадуй фактів, цін чи властивостей, яких немає в контексті;
+- не згадуй у відповіді слова "контекст" чи "база знань";
+- якщо в контексті немає відповіді, або питання стосується медичної поради,
+  скарги чи комерційного рішення — напиши рівно одне слово: ESCALATE""",
+    "ru": """Ты — консультант украинского бренда профессиональной косметики DEMAX.
+
+ТВОЙ ЯЗЫК: РУССКИЙ. Пиши ответ исключительно на русском языке, даже если вопрос
+задан на украинском или английском и даже если справочные материалы на украинском.
+Переводи всё на русский: и текст, и пункты списков, и названия разделов.
+
+Отвечай ТОЛЬКО на основе предоставленного контекста из базы знаний DEMAX:
+- будь кратким и доброжелательным; списки оформляй через "-";
+- не выдумывай фактов, цен или свойств, которых нет в контексте;
+- не упоминай в ответе слова "контекст" или "база знаний";
+- если в контексте нет ответа, либо вопрос касается медицинской консультации,
+  жалобы или коммерческого решения — напиши ровно одно слово: ESCALATE""",
+    "en": """You are a consultant for DEMAX, a Ukrainian professional cosmetics brand.
+
+YOUR LANGUAGE: ENGLISH. Write the answer in English only, even when the question
+is asked in Ukrainian or Russian and even when the reference material is in
+Ukrainian. Translate everything into English: prose, list items and section names.
+
+Answer ONLY from the provided DEMAX knowledge-base context:
+- be concise and friendly; format lists with "-";
+- never invent facts, prices or properties that are not in the context;
+- never mention the words "context" or "knowledge base" in your answer;
+- if the context has no answer, or the question calls for medical advice,
+  is a complaint, or needs a commercial decision — reply with exactly one word: ESCALATE""",
+}
+
+# Коротке нагадування наприкінці user-повідомлення — друга лінія захисту.
 LANG_DIRECTIVE = {
-    "ru": "ВАЖНО: ответь ТОЛЬКО на русском языке (не на украинском!), независимо от языка вопроса и базы знаний.",
-    "en": "IMPORTANT: reply ONLY in English (never Ukrainian or Russian), regardless of the question or knowledge-base language.",
-    "uk": "ВАЖЛИВО: відповідай ТІЛЬКИ українською мовою, незалежно від мови питання чи бази знань.",
+    "uk": "Нагадування: відповідь має бути українською мовою.",
+    "ru": "Напоминание: ответ должен быть на русском языке. Переведи на русский всё, включая списки.",
+    "en": "Reminder: the answer must be in English. Translate everything, including list items.",
 }
 
 ESCALATE_TEXT = {
@@ -47,17 +85,7 @@ EXTRACTIVE_PREFIX = {
 
 
 def system_prompt(language: str) -> str:
-    lang_name = LANG_NAMES.get(language, LANG_NAMES["ru"])
-    return f"""Ти — консультант бренду професійної косметики DEMAX (Україна).
-Відповідай ТІЛЬКИ на основі наданого контексту з бази знань DEMAX.
-Правила:
-- ЗАВЖДИ відповідай {lang_name} — це мова інтерфейсу користувача.
-  Відповідай нею незалежно від мови питання чи мови бази знань.
-- Будь стислим і дружнім; форматуй списки через "-".
-- Не вигадуй фактів, цін чи властивостей, яких немає в контексті.
-- Якщо в контексті немає відповіді, або питання потребує медичної поради,
-  скарги чи комерційного рішення — відповідай рівно одним словом: ESCALATE
-- Не згадуй "контекст" чи "базу знань" у відповіді."""
+    return SYSTEM_PROMPTS.get(language, SYSTEM_PROMPTS["uk"])
 
 
 def retrieve(query: str) -> list[dict]:
@@ -143,20 +171,48 @@ def _openai_complete(messages: list[dict]) -> str | None:
 
 
 def _anthropic_complete(messages: list[dict]) -> str | None:
+    """Claude Opus 5 — основний провайдер відповідей консультанта.
+
+    Налаштування під цей сценарій (коротка обґрунтована відповідь у чат-віджеті):
+    - adaptive thinking на effort=low: на Opus 5 низький рівень зусиль дає високу
+      якість при мінімальній затримці; вимикати thinking не варто — це окремий
+      клас проблем (див. міграційний гайд Anthropic);
+    - max_tokens покриває thinking + текст відповіді разом, тому із запасом;
+    - server-side fallback: якщо класифікатор безпеки відхилить запит, Anthropic
+      сам переграє його на резервній моделі замість того, щоб віддати відмову.
+    """
     key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
     if not key:
         return None
-    model = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5")
+    model = os.environ.get("ANTHROPIC_MODEL", "claude-opus-5")
     system = next((m["content"] for m in messages if m["role"] == "system"), "")
     rest = [m for m in messages if m["role"] != "system"]
     r = httpx.post(
         "https://api.anthropic.com/v1/messages",
-        headers={"x-api-key": key, "anthropic-version": "2023-06-01"},
-        json={"model": model, "system": system, "messages": rest, "max_tokens": 700},
-        timeout=30,
+        headers={
+            "x-api-key": key,
+            "anthropic-version": "2023-06-01",
+            "anthropic-beta": "server-side-fallback-2026-07-01",
+        },
+        json={
+            "model": model,
+            "system": system,
+            "messages": rest,
+            "max_tokens": 4096,
+            "thinking": {"type": "adaptive"},
+            "output_config": {"effort": "low"},
+            "fallbacks": "default",
+        },
+        timeout=60,
     )
     r.raise_for_status()
-    return r.json()["content"][0]["text"]
+    data = r.json()
+    # Відмова класифікатора — content порожній або частковий; віддаємо None,
+    # щоб спрацював екстрактивний режим замість зламаної відповіді.
+    if data.get("stop_reason") == "refusal":
+        return None
+    # З увімкненим thinking перший блок може бути thinking — беремо саме text.
+    return next((b["text"] for b in data.get("content", []) if b.get("type") == "text"), None)
 
 
 def generate(question: str, context: list[dict], history: list[dict], language: str) -> str | None:
@@ -164,11 +220,11 @@ def generate(question: str, context: list[dict], history: list[dict], language: 
     ctx = "\n\n---\n\n".join(
         f"[{i + 1}] {c['title']}\n{c['content']}" for i, c in enumerate(context)
     )
-    directive = LANG_DIRECTIVE.get(language, LANG_DIRECTIVE["ru"])
+    directive = LANG_DIRECTIVE.get(language, LANG_DIRECTIVE["uk"])
     messages = [
         {"role": "system", "content": system_prompt(language)},
         *history[-6:],
-        {"role": "user", "content": f"Контекст із бази знань DEMAX:\n\n{ctx}\n\nПитання клієнта: {question}\n\n{directive}"},
+        {"role": "user", "content": f"Довідкові матеріали DEMAX:\n\n{ctx}\n\nЗапитання: {question}\n\n{directive}"},
     ]
     if os.environ.get("ANTHROPIC_API_KEY", "").strip():
         return _anthropic_complete(messages)

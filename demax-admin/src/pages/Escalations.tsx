@@ -8,10 +8,10 @@ import { escalations, customerById, managerById } from '../lib/mock'
 type Tab = 'open' | 'assigned' | 'resolved' | 'dismissed'
 
 const reasonLabel: Record<string, Bi> = {
-  low_confidence: { ru: 'Низкая уверенность', en: 'Low confidence' },
-  manager_request: { ru: 'Запрос менеджера', en: 'Manager requested' },
-  complaint: { ru: 'Жалоба', en: 'Complaint' },
-  commercial: { ru: 'Коммерческий вопрос', en: 'Commercial' },
+  low_confidence: { uk: 'Низька впевненість', ru: 'Низкая уверенность', en: 'Low confidence' },
+  manager_request: { uk: 'Запит менеджера', ru: 'Запрос менеджера', en: 'Manager requested' },
+  complaint: { uk: 'Скарга', ru: 'Жалоба', en: 'Complaint' },
+  commercial: { uk: 'Комерційне питання', ru: 'Коммерческий вопрос', en: 'Commercial' },
 }
 
 function age(iso: string) {
@@ -30,16 +30,16 @@ export default function Escalations() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'Эскалации', en: 'Escalations' }}
-        subtitle={{ ru: 'Очередь вопросов, переданных AI живым менеджерам', en: 'Queue of questions the AI handed to human managers' }}
+        title={{ uk: 'Ескалації', ru: 'Эскалации', en: 'Escalations' }}
+        subtitle={{ uk: 'Черга питань, переданих AI живим менеджерам', ru: 'Очередь вопросов, переданных AI живым менеджерам', en: 'Queue of questions the AI handed to human managers' }}
       />
 
       <Tabs
         tabs={[
-          { key: 'open', label: { ru: 'Открытые', en: 'Open' }, count: by('open').length },
-          { key: 'assigned', label: { ru: 'Назначенные', en: 'Assigned' }, count: by('assigned').length },
-          { key: 'resolved', label: { ru: 'Решённые', en: 'Resolved' }, count: by('resolved').length },
-          { key: 'dismissed', label: { ru: 'Снятые', en: 'Dismissed' }, count: by('dismissed').length },
+          { key: 'open', label: { uk: 'Відкриті', ru: 'Открытые', en: 'Open' }, count: by('open').length },
+          { key: 'assigned', label: { uk: 'Призначені', ru: 'Назначенные', en: 'Assigned' }, count: by('assigned').length },
+          { key: 'resolved', label: { uk: 'Вирішені', ru: 'Решённые', en: 'Resolved' }, count: by('resolved').length },
+          { key: 'dismissed', label: { uk: 'Зняті', ru: 'Снятые', en: 'Dismissed' }, count: by('dismissed').length },
         ]}
         value={tab}
         onChange={setTab}
@@ -47,17 +47,17 @@ export default function Escalations() {
 
       <Card pad={false}>
         {rows.length === 0 ? (
-          <EmptyState text={{ ru: 'В этой очереди пусто', en: 'This queue is empty' }} />
+          <EmptyState text={{ uk: 'У цій черзі порожньо', ru: 'В этой очереди пусто', en: 'This queue is empty' }} />
         ) : (
           <Table
             head={[
-              { ru: 'ID', en: 'ID' },
-              { ru: 'Клиент', en: 'Customer' },
-              { ru: 'Причина', en: 'Reason' },
-              { ru: 'Увер.', en: 'Conf.' },
-              { ru: 'Менеджер', en: 'Manager' },
-              { ru: 'Возраст', en: 'Age' },
-              { ru: '', en: '' },
+              { uk: 'ID', ru: 'ID', en: 'ID' },
+              { uk: 'Клієнт', ru: 'Клиент', en: 'Customer' },
+              { uk: 'Причина', ru: 'Причина', en: 'Reason' },
+              { uk: 'Впевн.', ru: 'Увер.', en: 'Conf.' },
+              { uk: 'Менеджер', ru: 'Менеджер', en: 'Manager' },
+              { uk: 'Вік', ru: 'Возраст', en: 'Age' },
+              { uk: '', ru: '', en: '' },
             ]}
           >
             {rows.map((e) => {
@@ -77,8 +77,8 @@ export default function Escalations() {
                   <Td><span className={`font-mono text-xs font-bold ${age(e.created).endsWith('d') ? 'text-rose-700 dark:text-rose-400' : 'text-ink-500'}`}>{age(e.created)}</span></Td>
                   <Td>
                     {tab === 'open' ? (
-                      <Button size="sm" variant="secondary" onClick={(ev) => { ev.stopPropagation(); toast({ ru: 'Демо: эскалация назначена вам', en: 'Demo: escalation assigned to you' }) }}>
-                        {L({ ru: 'Взять', en: 'Take' })}
+                      <Button size="sm" variant="secondary" onClick={(ev) => { ev.stopPropagation(); toast({ uk: 'Демо: ескалацію призначено вам', ru: 'Демо: эскалация назначена вам', en: 'Demo: escalation assigned to you' }) }}>
+                        {L({ uk: 'Взяти', ru: 'Взять', en: 'Take' })}
                       </Button>
                     ) : <Status s={e.status} />}
                   </Td>
@@ -91,6 +91,7 @@ export default function Escalations() {
 
       <p className="mt-4 text-xs text-ink-400">
         {L({
+          uk: 'Сортування: найстаріші зверху. SLA-пріоритизація з’явиться після вирішення OQ-17.',
           ru: 'Сортировка: старейшие сверху. SLA-приоритизация появится после решения OQ-17.',
           en: 'Sorted oldest-first. SLA prioritisation arrives once OQ-17 is decided.',
         })}

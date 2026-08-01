@@ -18,11 +18,11 @@ type Stats = { data: { category: string; articles: number; chunks: number }[]; t
 type SearchHit = { article_id: string; title: string; chunk: string; score: number; url: string | null }
 
 const catLabel: Record<string, Bi> = {
-  products: { ru: 'Товары (домашний уход)', en: 'Products (home care)' },
-  professional: { ru: 'Проф. препараты', en: 'Professional preparations' },
-  blog: { ru: 'Статьи блога', en: 'Blog articles' },
-  pages: { ru: 'Страницы сайта', en: 'Site pages' },
-  catalog_pdf: { ru: 'Каталог PDF (2021)', en: 'PDF catalog (2021)' },
+  products: { uk: 'Товари (домашній догляд)', ru: 'Товары (домашний уход)', en: 'Products (home care)' },
+  professional: { uk: 'Проф. препарати', ru: 'Проф. препараты', en: 'Professional preparations' },
+  blog: { uk: 'Статті блогу', ru: 'Статьи блога', en: 'Blog articles' },
+  pages: { uk: 'Сторінки сайту', ru: 'Страницы сайта', en: 'Site pages' },
+  catalog_pdf: { uk: 'Каталог PDF (2021)', ru: 'Каталог PDF (2021)', en: 'PDF catalog (2021)' },
 }
 
 export default function Assistant() {
@@ -66,7 +66,7 @@ export default function Assistant() {
       const j = await r.json()
       setHits(j.results)
     } catch {
-      toast({ ru: 'RAG API недоступен', en: 'RAG API unreachable' })
+      toast({ uk: 'RAG API недоступний', ru: 'RAG API недоступен', en: 'RAG API unreachable' })
     } finally {
       setSearching(false)
     }
@@ -77,8 +77,9 @@ export default function Assistant() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'AI-ассистент (RAG)', en: 'AI Assistant (RAG)' }}
+        title={{ uk: 'AI-асистент (RAG)', ru: 'AI-ассистент (RAG)', en: 'AI Assistant (RAG)' }}
         subtitle={{
+          uk: 'Живий RAG на локальному стенді: PostgreSQL + pgvector, гібридний пошук, відповіді лише з бази знань DEMAX',
           ru: 'Живой RAG на локальном стенде: PostgreSQL + pgvector, гибридный поиск, ответы только из базы знаний DEMAX',
           en: 'Live RAG on the local stand: PostgreSQL + pgvector, hybrid retrieval, answers grounded in the DEMAX knowledge base',
         }}
@@ -88,10 +89,10 @@ export default function Assistant() {
             size="sm"
             onClick={async () => {
               await fetch(`${RAG_ORIGIN}/v1/admin/knowledge/reindex`, { method: 'POST' }).catch(() => null)
-              toast({ ru: 'Переиндексация запущена', en: 'Re-index started' })
+              toast({ uk: 'Переіндексацію запущено', ru: 'Переиндексация запущена', en: 'Re-index started' })
             }}
           >
-            <RefreshCw size={14} /> {L({ ru: 'Реиндексировать', en: 'Re-index' })}
+            <RefreshCw size={14} /> {L({ uk: 'Переіндексувати', ru: 'Реиндексировать', en: 'Re-index' })}
           </Button>
         }
       />
@@ -100,6 +101,7 @@ export default function Assistant() {
         <Card className="animate-rise mb-4 border-rose-300/60 dark:border-rose-500/30">
           <p className="text-sm text-rose-700 dark:text-rose-400">
             {L({
+              uk: 'RAG API не відповідає на localhost:8100. Запустіть: cd demax-rag && docker compose up -d',
               ru: 'RAG API не отвечает на localhost:8100. Запустите: cd demax-rag && docker compose up -d',
               en: 'RAG API is not responding on localhost:8100. Run: cd demax-rag && docker compose up -d',
             })}
@@ -112,22 +114,22 @@ export default function Assistant() {
           <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-copper-500 to-copper-300" />
           <Database size={18} className="mb-2 text-copper-600 dark:text-copper-400" />
           <div className="font-display text-3xl font-semibold">{stats?.total_chunks ?? '—'}</div>
-          <div className="mt-1 text-xs text-ink-500 dark:text-ink-400">{L({ ru: 'чанков с эмбеддингами', en: 'embedded chunks' })}</div>
+          <div className="mt-1 text-xs text-ink-500 dark:text-ink-400">{L({ uk: 'чанків з ембедингами', ru: 'чанков с эмбеддингами', en: 'embedded chunks' })}</div>
         </Card>
         <Card className="animate-rise-1">
           <Globe size={18} className="mb-2 text-copper-600 dark:text-copper-400" />
           <div className="font-display text-3xl font-semibold">
             {stats ? stats.data.reduce((s, d) => s + d.articles, 0) : '—'}
           </div>
-          <div className="mt-1 text-xs text-ink-500 dark:text-ink-400">{L({ ru: 'документов из demax.com.ua + PDF', en: 'documents from demax.com.ua + PDF' })}</div>
+          <div className="mt-1 text-xs text-ink-500 dark:text-ink-400">{L({ uk: 'документів з demax.com.ua + PDF', ru: 'документов из demax.com.ua + PDF', en: 'documents from demax.com.ua + PDF' })}</div>
         </Card>
         <Card className="animate-rise-2">
           <Sparkles size={18} className="mb-2 text-copper-600 dark:text-copper-400" />
           <div className="mt-1"><Status s={ready?.dependencies.llm_provider ? 'active' : 'pending'} /></div>
           <div className="mt-2 text-xs text-ink-500 dark:text-ink-400">
             {ready?.dependencies.llm_provider
-              ? L({ ru: 'LLM подключён', en: 'LLM connected' })
-              : L({ ru: 'LLM-ключ не задан — экстрактивный режим', en: 'No LLM key — extractive mode' })}
+              ? L({ uk: 'LLM підключено', ru: 'LLM подключён', en: 'LLM connected' })
+              : L({ uk: 'LLM-ключ не задано — екстрактивний режим', ru: 'LLM-ключ не задан — экстрактивный режим', en: 'No LLM key — extractive mode' })}
           </div>
         </Card>
         <Card className="animate-rise-3">
@@ -135,15 +137,15 @@ export default function Assistant() {
           <div className="mt-1"><Status s={ingest?.status === 'running' ? 'pending' : ingest?.status === 'done' || (stats?.total_chunks ?? 0) > 0 ? 'ready' : 'draft'} /></div>
           <div className="mt-2 text-xs text-ink-500 dark:text-ink-400">
             {ingest?.status === 'running'
-              ? `${L({ ru: 'Индексация', en: 'Ingesting' })}: ${ingest.done}/${ingest.total || '…'}`
-              : L({ ru: 'Состояние индексации', en: 'Ingest state' })}
+              ? `${L({ uk: 'Індексація', ru: 'Индексация', en: 'Ingesting' })}: ${ingest.done}/${ingest.total || '…'}`
+              : L({ uk: 'Стан індексації', ru: 'Состояние индексации', en: 'Ingest state' })}
           </div>
         </Card>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Card className="animate-rise-1" pad={false}>
-          <div className="px-5 pt-5 pb-2"><SectionTitle>{L({ ru: 'База знаний по источникам', en: 'Knowledge by source' })}</SectionTitle></div>
+          <div className="px-5 pt-5 pb-2"><SectionTitle>{L({ uk: 'База знань за джерелами', ru: 'База знаний по источникам', en: 'Knowledge by source' })}</SectionTitle></div>
           <div className="divide-y divide-ink-100 dark:divide-ink-800">
             {(stats?.data ?? []).map((d) => (
               <div key={d.category} className="flex items-center gap-3 px-5 py-3.5 text-sm">
@@ -154,26 +156,26 @@ export default function Assistant() {
             ))}
             {!stats?.data.length && (
               <div className="px-5 py-8 text-center text-sm text-ink-400">
-                {L({ ru: 'Идёт первая индексация: скрейпинг demax.com.ua + каталог PDF…', en: 'First ingest running: scraping demax.com.ua + the PDF catalog…' })}
+                {L({ uk: 'Триває перша індексація: скрейпінг demax.com.ua + каталог PDF…', ru: 'Идёт первая индексация: скрейпинг demax.com.ua + каталог PDF…', en: 'First ingest running: scraping demax.com.ua + the PDF catalog…' })}
               </div>
             )}
           </div>
         </Card>
 
         <Card className="animate-rise-2">
-          <SectionTitle>{L({ ru: 'Поиск глазами AI (гибридный)', en: 'Search as the AI (hybrid)' })}</SectionTitle>
+          <SectionTitle>{L({ uk: 'Пошук очима AI (гібридний)', ru: 'Поиск глазами AI (гибридный)', en: 'Search as the AI (hybrid)' })}</SectionTitle>
           <p className="mb-3 text-xs text-ink-500 dark:text-ink-400">
-            {L({ ru: 'pgvector cosine + полнотекстовый поиск, слияние RRF — именно так ассистент выбирает источники.', en: 'pgvector cosine + full-text search fused with RRF — exactly how the assistant picks sources.' })}
+            {L({ uk: 'pgvector cosine + повнотекстовий пошук, злиття RRF — саме так асистент обирає джерела.', ru: 'pgvector cosine + полнотекстовый поиск, слияние RRF — именно так ассистент выбирает источники.', en: 'pgvector cosine + full-text search fused with RRF — exactly how the assistant picks sources.' })}
           </p>
           <div className="flex gap-2">
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && search()}
-              placeholder={L({ ru: 'крем для сухой кожи…', en: 'cream for dry skin…' })}
+              placeholder={L({ uk: 'крем для сухої шкіри…', ru: 'крем для сухой кожи…', en: 'cream for dry skin…' })}
             />
             <Button onClick={search} disabled={searching || query.trim().length < 2}>
-              {L({ ru: 'Найти', en: 'Search' })}
+              {L({ uk: 'Знайти', ru: 'Найти', en: 'Search' })}
             </Button>
           </div>
           <div className="mt-4 space-y-2.5">
@@ -188,7 +190,7 @@ export default function Assistant() {
                 <p className="mt-1 line-clamp-3 text-xs text-ink-500 dark:text-ink-400">{h.chunk}</p>
               </div>
             ))}
-            {hits && hits.length === 0 && <p className="text-sm text-ink-400">{L({ ru: 'Ничего не найдено', en: 'Nothing found' })}</p>}
+            {hits && hits.length === 0 && <p className="text-sm text-ink-400">{L({ uk: 'Нічого не знайдено', ru: 'Ничего не найдено', en: 'Nothing found' })}</p>}
           </div>
         </Card>
 
@@ -196,9 +198,10 @@ export default function Assistant() {
           <div className="flex items-center gap-4">
             <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><MessageCircle size={20} /></span>
             <div className="flex-1">
-              <SectionTitle>{L({ ru: 'Попробуйте консультанта', en: 'Try the consultant' })}</SectionTitle>
+              <SectionTitle>{L({ uk: 'Спробуйте консультанта', ru: 'Попробуйте консультанта', en: 'Try the consultant' })}</SectionTitle>
               <p className="-mt-1 text-sm text-ink-500 dark:text-ink-400">
                 {L({
+                  uk: 'Натисніть на плаваючу кнопку в правому нижньому куті — це віджет-консультант із живим RAG: відповіді лише з проіндексованої бази DEMAX, із джерелами та ескалацією менеджеру.',
                   ru: 'Нажмите на плавающую кнопку в правом нижнем углу — это виджет-консультант с живым RAG: ответы только из проиндексированной базы DEMAX, с источниками и эскалацией менеджеру.',
                   en: 'Click the floating button in the bottom-right corner — the consultant widget runs on the live RAG: answers only from the indexed DEMAX base, with sources and manager escalation.',
                 })}

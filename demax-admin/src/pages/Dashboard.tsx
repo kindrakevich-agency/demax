@@ -16,46 +16,46 @@ export default function Dashboard() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'Доброе утро, Ольга', en: 'Good morning, Olga' }}
-        subtitle={{ ru: 'Суббота, 1 августа 2026 · всё работает штатно', en: 'Saturday, 1 August 2026 · all systems nominal' }}
+        title={{ uk: 'Доброго ранку, Ольго', ru: 'Доброе утро, Ольга', en: 'Good morning, Olga' }}
+        subtitle={{ uk: 'Субота, 1 серпня 2026 · усе працює штатно', ru: 'Суббота, 1 августа 2026 · всё работает штатно', en: 'Saturday, 1 August 2026 · all systems nominal' }}
       />
 
       {/* KPI row */}
       <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <Stat label={{ ru: 'Диалогов сегодня', en: 'Conversations today' }} value="64" hint={L({ ru: '+18% к прошлой субботе', en: '+18% vs last Saturday' })} accent />
-        <Stat label={{ ru: 'AI закрыл сам', en: 'AI resolved' }} value="91%" hint={L({ ru: 'без эскалации', en: 'without escalation' })} />
-        <Stat label={{ ru: 'Открытые эскалации', en: 'Open escalations' }} value={String(openEsc.length + escalations.filter(e => e.status === 'assigned').length)} hint={L({ ru: `${openEsc.length} не назначено`, en: `${openEsc.length} unassigned` })} />
-        <Stat label={{ ru: 'Ждут верификации', en: 'Pending verification' }} value={String(pendingVer.length)} hint={L({ ru: 'старейшая — 2 дня', en: 'oldest — 2 days' })} />
+        <Stat label={{ uk: 'Діалогів сьогодні', ru: 'Диалогов сегодня', en: 'Conversations today' }} value="64" hint={L({ uk: '+18% до минулої суботи', ru: '+18% к прошлой субботе', en: '+18% vs last Saturday' })} accent />
+        <Stat label={{ uk: 'AI закрив сам', ru: 'AI закрыл сам', en: 'AI resolved' }} value="91%" hint={L({ uk: 'без ескалації', ru: 'без эскалации', en: 'without escalation' })} />
+        <Stat label={{ uk: 'Відкриті ескалації', ru: 'Открытые эскалации', en: 'Open escalations' }} value={String(openEsc.length + escalations.filter(e => e.status === 'assigned').length)} hint={L({ uk: `${openEsc.length} не призначено`, ru: `${openEsc.length} не назначено`, en: `${openEsc.length} unassigned` })} />
+        <Stat label={{ uk: 'Очікують верифікації', ru: 'Ждут верификации', en: 'Pending verification' }} value={String(pendingVer.length)} hint={L({ uk: 'найстаріша — 2 дні', ru: 'старейшая — 2 дня', en: 'oldest — 2 days' })} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
         {/* charts */}
         <Card className="animate-rise-1 lg:col-span-2">
-          <SectionTitle>{L({ ru: 'Диалоги и эскалации, 8 дней', en: 'Conversations & escalations, 8 days' })}</SectionTitle>
+          <SectionTitle>{L({ uk: 'Діалоги та ескалації, 8 днів', ru: 'Диалоги и эскалации, 8 дней', en: 'Conversations & escalations, 8 days' })}</SectionTitle>
           <TrendChart
             data={convPerDay}
             xKey="d"
             series={[
-              { key: 'conversations', name: L({ ru: 'Диалоги', en: 'Conversations' }) },
-              { key: 'escalations', name: L({ ru: 'Эскалации', en: 'Escalations' }) },
+              { key: 'conversations', name: L({ uk: 'Діалоги', ru: 'Диалоги', en: 'Conversations' }) },
+              { key: 'escalations', name: L({ uk: 'Ескалації', ru: 'Эскалации', en: 'Escalations' }) },
             ]}
           />
         </Card>
 
         <Card className="animate-rise-2">
-          <SectionTitle>{L({ ru: 'Уверенность AI', en: 'AI confidence' })}</SectionTitle>
-          <BarsChart data={confidenceDist} xKey="bucket" yKey="count" name={L({ ru: 'Ответов', en: 'Answers' })} highlightLast />
+          <SectionTitle>{L({ uk: 'Впевненість AI', ru: 'Уверенность AI', en: 'AI confidence' })}</SectionTitle>
+          <BarsChart data={confidenceDist} xKey="bucket" yKey="count" name={L({ uk: 'Відповідей', ru: 'Ответов', en: 'Answers' })} highlightLast />
           <p className="mt-2 text-xs text-ink-500 dark:text-ink-400">
-            {L({ ru: '85% ответов с уверенностью выше 0.6', en: '85% of answers above 0.6 confidence' })}
+            {L({ uk: '85% відповідей із впевненістю вище 0.6', ru: '85% ответов с уверенностью выше 0.6', en: '85% of answers above 0.6 confidence' })}
           </p>
         </Card>
 
         {/* escalations preview */}
         <Card className="animate-rise-1 lg:col-span-2" pad={false}>
           <div className="flex items-center justify-between px-5 pt-5 pb-3">
-            <SectionTitle>{L({ ru: 'Требуют внимания', en: 'Needs attention' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'Потребують уваги', ru: 'Требуют внимания', en: 'Needs attention' })}</SectionTitle>
             <Link to="/escalations" className="flex items-center gap-1 text-xs font-bold text-copper-700 hover:underline dark:text-copper-300">
-              {L({ ru: 'Все эскалации', en: 'All escalations' })} <ArrowRight size={13} />
+              {L({ uk: 'Усі ескалації', ru: 'Все эскалации', en: 'All escalations' })} <ArrowRight size={13} />
             </Link>
           </div>
           <div className="divide-y divide-ink-100 dark:divide-ink-800">
@@ -82,7 +82,7 @@ export default function Dashboard() {
         <div className="animate-rise-2 space-y-4">
           <Card pad={false}>
             <div className="flex items-center justify-between px-5 pt-5 pb-2">
-              <SectionTitle>{L({ ru: 'Ближайшие семинары', en: 'Upcoming seminars' })}</SectionTitle>
+              <SectionTitle>{L({ uk: 'Найближчі семінари', ru: 'Ближайшие семинары', en: 'Upcoming seminars' })}</SectionTitle>
               <Link to="/seminars" className="text-xs font-bold text-copper-700 hover:underline dark:text-copper-300">→</Link>
             </div>
             <div className="divide-y divide-ink-100 dark:divide-ink-800">
@@ -99,20 +99,20 @@ export default function Dashboard() {
           </Card>
 
           <Card>
-            <SectionTitle>{L({ ru: 'База знаний', en: 'Knowledge Base' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'База знань', ru: 'База знаний', en: 'Knowledge Base' })}</SectionTitle>
             <div className="flex items-end justify-between">
               <div>
                 <div className="font-display text-3xl font-semibold">{kbPublished}</div>
-                <div className="text-xs text-ink-400">{L({ ru: 'опубликовано', en: 'published' })}</div>
+                <div className="text-xs text-ink-400">{L({ uk: 'опубліковано', ru: 'опубликовано', en: 'published' })}</div>
               </div>
               <Link to="/knowledge" className="rounded-full bg-amber-100 px-3 py-1.5 text-xs font-bold text-amber-800 hover:bg-amber-200 dark:bg-amber-500/15 dark:text-amber-400">
-                {kbReview} {L({ ru: 'на проверке', en: 'in review' })}
+                {kbReview} {L({ uk: 'на перевірці', ru: 'на проверке', en: 'in review' })}
               </Link>
             </div>
           </Card>
 
           <Card>
-            <SectionTitle>{L({ ru: 'Состояние системы', en: 'System health' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'Стан системи', ru: 'Состояние системы', en: 'System health' })}</SectionTitle>
             <div className="space-y-2.5 text-sm">
               {[
                 { icon: Cpu, name: 'API', v: '99.98%' },
@@ -134,9 +134,9 @@ export default function Dashboard() {
         {/* recent activity */}
         <Card className="animate-rise-3 lg:col-span-3" pad={false}>
           <div className="flex items-center justify-between px-5 pt-5 pb-3">
-            <SectionTitle>{L({ ru: 'Последние действия', en: 'Recent activity' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'Останні дії', ru: 'Последние действия', en: 'Recent activity' })}</SectionTitle>
             <Link to="/audit" className="flex items-center gap-1 text-xs font-bold text-copper-700 hover:underline dark:text-copper-300">
-              {L({ ru: 'Журнал аудита', en: 'Audit log' })} <ArrowRight size={13} />
+              {L({ uk: 'Журнал аудиту', ru: 'Журнал аудита', en: 'Audit log' })} <ArrowRight size={13} />
             </Link>
           </div>
           <div className="grid gap-x-8 px-5 pb-5 sm:grid-cols-2">

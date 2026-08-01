@@ -21,10 +21,10 @@ export default function AuditLog() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'Журнал аудита', en: 'Audit log' }}
-        subtitle={{ ru: 'Неизменяемый журнал: только добавление, изменение и удаление записей запрещены на уровне БД.', en: 'Immutable log: append-only; updates and deletes are revoked at the database level.' }}
+        title={{ uk: 'Журнал аудиту', ru: 'Журнал аудита', en: 'Audit log' }}
+        subtitle={{ uk: 'Незмінний журнал: лише додавання; зміна та видалення записів заборонені на рівні БД.', ru: 'Неизменяемый журнал: только добавление, изменение и удаление записей запрещены на уровне БД.', en: 'Immutable log: append-only; updates and deletes are revoked at the database level.' }}
         actions={
-          <Button variant="secondary" size="sm" onClick={() => toast({ ru: 'Демо: JSON выгружен', en: 'Demo: JSON exported' })}>
+          <Button variant="secondary" size="sm" onClick={() => toast({ uk: 'Демо: JSON вивантажено', ru: 'Демо: JSON выгружен', en: 'Demo: JSON exported' })}>
             <Download size={14} /> JSON
           </Button>
         }
@@ -33,33 +33,33 @@ export default function AuditLog() {
       <Card pad={false}>
         <div className="flex flex-wrap items-center gap-3 border-b border-ink-100 p-4 dark:border-ink-800">
           <Select value={actor} onChange={(e) => setActor(e.target.value)} className="w-44">
-            <option value="">{L({ ru: 'Актор: все', en: 'Actor: all' })}</option>
-            <option value="admin">{L({ ru: 'Администраторы', en: 'Admins' })}</option>
-            <option value="manager">{L({ ru: 'Менеджеры', en: 'Managers' })}</option>
-            <option value="system">{L({ ru: 'Система', en: 'System' })}</option>
+            <option value="">{L({ uk: 'Актор: усі', ru: 'Актор: все', en: 'Actor: all' })}</option>
+            <option value="admin">{L({ uk: 'Адміністратори', ru: 'Администраторы', en: 'Admins' })}</option>
+            <option value="manager">{L({ uk: 'Менеджери', ru: 'Менеджеры', en: 'Managers' })}</option>
+            <option value="system">{L({ uk: 'Система', ru: 'Система', en: 'System' })}</option>
           </Select>
           <Select value={action} onChange={(e) => setAction(e.target.value)} className="w-56">
-            <option value="">{L({ ru: 'Действие: все', en: 'Action: all' })}</option>
+            <option value="">{L({ uk: 'Дія: усі', ru: 'Действие: все', en: 'Action: all' })}</option>
             {actions.map((a) => <option key={a} value={a}>{a}</option>)}
           </Select>
           <Select value={entity} onChange={(e) => setEntity(e.target.value)} className="w-52">
-            <option value="">{L({ ru: 'Сущность: все', en: 'Entity: all' })}</option>
+            <option value="">{L({ uk: 'Сутність: усі', ru: 'Сущность: все', en: 'Entity: all' })}</option>
             {entities.map((e2) => <option key={e2} value={e2}>{e2}</option>)}
           </Select>
           <Input type="date" className="w-40" defaultValue="2026-07-01" />
         </div>
 
         {rows.length === 0 ? (
-          <EmptyState text={{ ru: 'Записей не найдено', en: 'No entries found' }} />
+          <EmptyState text={{ uk: 'Записів не знайдено', ru: 'Записей не найдено', en: 'No entries found' }} />
         ) : (
           <>
             <Table
               head={[
-                { ru: 'ID', en: 'ID' },
-                { ru: 'Время (UTC)', en: 'Time (UTC)' },
-                { ru: 'Актор', en: 'Actor' },
-                { ru: 'Действие', en: 'Action' },
-                { ru: 'Сущность', en: 'Entity' },
+                { uk: 'ID', ru: 'ID', en: 'ID' },
+                { uk: 'Час (UTC)', ru: 'Время (UTC)', en: 'Time (UTC)' },
+                { uk: 'Актор', ru: 'Актор', en: 'Actor' },
+                { uk: 'Дія', ru: 'Действие', en: 'Action' },
+                { uk: 'Сутність', ru: 'Сущность', en: 'Entity' },
               ]}
             >
               {rows.map((a) => (
@@ -83,7 +83,7 @@ export default function AuditLog() {
       </Card>
 
       <p className="mt-4 text-xs text-ink-400">
-        {L({ ru: 'Поля before/after редактируются по allow-list: пароли, OTP, токены и подписанные URL никогда не записываются.', en: 'before/after fields follow a redaction allow-list: passwords, OTPs, tokens and signed URLs are never stored.' })}
+        {L({ uk: 'Поля before/after редагуються за allow-list: паролі, OTP, токени та підписані URL ніколи не записуються.', ru: 'Поля before/after редактируются по allow-list: пароли, OTP, токены и подписанные URL никогда не записываются.', en: 'before/after fields follow a redaction allow-list: passwords, OTPs, tokens and signed URLs are never stored.' })}
       </p>
     </div>
   )

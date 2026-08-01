@@ -1,8 +1,11 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 
-export type Lang = 'ru' | 'en'
-export type Bi = { ru: string; en: string }
+export type Lang = 'uk' | 'ru' | 'en'
+/** Локалізований рядок. `uk` — основна мова (український ринок). */
+export type Bi = { uk: string; ru: string; en: string }
+
+export const LANGS: Lang[] = ['uk', 'ru', 'en']
 
 type AppCtx = {
   lang: Lang
@@ -16,7 +19,10 @@ type AppCtx = {
 const Ctx = createContext<AppCtx | null>(null)
 
 export function AppProviders({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => (localStorage.getItem('demax-lang') as Lang) || 'ru')
+  const [lang, setLangState] = useState<Lang>(() => {
+    const stored = localStorage.getItem('demax-lang') as Lang | null
+    return stored && LANGS.includes(stored) ? stored : 'uk'
+  })
   const [dark, setDark] = useState<boolean>(() => document.documentElement.classList.contains('dark'))
   const [toasts, setToasts] = useState<{ id: number; text: string }[]>([])
 
@@ -75,12 +81,14 @@ export function useApp() {
   return ctx
 }
 
+const LOCALES: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' }
+
 export const fmtDate = (iso: string, lang: Lang, withTime = false) =>
-  new Date(iso).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-GB', {
+  new Date(iso).toLocaleString(LOCALES[lang], {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
     ...(withTime ? { hour: '2-digit', minute: '2-digit' } : {}),
   })
 
-export const fmtNum = (n: number, lang: Lang) => n.toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US')
+export const fmtNum = (n: number, lang: Lang) => n.toLocaleString(lang === 'en' ? 'en-US' : LOCALES[lang])

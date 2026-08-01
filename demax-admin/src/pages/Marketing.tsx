@@ -14,8 +14,8 @@ export default function Marketing() {
   const [sendModal, setSendModal] = useState<string | null>(null)
 
   const tabs: { key: Tab; label: Bi }[] = [
-    { key: 'campaigns', label: { ru: 'Кампании', en: 'Campaigns' } },
-    { key: 'notifications', label: { ru: 'Уведомления', en: 'Notifications' } },
+    { key: 'campaigns', label: { uk: 'Кампанії', ru: 'Кампании', en: 'Campaigns' } },
+    { key: 'notifications', label: { uk: 'Сповіщення', ru: 'Уведомления', en: 'Notifications' } },
   ]
 
   const promo = promotions.find((p) => p.id === sendModal)
@@ -23,11 +23,11 @@ export default function Marketing() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'Рассылки и уведомления', en: 'Campaigns & notifications' }}
-        subtitle={{ ru: 'Только клиентам с согласием на маркетинг. Доставка дозируется — защита от бана Telegram.', en: 'Consenting customers only. Delivery is throttled to protect the Telegram bot.' }}
+        title={{ uk: 'Розсилки та сповіщення', ru: 'Рассылки и уведомления', en: 'Campaigns & notifications' }}
+        subtitle={{ uk: 'Лише клієнтам зі згодою на маркетинг. Доставка дозується — захист від бану Telegram.', ru: 'Только клиентам с согласием на маркетинг. Доставка дозируется — защита от бана Telegram.', en: 'Consenting customers only. Delivery is throttled to protect the Telegram bot.' }}
         actions={
           <Button size="sm" onClick={() => setCompose(true)}>
-            <Plus size={15} /> {L({ ru: 'Новая кампания', en: 'New campaign' })}
+            <Plus size={15} /> {L({ uk: 'Нова кампанія', ru: 'Новая кампания', en: 'New campaign' })}
           </Button>
         }
       />
@@ -38,13 +38,13 @@ export default function Marketing() {
         <Card pad={false}>
           <Table
             head={[
-              { ru: 'Кампания', en: 'Campaign' },
-              { ru: 'Аудитория', en: 'Audience' },
-              { ru: 'Отправлено', en: 'Sent' },
-              { ru: 'Доставлено', en: 'Delivered' },
-              { ru: 'Ошибки', en: 'Failed' },
-              { ru: 'Статус', en: 'Status' },
-              { ru: '', en: '' },
+              { uk: 'Кампанія', ru: 'Кампания', en: 'Campaign' },
+              { uk: 'Аудиторія', ru: 'Аудитория', en: 'Audience' },
+              { uk: 'Надіслано', ru: 'Отправлено', en: 'Sent' },
+              { uk: 'Доставлено', ru: 'Доставлено', en: 'Delivered' },
+              { uk: 'Помилки', ru: 'Ошибки', en: 'Failed' },
+              { uk: 'Статус', ru: 'Статус', en: 'Status' },
+              { uk: '', ru: '', en: '' },
             ]}
           >
             {promotions.map((p) => (
@@ -59,7 +59,7 @@ export default function Marketing() {
                   </div>
                 </Td>
                 <Td>
-                  <span className="text-xs font-bold text-ink-500 uppercase">{p.audience === 'all' ? L({ ru: 'Все', en: 'All' }) : p.audience === 'professional' ? 'PRO' : 'Home Care'}</span>
+                  <span className="text-xs font-bold text-ink-500 uppercase">{p.audience === 'all' ? L({ uk: 'Усі', ru: 'Все', en: 'All' }) : p.audience === 'professional' ? 'PRO' : 'Home Care'}</span>
                 </Td>
                 <Td><span className="font-mono text-xs">{p.sent ? fmtNum(p.sent, lang) : '—'}</span></Td>
                 <Td><span className="font-mono text-xs text-sage-600 dark:text-sage-400">{p.delivered ? fmtNum(p.delivered, lang) : '—'}</span></Td>
@@ -68,7 +68,7 @@ export default function Marketing() {
                 <Td>
                   {p.status === 'draft' && (
                     <Button size="sm" onClick={() => setSendModal(p.id)}>
-                      <Send size={13} /> {L({ ru: 'Отправить', en: 'Send' })}
+                      <Send size={13} /> {L({ uk: 'Надіслати', ru: 'Отправить', en: 'Send' })}
                     </Button>
                   )}
                 </Td>
@@ -82,11 +82,11 @@ export default function Marketing() {
         <Card pad={false}>
           <Table
             head={[
-              { ru: 'Тип', en: 'Type' },
-              { ru: 'Получатель', en: 'Recipient' },
-              { ru: 'Канал', en: 'Channel' },
-              { ru: 'Запланировано', en: 'Scheduled' },
-              { ru: 'Статус', en: 'Status' },
+              { uk: 'Тип', ru: 'Тип', en: 'Type' },
+              { uk: 'Отримувач', ru: 'Получатель', en: 'Recipient' },
+              { uk: 'Канал', ru: 'Канал', en: 'Channel' },
+              { uk: 'Заплановано', ru: 'Запланировано', en: 'Scheduled' },
+              { uk: 'Статус', ru: 'Статус', en: 'Status' },
             ]}
           >
             {notices.map((n) => (
@@ -103,61 +103,61 @@ export default function Marketing() {
       )}
 
       {/* composer */}
-      <Modal open={compose} onClose={() => setCompose(false)} title={{ ru: 'Новая кампания', en: 'New campaign' }} wide>
+      <Modal open={compose} onClose={() => setCompose(false)} title={{ uk: 'Нова кампанія', ru: 'Новая кампания', en: 'New campaign' }} wide>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
-            <Field label={{ ru: 'Заголовок', en: 'Title' }}>
-              <Input placeholder={L({ ru: 'Название кампании…', en: 'Campaign title…' })} />
+            <Field label={{ uk: 'Заголовок', ru: 'Заголовок', en: 'Title' }}>
+              <Input placeholder={L({ uk: 'Назва кампанії…', ru: 'Название кампании…', en: 'Campaign title…' })} />
             </Field>
           </div>
-          <Field label={{ ru: 'Аудитория', en: 'Audience' }}>
+          <Field label={{ uk: 'Аудиторія', ru: 'Аудитория', en: 'Audience' }}>
             <Select>
-              <option>{L({ ru: 'Все клиенты', en: 'All customers' })}</option>
+              <option>{L({ uk: 'Усі клієнти', ru: 'Все клиенты', en: 'All customers' })}</option>
               <option>Home Care</option>
               <option>Professional</option>
             </Select>
           </Field>
-          <Field label={{ ru: 'Дата старта', en: 'Start date' }}>
+          <Field label={{ uk: 'Дата старту', ru: 'Дата старта', en: 'Start date' }}>
             <Input type="date" defaultValue="2026-08-15" />
           </Field>
           <div className="sm:col-span-2">
-            <Field label={{ ru: 'Текст сообщения', en: 'Message body' }} hint={{ ru: 'Уйдёт в Telegram только клиентам с согласием', en: 'Sent via Telegram to consenting customers only' }}>
-              <Textarea rows={4} placeholder={L({ ru: 'Текст рассылки…', en: 'Broadcast text…' })} />
+            <Field label={{ uk: 'Текст повідомлення', ru: 'Текст сообщения', en: 'Message body' }} hint={{ uk: 'Надійде в Telegram лише клієнтам зі згодою', ru: 'Уйдёт в Telegram только клиентам с согласием', en: 'Sent via Telegram to consenting customers only' }}>
+              <Textarea rows={4} placeholder={L({ uk: 'Текст розсилки…', ru: 'Текст рассылки…', en: 'Broadcast text…' })} />
             </Field>
           </div>
           <div className="flex justify-end gap-2 sm:col-span-2">
-            <Button variant="ghost" onClick={() => setCompose(false)}>{L({ ru: 'Отмена', en: 'Cancel' })}</Button>
-            <Button onClick={() => { setCompose(false); toast({ ru: 'Кампания сохранена как черновик', en: 'Campaign saved as draft' }) }}>
-              {L({ ru: 'Сохранить черновик', en: 'Save draft' })}
+            <Button variant="ghost" onClick={() => setCompose(false)}>{L({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}</Button>
+            <Button onClick={() => { setCompose(false); toast({ uk: 'Кампанію збережено як чернетку', ru: 'Кампания сохранена как черновик', en: 'Campaign saved as draft' }) }}>
+              {L({ uk: 'Зберегти чернетку', ru: 'Сохранить черновик', en: 'Save draft' })}
             </Button>
           </div>
         </div>
       </Modal>
 
       {/* send confirm with consent preview */}
-      <Modal open={!!sendModal} onClose={() => setSendModal(null)} title={{ ru: 'Отправка кампании', en: 'Send campaign' }}>
+      <Modal open={!!sendModal} onClose={() => setSendModal(null)} title={{ uk: 'Надсилання кампанії', ru: 'Отправка кампании', en: 'Send campaign' }}>
         <SectionTitle>{promo?.title}</SectionTitle>
         <div className="mb-4 rounded-xl bg-ivory-100 p-4 text-sm dark:bg-ink-800">
           <div className="flex justify-between py-1">
-            <span className="text-ink-500">{L({ ru: 'В аудитории', en: 'Audience size' })}</span>
+            <span className="text-ink-500">{L({ uk: 'В аудиторії', ru: 'В аудитории', en: 'Audience size' })}</span>
             <span className="font-mono font-bold">1 214</span>
           </div>
           <div className="flex justify-between py-1">
-            <span className="text-ink-500">{L({ ru: 'С согласием на маркетинг', en: 'With marketing consent' })}</span>
+            <span className="text-ink-500">{L({ uk: 'Зі згодою на маркетинг', ru: 'С согласием на маркетинг', en: 'With marketing consent' })}</span>
             <span className="font-mono font-bold text-sage-600 dark:text-sage-400">986</span>
           </div>
           <div className="flex justify-between py-1">
-            <span className="text-ink-500">{L({ ru: 'Скорость доставки', en: 'Delivery rate' })}</span>
+            <span className="text-ink-500">{L({ uk: 'Швидкість доставки', ru: 'Скорость доставки', en: 'Delivery rate' })}</span>
             <span className="font-mono">~20 msg/s</span>
           </div>
         </div>
         <p className="mb-4 text-xs text-ink-400">
-          {L({ ru: 'Операция идемпотентна: повторная отправка не продублирует сообщения.', en: 'Idempotent operation: re-sending will not duplicate messages.' })}
+          {L({ uk: 'Операція ідемпотентна: повторне надсилання не продублює повідомлення.', ru: 'Операция идемпотентна: повторная отправка не продублирует сообщения.', en: 'Idempotent operation: re-sending will not duplicate messages.' })}
         </p>
         <div className="flex justify-end gap-2">
-          <Button variant="ghost" onClick={() => setSendModal(null)}>{L({ ru: 'Отмена', en: 'Cancel' })}</Button>
-          <Button onClick={() => { setSendModal(null); toast({ ru: 'Отправка запущена: 986 в очереди', en: 'Broadcast started: 986 queued' }) }}>
-            <Send size={14} /> {L({ ru: 'Отправить 986 клиентам', en: 'Send to 986 customers' })}
+          <Button variant="ghost" onClick={() => setSendModal(null)}>{L({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}</Button>
+          <Button onClick={() => { setSendModal(null); toast({ uk: 'Надсилання запущено: 986 у черзі', ru: 'Отправка запущена: 986 в очереди', en: 'Broadcast started: 986 queued' }) }}>
+            <Send size={14} /> {L({ uk: 'Надіслати 986 клієнтам', ru: 'Отправить 986 клиентам', en: 'Send to 986 customers' })}
           </Button>
         </div>
       </Modal>

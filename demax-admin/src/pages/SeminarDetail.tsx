@@ -22,12 +22,12 @@ export default function SeminarDetail() {
   const [tab, setTab] = useState<Tab>('registrations')
   const [selected, setSelected] = useState<Set<string>>(new Set())
 
-  if (!s) return <EmptyState text={{ ru: 'Семинар не найден', en: 'Seminar not found' }} />
+  if (!s) return <EmptyState text={{ uk: 'Семінар не знайдено', ru: 'Семинар не найден', en: 'Seminar not found' }} />
 
   const tabs: { key: Tab; label: Bi; count?: number }[] = [
-    { key: 'registrations', label: { ru: 'Регистрации', en: 'Registrations' }, count: regs.length },
-    { key: 'attendance', label: { ru: 'Посещаемость', en: 'Attendance' } },
-    { key: 'stats', label: { ru: 'Статистика', en: 'Stats' } },
+    { key: 'registrations', label: { uk: 'Реєстрації', ru: 'Регистрации', en: 'Registrations' }, count: regs.length },
+    { key: 'attendance', label: { uk: 'Відвідуваність', ru: 'Посещаемость', en: 'Attendance' } },
+    { key: 'stats', label: { uk: 'Статистика', ru: 'Статистика', en: 'Stats' } },
   ]
 
   const toggle = (id: string) =>
@@ -39,26 +39,26 @@ export default function SeminarDetail() {
 
   const bulk = (status: 'attended' | 'no_show') => {
     toast(status === 'attended'
-      ? { ru: `Отмечено «посетил»: ${selected.size}`, en: `Marked attended: ${selected.size}` }
-      : { ru: `Отмечено «не пришёл»: ${selected.size}`, en: `Marked no-show: ${selected.size}` })
+      ? { uk: `Позначено «відвідав»: ${selected.size}`, ru: `Отмечено «посетил»: ${selected.size}`, en: `Marked attended: ${selected.size}` }
+      : { uk: `Позначено «не прийшов»: ${selected.size}`, ru: `Отмечено «не пришёл»: ${selected.size}`, en: `Marked no-show: ${selected.size}` })
     setSelected(new Set())
   }
 
   return (
     <div>
       <Link to="/seminars" className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-500 hover:text-copper-700 dark:hover:text-copper-300">
-        <ArrowLeft size={15} /> {L({ ru: 'Все семинары', en: 'All seminars' })}
+        <ArrowLeft size={15} /> {L({ uk: 'Усі семінари', ru: 'Все семинары', en: 'All seminars' })}
       </Link>
 
       <PageHeader
-        title={{ ru: s.title, en: s.title }}
-        subtitle={{ ru: `${fmtDate(s.start, lang, true)} · ${s.location}`, en: `${fmtDate(s.start, lang, true)} · ${s.location}` }}
+        title={{ uk: s.title, ru: s.title, en: s.title }}
+        subtitle={{ uk: `${fmtDate(s.start, lang, true)} · ${s.location}`, ru: `${fmtDate(s.start, lang, true)} · ${s.location}`, en: `${fmtDate(s.start, lang, true)} · ${s.location}` }}
         actions={
           <>
             <Status s={s.status} />
             {s.status === 'open' && (
-              <Button variant="secondary" size="sm" onClick={() => toast({ ru: 'Демо: регистрация закрыта', en: 'Demo: registration closed' })}>
-                {L({ ru: 'Закрыть регистрацию', en: 'Close registration' })}
+              <Button variant="secondary" size="sm" onClick={() => toast({ uk: 'Демо: реєстрацію закрито', ru: 'Демо: регистрация закрыта', en: 'Demo: registration closed' })}>
+                {L({ uk: 'Закрити реєстрацію', ru: 'Закрыть регистрацию', en: 'Close registration' })}
               </Button>
             )}
           </>
@@ -69,7 +69,7 @@ export default function SeminarDetail() {
 
       {tab === 'registrations' && (
         <Card pad={false}>
-          <Table head={[{ ru: 'Участник', en: 'Participant' }, { ru: 'Город', en: 'City' }, { ru: 'Дата регистрации', en: 'Registered' }, { ru: 'Статус', en: 'Status' }]}>
+          <Table head={[{ uk: 'Учасник', ru: 'Участник', en: 'Participant' }, { uk: 'Місто', ru: 'Город', en: 'City' }, { uk: 'Дата реєстрації', ru: 'Дата регистрации', en: 'Registered' }, { uk: 'Статус', ru: 'Статус', en: 'Status' }]}>
             {regs.map((r) => (
               <Tr key={r.id}>
                 <Td>
@@ -91,12 +91,12 @@ export default function SeminarDetail() {
         <Card pad={false}>
           {selected.size > 0 && (
             <div className="flex items-center gap-3 border-b border-copper-500/30 bg-copper-500/8 px-4 py-2.5">
-              <span className="text-sm font-bold text-copper-700 dark:text-copper-300">{selected.size} {L({ ru: 'выбрано', en: 'selected' })}</span>
-              <Button size="sm" onClick={() => bulk('attended')}>{L({ ru: 'Посетил', en: 'Attended' })}</Button>
-              <Button size="sm" variant="secondary" onClick={() => bulk('no_show')}>{L({ ru: 'Не пришёл', en: 'No-show' })}</Button>
+              <span className="text-sm font-bold text-copper-700 dark:text-copper-300">{selected.size} {L({ uk: 'вибрано', ru: 'выбрано', en: 'selected' })}</span>
+              <Button size="sm" onClick={() => bulk('attended')}>{L({ uk: 'Відвідав', ru: 'Посетил', en: 'Attended' })}</Button>
+              <Button size="sm" variant="secondary" onClick={() => bulk('no_show')}>{L({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</Button>
             </div>
           )}
-          <Table head={[{ ru: '', en: '' }, { ru: 'Участник', en: 'Participant' }, { ru: 'Статус', en: 'Status' }]}>
+          <Table head={[{ uk: '', ru: '', en: '' }, { uk: 'Учасник', ru: 'Участник', en: 'Participant' }, { uk: 'Статус', ru: 'Статус', en: 'Status' }]}>
             {regs.map((r) => (
               <Tr key={r.id}>
                 <Td>
@@ -117,10 +117,10 @@ export default function SeminarDetail() {
 
       {tab === 'stats' && (
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <Stat label={{ ru: 'Регистраций', en: 'Registrations' }} value={String(s.taken)} accent />
-          <Stat label={{ ru: 'Заполненность', en: 'Fill rate' }} value={s.capacity === null ? '∞' : `${Math.round((s.taken / s.capacity) * 100)}%`} />
-          <Stat label={{ ru: 'Посетили', en: 'Attended' }} value={String(s.attended || '—')} />
-          <Stat label={{ ru: 'Доходимость', en: 'Show rate' }} value={s.attended ? `${Math.round((s.attended / s.taken) * 100)}%` : '—'} />
+          <Stat label={{ uk: 'Реєстрацій', ru: 'Регистраций', en: 'Registrations' }} value={String(s.taken)} accent />
+          <Stat label={{ uk: 'Заповненість', ru: 'Заполненность', en: 'Fill rate' }} value={s.capacity === null ? '∞' : `${Math.round((s.taken / s.capacity) * 100)}%`} />
+          <Stat label={{ uk: 'Відвідали', ru: 'Посетили', en: 'Attended' }} value={String(s.attended || '—')} />
+          <Stat label={{ uk: 'Доходимість', ru: 'Доходимость', en: 'Show rate' }} value={s.attended ? `${Math.round((s.attended / s.taken) * 100)}%` : '—'} />
         </div>
       )}
     </div>

@@ -15,39 +15,39 @@ export default function CustomerProfile() {
   const [erase, setErase] = useState(false)
   const [eraseText, setEraseText] = useState('')
   const [notes, setNotes] = useState([
-    { id: 1, text: L({ ru: 'Постоянный клиент, интересуется профессиональной линейкой.', en: 'Loyal customer, interested in the professional line.' }), author: 'Ольга Коваль', time: '2026-07-20T10:00:00Z' },
+    { id: 1, text: L({ uk: 'Постійний клієнт, цікавиться професійною лінійкою.', ru: 'Постоянный клиент, интересуется профессиональной линейкой.', en: 'Loyal customer, interested in the professional line.' }), author: 'Ольга Коваль', time: '2026-07-20T10:00:00Z' },
   ])
   const [noteDraft, setNoteDraft] = useState('')
 
   const c = customerById(id ?? '')
-  if (!c) return <EmptyState text={{ ru: 'Клиент не найден', en: 'Customer not found' }} />
+  if (!c) return <EmptyState text={{ uk: 'Клієнта не знайдено', ru: 'Клиент не найден', en: 'Customer not found' }} />
   const convs = conversations.filter((v) => v.customerId === c.id)
   const vers = verifications.filter((v) => v.customerId === c.id)
 
   const tabs: { key: Tab; label: Bi; count?: number }[] = [
-    { key: 'overview', label: { ru: 'Обзор', en: 'Overview' } },
-    { key: 'conversations', label: { ru: 'Диалоги', en: 'Conversations' }, count: convs.length },
-    { key: 'verification', label: { ru: 'Верификация', en: 'Verification' }, count: vers.length },
-    { key: 'seminars', label: { ru: 'Семинары', en: 'Seminars' } },
-    { key: 'notes', label: { ru: 'Заметки', en: 'Notes' }, count: notes.length },
-    { key: 'activity', label: { ru: 'Активность', en: 'Activity' } },
+    { key: 'overview', label: { uk: 'Огляд', ru: 'Обзор', en: 'Overview' } },
+    { key: 'conversations', label: { uk: 'Діалоги', ru: 'Диалоги', en: 'Conversations' }, count: convs.length },
+    { key: 'verification', label: { uk: 'Верифікація', ru: 'Верификация', en: 'Verification' }, count: vers.length },
+    { key: 'seminars', label: { uk: 'Семінари', ru: 'Семинары', en: 'Seminars' } },
+    { key: 'notes', label: { uk: 'Нотатки', ru: 'Заметки', en: 'Notes' }, count: notes.length },
+    { key: 'activity', label: { uk: 'Активність', ru: 'Активность', en: 'Activity' } },
   ]
 
   return (
     <div>
       <Link to="/customers" className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-500 hover:text-copper-700 dark:hover:text-copper-300">
-        <ArrowLeft size={15} /> {L({ ru: 'Все клиенты', en: 'All customers' })}
+        <ArrowLeft size={15} /> {L({ uk: 'Усі клієнти', ru: 'Все клиенты', en: 'All customers' })}
       </Link>
 
       <PageHeader
-        title={{ ru: c.name, en: c.name }}
+        title={{ uk: c.name, ru: c.name, en: c.name }}
         actions={
           <>
-            <Button variant="secondary" size="sm" onClick={() => toast({ ru: 'Демо: сообщение отправлено в Telegram', en: 'Demo: message sent to Telegram' })}>
-              {L({ ru: 'Написать в Telegram', en: 'Message in Telegram' })}
+            <Button variant="secondary" size="sm" onClick={() => toast({ uk: 'Демо: повідомлення надіслано в Telegram', ru: 'Демо: сообщение отправлено в Telegram', en: 'Demo: message sent to Telegram' })}>
+              {L({ uk: 'Написати в Telegram', ru: 'Написать в Telegram', en: 'Message in Telegram' })}
             </Button>
             <Button variant="danger" size="sm" onClick={() => setErase(true)}>
-              {L({ ru: 'Стереть (GDPR)', en: 'Erase (GDPR)' })}
+              {L({ uk: 'Стерти (GDPR)', ru: 'Стереть (GDPR)', en: 'Erase (GDPR)' })}
             </Button>
           </>
         }
@@ -68,12 +68,12 @@ export default function CustomerProfile() {
             </div>
             <dl className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
               {[
-                { k: { ru: 'Телефон', en: 'Phone' } as Bi, v: c.phone },
-                { k: { ru: 'Город', en: 'City' } as Bi, v: c.city },
-                { k: { ru: 'Роль', en: 'Role' } as Bi, v: c.role === 'professional' ? 'Professional' : 'Home Care' },
-                { k: { ru: 'Менеджер', en: 'Manager' } as Bi, v: managerById(c.managerId)?.name ?? '—' },
-                { k: { ru: 'Согласие на рассылки', en: 'Marketing consent' } as Bi, v: c.consent ? L({ ru: 'Да', en: 'Yes' }) : L({ ru: 'Нет', en: 'No' }) },
-                { k: { ru: 'Регистрация', en: 'Registered' } as Bi, v: fmtDate(c.created, lang) },
+                { k: { uk: 'Телефон', ru: 'Телефон', en: 'Phone' } as Bi, v: c.phone },
+                { k: { uk: 'Місто', ru: 'Город', en: 'City' } as Bi, v: c.city },
+                { k: { uk: 'Роль', ru: 'Роль', en: 'Role' } as Bi, v: c.role === 'professional' ? 'Professional' : 'Home Care' },
+                { k: { uk: 'Менеджер', ru: 'Менеджер', en: 'Manager' } as Bi, v: managerById(c.managerId)?.name ?? '—' },
+                { k: { uk: 'Згода на розсилки', ru: 'Согласие на рассылки', en: 'Marketing consent' } as Bi, v: c.consent ? L({ uk: 'Так', ru: 'Да', en: 'Yes' }) : L({ uk: 'Ні', ru: 'Нет', en: 'No' }) },
+                { k: { uk: 'Реєстрація', ru: 'Регистрация', en: 'Registered' } as Bi, v: fmtDate(c.created, lang) },
               ].map((r) => (
                 <div key={r.k.en}>
                   <dt className="text-[11px] font-bold tracking-wider text-ink-400 uppercase">{L(r.k)}</dt>
@@ -82,17 +82,17 @@ export default function CustomerProfile() {
               ))}
             </dl>
             <p className="mt-4 text-xs text-ink-400">
-              {L({ ru: 'Телефон маскируется. Полное раскрытие не предусмотрено в v1.0 (OQ-16).', en: 'Phone is masked. Full reveal is not backed in v1.0 (OQ-16).' })}
+              {L({ uk: 'Телефон маскується. Повне розкриття не передбачене у v1.0 (OQ-16).', ru: 'Телефон маскируется. Полное раскрытие не предусмотрено в v1.0 (OQ-16).', en: 'Phone is masked. Full reveal is not backed in v1.0 (OQ-16).' })}
             </p>
           </Card>
           <Card>
-            <SectionTitle>{L({ ru: 'Хронология', en: 'Timeline' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'Хронологія', ru: 'Хронология', en: 'Timeline' })}</SectionTitle>
             <ol className="relative space-y-4 border-l border-ink-200 pl-4 text-sm dark:border-ink-700">
               {[
-                { t: c.created, e: { ru: 'Регистрация через Telegram', en: 'Registered via Telegram' } as Bi },
-                ...(vers[0] ? [{ t: vers[0].submitted, e: { ru: 'Подана заявка на верификацию', en: 'Verification submitted' } as Bi }] : []),
-                ...(convs[0] ? [{ t: convs[0].started, e: { ru: 'Последний диалог с AI', en: 'Latest AI conversation' } as Bi }] : []),
-                { t: c.lastActive, e: { ru: 'Последняя активность', en: 'Last activity' } as Bi },
+                { t: c.created, e: { uk: 'Реєстрація через Telegram', ru: 'Регистрация через Telegram', en: 'Registered via Telegram' } as Bi },
+                ...(vers[0] ? [{ t: vers[0].submitted, e: { uk: 'Подано заявку на верифікацію', ru: 'Подана заявка на верификацию', en: 'Verification submitted' } as Bi }] : []),
+                ...(convs[0] ? [{ t: convs[0].started, e: { uk: 'Останній діалог з AI', ru: 'Последний диалог с AI', en: 'Latest AI conversation' } as Bi }] : []),
+                { t: c.lastActive, e: { uk: 'Остання активність', ru: 'Последняя активность', en: 'Last activity' } as Bi },
               ].map((ev, i) => (
                 <li key={i}>
                   <span className="absolute -left-[5px] mt-1.5 size-2.5 rounded-full bg-copper-500" />
@@ -107,7 +107,7 @@ export default function CustomerProfile() {
 
       {tab === 'conversations' && (
         <div className="space-y-3">
-          {convs.length === 0 && <EmptyState text={{ ru: 'Диалогов пока нет', en: 'No conversations yet' }} />}
+          {convs.length === 0 && <EmptyState text={{ uk: 'Діалогів поки немає', ru: 'Диалогов пока нет', en: 'No conversations yet' }} />}
           {convs.map((v) => (
             <Link key={v.id} to={`/conversations/${v.id}`} className="block">
               <Card className="transition-shadow hover:shadow-pop">
@@ -126,17 +126,17 @@ export default function CustomerProfile() {
 
       {tab === 'verification' && (
         <div className="space-y-3">
-          {vers.length === 0 && <EmptyState text={{ ru: 'Заявок на верификацию нет', en: 'No verification requests' }} />}
+          {vers.length === 0 && <EmptyState text={{ uk: 'Заявок на верифікацію немає', ru: 'Заявок на верификацию нет', en: 'No verification requests' }} />}
           {vers.map((v) => (
             <Card key={v.id}>
               <div className="flex flex-wrap items-center gap-3">
                 <ShieldAlert size={18} className="text-copper-600" />
                 <div className="flex-1">
-                  <div className="text-sm font-semibold">{v.docType === 'diploma' ? L({ ru: 'Диплом', en: 'Diploma' }) : L({ ru: 'Сертификат', en: 'Certificate' })}</div>
+                  <div className="text-sm font-semibold">{v.docType === 'diploma' ? L({ uk: 'Диплом', ru: 'Диплом', en: 'Diploma' }) : L({ uk: 'Сертифікат', ru: 'Сертификат', en: 'Certificate' })}</div>
                   <div className="text-xs text-ink-400">{fmtDate(v.submitted, lang, true)}{v.reason ? ` · ${v.reason}` : ''}</div>
                 </div>
-                <Button variant="secondary" size="sm" onClick={() => toast({ ru: 'Демо: открыт подписанный URL (доступ записан в аудит)', en: 'Demo: signed URL opened (access audited)' })}>
-                  {L({ ru: 'Документ', en: 'Document' })}
+                <Button variant="secondary" size="sm" onClick={() => toast({ uk: 'Демо: відкрито підписаний URL (доступ записано в аудит)', ru: 'Демо: открыт подписанный URL (доступ записан в аудит)', en: 'Demo: signed URL opened (access audited)' })}>
+                  {L({ uk: 'Документ', ru: 'Документ', en: 'Document' })}
                 </Button>
                 <Status s={v.status} />
               </div>
@@ -174,8 +174,8 @@ export default function CustomerProfile() {
             </div>
           </Card>
           <Card>
-            <SectionTitle>{L({ ru: 'Добавить заметку', en: 'Add note' })}</SectionTitle>
-            <Textarea rows={4} maxLength={5000} value={noteDraft} onChange={(e) => setNoteDraft(e.target.value)} placeholder={L({ ru: 'Внутренняя заметка (не видна клиенту)…', en: 'Internal note (never visible to the customer)…' })} />
+            <SectionTitle>{L({ uk: 'Додати нотатку', ru: 'Добавить заметку', en: 'Add note' })}</SectionTitle>
+            <Textarea rows={4} maxLength={5000} value={noteDraft} onChange={(e) => setNoteDraft(e.target.value)} placeholder={L({ uk: 'Внутрішня нотатка (не видна клієнту)…', ru: 'Внутренняя заметка (не видна клиенту)…', en: 'Internal note (never visible to the customer)…' })} />
             <div className="mt-3 flex items-center justify-between">
               <span className="text-xs text-ink-400">{noteDraft.length}/5000</span>
               <Button
@@ -184,10 +184,10 @@ export default function CustomerProfile() {
                 onClick={() => {
                   setNotes((ns) => [{ id: Date.now(), text: noteDraft.trim(), author: 'Ольга Коваль', time: new Date().toISOString() }, ...ns])
                   setNoteDraft('')
-                  toast({ ru: 'Заметка добавлена', en: 'Note added' })
+                  toast({ uk: 'Нотатку додано', ru: 'Заметка добавлена', en: 'Note added' })
                 }}
               >
-                {L({ ru: 'Сохранить', en: 'Save' })}
+                {L({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}
               </Button>
             </div>
           </Card>
@@ -209,22 +209,23 @@ export default function CustomerProfile() {
       )}
 
       {/* GDPR erase modal — typed confirmation */}
-      <Modal open={erase} onClose={() => setErase(false)} title={{ ru: 'Стереть данные клиента', en: 'Erase customer data' }}>
+      <Modal open={erase} onClose={() => setErase(false)} title={{ uk: 'Стерти дані клієнта', ru: 'Стереть данные клиента', en: 'Erase customer data' }}>
         <p className="mb-4 text-sm text-ink-600 dark:text-ink-300">
           {L({
+            uk: 'GDPR-каскад: розмови, реєстрації, заявки та нотатки буде видалено або анонімізовано. Дію неможливо скасувати. Введіть ERASE для підтвердження.',
             ru: 'GDPR-каскад: разговоры, регистрации, заявки и заметки будут удалены или анонимизированы. Действие необратимо. Введите ERASE для подтверждения.',
             en: 'GDPR cascade: conversations, registrations, requests and notes will be removed or anonymised. This cannot be undone. Type ERASE to confirm.',
           })}
         </p>
         <Input value={eraseText} onChange={(e) => setEraseText(e.target.value)} placeholder="ERASE" />
         <div className="mt-4 flex justify-end gap-2">
-          <Button variant="ghost" onClick={() => setErase(false)}>{L({ ru: 'Отмена', en: 'Cancel' })}</Button>
+          <Button variant="ghost" onClick={() => setErase(false)}>{L({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}</Button>
           <Button
             variant="danger"
             disabled={eraseText !== 'ERASE'}
-            onClick={() => { setErase(false); setEraseText(''); toast({ ru: 'Демо: клиент помечен на стирание', en: 'Demo: customer queued for erasure' }) }}
+            onClick={() => { setErase(false); setEraseText(''); toast({ uk: 'Демо: клієнта позначено на стирання', ru: 'Демо: клиент помечен на стирание', en: 'Demo: customer queued for erasure' }) }}
           >
-            {L({ ru: 'Стереть навсегда', en: 'Erase permanently' })}
+            {L({ uk: 'Стерти назавжди', ru: 'Стереть навсегда', en: 'Erase permanently' })}
           </Button>
         </div>
       </Modal>

@@ -1,0 +1,3691 @@
+[
+ {
+  "namespace": "Widget",
+  "key": "handed_to_a_manager",
+  "uk": "Передано менеджеру",
+  "ru": "Передано менеджеру",
+  "en": "Handed to a manager"
+ },
+ {
+  "namespace": "Widget",
+  "key": "how_can_i_help_with_demax_care",
+  "uk": "Чим я можу допомогти з доглядом DEMAX?",
+  "ru": "Чем я могу помочь с уходом DEMAX?",
+  "en": "How can I help with DEMAX care?"
+ },
+ {
+  "namespace": "Widget",
+  "key": "which_cream_suits_dry_skin",
+  "uk": "Який крем підійде для сухої шкіри?",
+  "ru": "Какой крем подойдёт для сухой кожи?",
+  "en": "Which cream suits dry skin?"
+ },
+ {
+  "namespace": "Widget",
+  "key": "what_is_demax_carboxytherapy",
+  "uk": "Що таке карбокситерапія DEMAX?",
+  "ru": "Что такое карбокситерапия DEMAX?",
+  "en": "What is DEMAX carboxytherapy?"
+ },
+ {
+  "namespace": "Widget",
+  "key": "how_to_care_for_skin_after_peeling",
+  "uk": "Як доглядати за шкірою після пілінгу?",
+  "ru": "Как ухаживать за кожей после пилинга?",
+  "en": "How to care for skin after peeling?"
+ },
+ {
+  "namespace": "Widget",
+  "key": "what_seminars_does_demax_run",
+  "uk": "Які семінари проводить DEMAX?",
+  "ru": "Какие семинары проводит DEMAX?",
+  "en": "What seminars does DEMAX run?"
+ },
+ {
+  "namespace": "Widget",
+  "key": "demax_consultant",
+  "uk": "DEMAX Консультант",
+  "ru": "DEMAX Консультант",
+  "en": "DEMAX Consultant"
+ },
+ {
+  "namespace": "Widget",
+  "key": "you_are_chatting_with_an_ai_assistant",
+  "uk": "Ви спілкуєтеся з ШІ-асистентом",
+  "ru": "Вы общаетесь с ИИ-ассистентом",
+  "en": "You are chatting with an AI assistant"
+ },
+ {
+  "namespace": "Widget",
+  "key": "ask_about_products_care_seminars",
+  "uk": "Запитайте про продукти, догляд, семінари…",
+  "ru": "Спросите о продуктах, уходе, семинарах…",
+  "en": "Ask about products, care, seminars…"
+ },
+ {
+  "namespace": "Widget",
+  "key": "failed_to_get_a_reply_is_the_rag_api_running_localhost_8100",
+  "uk": "Не вдалося отримати відповідь. RAG API запущено? (localhost:8100)",
+  "ru": "Не удалось получить ответ. RAG API запущен? (localhost:8100)",
+  "en": "Failed to get a reply. Is the RAG API running? (localhost:8100)"
+ },
+ {
+  "namespace": "Widget",
+  "key": "ai_can_make_mistakes_please_double_check_responses",
+  "uk": "ШІ може помилятися. Перевіряйте важливу інформацію.",
+  "ru": "ИИ может ошибаться. Проверяйте важную информацию.",
+  "en": "AI can make mistakes. Please double-check responses."
+ },
+ {
+  "namespace": "ui",
+  "key": "approved",
+  "uk": "Схвалено",
+  "ru": "Одобрено",
+  "en": "Approved"
+ },
+ {
+  "namespace": "ui",
+  "key": "published",
+  "uk": "Опубліковано",
+  "ru": "Опубликовано",
+  "en": "Published"
+ },
+ {
+  "namespace": "ui",
+  "key": "delivered",
+  "uk": "Доставлено",
+  "ru": "Доставлено",
+  "en": "Delivered"
+ },
+ {
+  "namespace": "ui",
+  "key": "resolved",
+  "uk": "Вирішено",
+  "ru": "Решено",
+  "en": "Resolved"
+ },
+ {
+  "namespace": "ui",
+  "key": "active",
+  "uk": "Активно",
+  "ru": "Активно",
+  "en": "Active"
+ },
+ {
+  "namespace": "ui",
+  "key": "open",
+  "uk": "Відкрито",
+  "ru": "Открыто",
+  "en": "Open"
+ },
+ {
+  "namespace": "ui",
+  "key": "ready",
+  "uk": "Готово",
+  "ru": "Готово",
+  "en": "Ready"
+ },
+ {
+  "namespace": "ui",
+  "key": "attended",
+  "uk": "Відвідав",
+  "ru": "Посетил",
+  "en": "Attended"
+ },
+ {
+  "namespace": "ui",
+  "key": "pending",
+  "uk": "Очікує",
+  "ru": "Ожидает",
+  "en": "Pending"
+ },
+ {
+  "namespace": "ui",
+  "key": "in_review",
+  "uk": "На перевірці",
+  "ru": "На проверке",
+  "en": "In review"
+ },
+ {
+  "namespace": "ui",
+  "key": "queued",
+  "uk": "У черзі",
+  "ru": "В очереди",
+  "en": "Queued"
+ },
+ {
+  "namespace": "ui",
+  "key": "assigned",
+  "uk": "Призначено",
+  "ru": "Назначено",
+  "en": "Assigned"
+ },
+ {
+  "namespace": "ui",
+  "key": "sent",
+  "uk": "Надіслано",
+  "ru": "Отправлено",
+  "en": "Sent"
+ },
+ {
+  "namespace": "ui",
+  "key": "escalated",
+  "uk": "Ескалація",
+  "ru": "Эскалация",
+  "en": "Escalated"
+ },
+ {
+  "namespace": "ui",
+  "key": "rejected",
+  "uk": "Відхилено",
+  "ru": "Отклонено",
+  "en": "Rejected"
+ },
+ {
+  "namespace": "ui",
+  "key": "failed",
+  "uk": "Помилка",
+  "ru": "Ошибка",
+  "en": "Failed"
+ },
+ {
+  "namespace": "ui",
+  "key": "cancelled",
+  "uk": "Скасовано",
+  "ru": "Отменено",
+  "en": "Cancelled"
+ },
+ {
+  "namespace": "ui",
+  "key": "dismissed",
+  "uk": "Знято",
+  "ru": "Снято",
+  "en": "Dismissed"
+ },
+ {
+  "namespace": "ui",
+  "key": "no_show",
+  "uk": "Не прийшов",
+  "ru": "Не пришёл",
+  "en": "No-show"
+ },
+ {
+  "namespace": "ui",
+  "key": "draft",
+  "uk": "Чернетка",
+  "ru": "Черновик",
+  "en": "Draft"
+ },
+ {
+  "namespace": "ui",
+  "key": "closed",
+  "uk": "Закрито",
+  "ru": "Закрыто",
+  "en": "Closed"
+ },
+ {
+  "namespace": "ui",
+  "key": "archived",
+  "uk": "Архів",
+  "ru": "Архив",
+  "en": "Archived"
+ },
+ {
+  "namespace": "ui",
+  "key": "finished",
+  "uk": "Завершено",
+  "ru": "Завершено",
+  "en": "Finished"
+ },
+ {
+  "namespace": "ui",
+  "key": "k",
+  "uk": "—",
+  "ru": "—",
+  "en": "—"
+ },
+ {
+  "namespace": "ui",
+  "key": "demo_all_data_loaded",
+  "uk": "Демо: всі дані завантажено",
+  "ru": "Демо: все данные загружены",
+  "en": "Demo: all data loaded"
+ },
+ {
+  "namespace": "ui",
+  "key": "load_more",
+  "uk": "Завантажити ще",
+  "ru": "Загрузить ещё",
+  "en": "Load more"
+ },
+ {
+  "namespace": "Shell",
+  "key": "overview",
+  "uk": "Огляд",
+  "ru": "Обзор",
+  "en": "Overview"
+ },
+ {
+  "namespace": "Shell",
+  "key": "dashboard",
+  "uk": "Дашборд",
+  "ru": "Дашборд",
+  "en": "Dashboard"
+ },
+ {
+  "namespace": "Shell",
+  "key": "ai_assistant",
+  "uk": "AI-асистент",
+  "ru": "AI-ассистент",
+  "en": "AI Assistant"
+ },
+ {
+  "namespace": "Shell",
+  "key": "project_analysis",
+  "uk": "Аналіз проєкту",
+  "ru": "Анализ проекта",
+  "en": "Project Analysis"
+ },
+ {
+  "namespace": "Shell",
+  "key": "operations",
+  "uk": "Операції",
+  "ru": "Операции",
+  "en": "Operations"
+ },
+ {
+  "namespace": "Shell",
+  "key": "customers",
+  "uk": "Клієнти",
+  "ru": "Клиенты",
+  "en": "Customers"
+ },
+ {
+  "namespace": "Shell",
+  "key": "conversations",
+  "uk": "Діалоги",
+  "ru": "Диалоги",
+  "en": "Conversations"
+ },
+ {
+  "namespace": "Shell",
+  "key": "escalations",
+  "uk": "Ескалації",
+  "ru": "Эскалации",
+  "en": "Escalations"
+ },
+ {
+  "namespace": "Shell",
+  "key": "verification",
+  "uk": "Верифікація",
+  "ru": "Верификация",
+  "en": "Verification"
+ },
+ {
+  "namespace": "Shell",
+  "key": "content",
+  "uk": "Контент",
+  "ru": "Контент",
+  "en": "Content"
+ },
+ {
+  "namespace": "Shell",
+  "key": "knowledge_base",
+  "uk": "База знань",
+  "ru": "База знаний",
+  "en": "Knowledge Base"
+ },
+ {
+  "namespace": "Shell",
+  "key": "seminars",
+  "uk": "Семінари",
+  "ru": "Семинары",
+  "en": "Seminars"
+ },
+ {
+  "namespace": "Shell",
+  "key": "campaigns",
+  "uk": "Розсилки",
+  "ru": "Рассылки",
+  "en": "Campaigns"
+ },
+ {
+  "namespace": "Shell",
+  "key": "insights",
+  "uk": "Аналітика",
+  "ru": "Аналитика",
+  "en": "Insights"
+ },
+ {
+  "namespace": "Shell",
+  "key": "ai_monitoring",
+  "uk": "AI-моніторинг",
+  "ru": "AI-мониторинг",
+  "en": "AI Monitoring"
+ },
+ {
+  "namespace": "Shell",
+  "key": "analytics",
+  "uk": "Аналітика",
+  "ru": "Аналитика",
+  "en": "Analytics"
+ },
+ {
+  "namespace": "Shell",
+  "key": "system",
+  "uk": "Система",
+  "ru": "Система",
+  "en": "System"
+ },
+ {
+  "namespace": "Shell",
+  "key": "staff_roles",
+  "uk": "Персонал",
+  "ru": "Персонал",
+  "en": "Staff & Roles"
+ },
+ {
+  "namespace": "Shell",
+  "key": "audit_log",
+  "uk": "Аудит",
+  "ru": "Аудит",
+  "en": "Audit Log"
+ },
+ {
+  "namespace": "Shell",
+  "key": "settings",
+  "uk": "Налаштування",
+  "ru": "Настройки",
+  "en": "Settings"
+ },
+ {
+  "namespace": "Shell",
+  "key": "search_customers_articles_products",
+  "uk": "Пошук: клієнти, статті, товари…",
+  "ru": "Поиск: клиенты, статьи, товары…",
+  "en": "Search customers, articles, products…"
+ },
+ {
+  "namespace": "Shell",
+  "key": "demo_global_search",
+  "uk": "Демо: глобальний пошук",
+  "ru": "Демо: глобальный поиск",
+  "en": "Demo: global search"
+ },
+ {
+  "namespace": "Shell",
+  "key": "3_new_notifications",
+  "uk": "3 нові сповіщення",
+  "ru": "3 новых уведомления",
+  "en": "3 new notifications"
+ },
+ {
+  "namespace": "Shell",
+  "key": "administrator",
+  "uk": "Адміністратор",
+  "ru": "Администратор",
+  "en": "Administrator"
+ },
+ {
+  "namespace": "Shell",
+  "key": "my_profile",
+  "uk": "Мій профіль",
+  "ru": "Мой профиль",
+  "en": "My profile"
+ },
+ {
+  "namespace": "Shell",
+  "key": "sign_out",
+  "uk": "Вийти",
+  "ru": "Выйти",
+  "en": "Sign out"
+ },
+ {
+  "namespace": "Shell",
+  "key": "demo_sign_out_disabled",
+  "uk": "Демо: вихід вимкнено",
+  "ru": "Демо: выход отключён",
+  "en": "Demo: sign-out disabled"
+ },
+ {
+  "namespace": "app",
+  "key": "en_gb",
+  "uk": "uk-UA",
+  "ru": "ru-RU",
+  "en": "en-GB"
+ },
+ {
+  "namespace": "mock",
+  "key": "skincare_routine_by_skin_type",
+  "uk": "Підбір догляду за типом шкіри",
+  "ru": "Подбор ухода по типу кожи",
+  "en": "Skincare routine by skin type"
+ },
+ {
+  "namespace": "mock",
+  "key": "post_peeling_care",
+  "uk": "Постпілінговий догляд",
+  "ru": "Постпилинговый уход",
+  "en": "Post-peeling care"
+ },
+ {
+  "namespace": "mock",
+  "key": "product_availability_prices",
+  "uk": "Наявність і ціни продуктів",
+  "ru": "Наличие и цены продуктов",
+  "en": "Product availability & prices"
+ },
+ {
+  "namespace": "mock",
+  "key": "seminar_dates",
+  "uk": "Дати семінарів",
+  "ru": "Даты семинаров",
+  "en": "Seminar dates"
+ },
+ {
+  "namespace": "mock",
+  "key": "verification_status",
+  "uk": "Статус верифікації",
+  "ru": "Статус верификации",
+  "en": "Verification status"
+ },
+ {
+  "namespace": "mock",
+  "key": "compatibility_with_injectables",
+  "uk": "Сумісність з ін’єкційними процедурами",
+  "ru": "Совместимость с инъекционными процедурами",
+  "en": "Compatibility with injectables"
+ },
+ {
+  "namespace": "mock",
+  "key": "care_during_pregnancy",
+  "uk": "Догляд під час вагітності",
+  "ru": "Уход при беременности",
+  "en": "Care during pregnancy"
+ },
+ {
+  "namespace": "mock",
+  "key": "kids_cosmetics",
+  "uk": "Дитяча косметика",
+  "ru": "Детская косметика",
+  "en": "Kids cosmetics"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "ai_monitoring",
+  "uk": "AI-моніторинг",
+  "ru": "AI-мониторинг",
+  "en": "AI Monitoring"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "answer_quality_latency_and_knowledge_coverage_gaps_read_only",
+  "uk": "Якість відповідей, затримки та прогалини в базі знань. Лише читання.",
+  "ru": "Качество ответов, задержки и пробелы в базе знаний. Только чтение.",
+  "en": "Answer quality, latency and knowledge coverage gaps. Read-only."
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "answers_7_days",
+  "uk": "Відповідей за 7 днів",
+  "ru": "Ответов за 7 дней",
+  "en": "Answers, 7 days"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "avg_confidence",
+  "uk": "Середня впевненість",
+  "ru": "Средняя уверенность",
+  "en": "Avg confidence"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "escalation_rate",
+  "uk": "Ескалацій",
+  "ru": "Эскалаций",
+  "en": "Escalation rate"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "with_citations",
+  "uk": "З цитатами",
+  "ru": "С цитатами",
+  "en": "With citations"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "p95_latency",
+  "uk": "p95 затримка",
+  "ru": "p95 задержка",
+  "en": "p95 latency"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "budget_3_0s",
+  "uk": "бюджет ≤ 3.0s",
+  "ru": "бюджет ≤ 3.0s",
+  "en": "budget ≤ 3.0s"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "latency_by_stage_ms_p95",
+  "uk": "Затримка за етапами, мс (p95)",
+  "ru": "Задержка по этапам, мс (p95)",
+  "en": "Latency by stage, ms (p95)"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "generation",
+  "uk": "Генерація",
+  "ru": "Генерация",
+  "en": "Generation"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "retrieval",
+  "uk": "Пошук",
+  "ru": "Поиск",
+  "en": "Retrieval"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "confidence_distribution",
+  "uk": "Розподіл впевненості",
+  "ru": "Распределение уверенности",
+  "en": "Confidence distribution"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "answers",
+  "uk": "Відповідей",
+  "ru": "Ответов",
+  "en": "Answers"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "conversations_escalations",
+  "uk": "Діалоги та ескалації",
+  "ru": "Диалоги и эскалации",
+  "en": "Conversations & escalations"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "conversations",
+  "uk": "Діалоги",
+  "ru": "Диалоги",
+  "en": "Conversations"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "escalations",
+  "uk": "Ескалації",
+  "ru": "Эскалации",
+  "en": "Escalations"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "most_cited_articles",
+  "uk": "Топ цитованих статей",
+  "ru": "Топ цитируемых статей",
+  "en": "Most cited articles"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "coverage_gaps",
+  "uk": "Прогалини в базі знань",
+  "ru": "Пробелы в базе знаний",
+  "en": "Coverage gaps"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "topics_where_the_ai_found_no_answer_candidates_for_new_articles",
+  "uk": "Теми, де AI не знайшов відповіді — кандидати на нові статті",
+  "ru": "Темы, где AI не нашёл ответ — кандидаты на новые статьи",
+  "en": "Topics where the AI found no answer — candidates for new articles"
+ },
+ {
+  "namespace": "AiMonitoring",
+  "key": "top_customer_questions",
+  "uk": "Популярні запитання клієнтів",
+  "ru": "Популярные вопросы клиентов",
+  "en": "Top customer questions"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "which_demax_cream_suits_dry_skin_in_winter",
+  "uk": "Який крем DEMAX підійде для сухої шкіри взимку?",
+  "ru": "Какой крем DEMAX подойдёт для сухой кожи зимой?",
+  "en": "Which DEMAX cream suits dry skin in winter?"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "what_is_carboxytherapy_and_how_does_it_work",
+  "uk": "Що таке карбокситерапія і як вона працює?",
+  "ru": "Что такое карбокситерапия и как она работает?",
+  "en": "What is carboxytherapy and how does it work?"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "how_should_i_care_for_skin_after_a_peeling",
+  "uk": "Як доглядати за шкірою після пілінгу?",
+  "ru": "Как ухаживать за кожей после пилинга?",
+  "en": "How should I care for skin after a peeling?"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "what_seminars_does_demax_run_for_cosmetologists",
+  "uk": "Які семінари DEMAX проводить для косметологів?",
+  "ru": "Какие семинары DEMAX проводит для косметологов?",
+  "en": "What seminars does DEMAX run for cosmetologists?"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "tell_me_about_the_anti_age_line",
+  "uk": "Розкажи про лінійку Anti-Age",
+  "ru": "Расскажи про линейку Anti-Age",
+  "en": "Tell me about the Anti-Age line"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "does_demax_have_anti_demodex_products",
+  "uk": "Чи є у DEMAX засоби від демодекозу?",
+  "ru": "Есть ли у DEMAX средства от демодекоза?",
+  "en": "Does DEMAX have anti-demodex products?"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "backend_fastapi_postgresql",
+  "uk": "Backend (FastAPI + PostgreSQL)",
+  "ru": "Backend (FastAPI + PostgreSQL)",
+  "en": "Backend (FastAPI + PostgreSQL)"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "84_endpoints_19_tables_audit_idempotency_rbac_gdpr",
+  "uk": "84 ендпоінти, 19 таблиць, аудит, ідемпотентність, RBAC, GDPR",
+  "ru": "84 эндпоинта, 19 таблиц, аудит, идемпотентность, RBAC, GDPR",
+  "en": "84 endpoints, 19 tables, audit, idempotency, RBAC, GDPR"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "ai_subsystem_rag",
+  "uk": "AI-підсистема (RAG)",
+  "ru": "AI-подсистема (RAG)",
+  "en": "AI subsystem (RAG)"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "pgvector_fts_citations_confidence_gates_escalation_evals",
+  "uk": "pgvector + FTS, цитати, пороги впевненості, ескалації, eval",
+  "ru": "pgvector + FTS, цитаты, пороги уверенности, эскалации, eval",
+  "en": "pgvector + FTS, citations, confidence gates, escalation, evals"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "telegram_bot",
+  "uk": "Telegram-бот",
+  "ru": "Telegram-бот",
+  "en": "Telegram bot"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "otp_sign_up_menus_seminars_catalog_verification_chat",
+  "uk": "OTP-реєстрація, меню, семінари, каталог, верифікація, чат",
+  "ru": "OTP-регистрация, меню, семинары, каталог, верификация, чат",
+  "en": "OTP sign-up, menus, seminars, catalog, verification, chat"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "admin_panel_spa",
+  "uk": "Адмін-панель (SPA)",
+  "ru": "Админ-панель (SPA)",
+  "en": "Admin panel (SPA)"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "12_modules_30_screens_ru_en_light_dark_themes",
+  "uk": "12 модулів, ~30 екранів, ru/en, світла й темна теми",
+  "ru": "12 модулей, ~30 экранов, ru/en, светлая и тёмная темы",
+  "en": "12 modules, ~30 screens, ru/en, light & dark themes"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "devops_qa",
+  "uk": "DevOps + QA",
+  "ru": "DevOps + QA",
+  "en": "DevOps + QA"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "ci_cd_monitoring_pitr_backups_e2e_ai_eval_in_the_pipeline",
+  "uk": "CI/CD, моніторинг, бекапи PITR, E2E + AI-eval у пайплайні",
+  "ru": "CI/CD, мониторинг, бэкапы PITR, E2E + AI-eval в пайплайне",
+  "en": "CI/CD, monitoring, PITR backups, E2E + AI-eval in the pipeline"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "foundation",
+  "uk": "Фундамент",
+  "ru": "Фундамент",
+  "en": "Foundation"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "db_schema_auth_otp_jwt_mfa_api_skeleton_ci_cd_environments_embedding_model_decis",
+  "uk": "Схема БД, auth (OTP/JWT/MFA), каркас API, CI/CD, середовища, вибір ембединг-моделі",
+  "ru": "Схема БД, auth (OTP/JWT/MFA), каркас API, CI/CD, среды, выбор эмбеддинг-модели",
+  "en": "DB schema, auth (OTP/JWT/MFA), API skeleton, CI/CD, environments, embedding model decision"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "core",
+  "uk": "Ядро",
+  "ru": "Ядро",
+  "en": "Core"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "bot_sign_up_menus_rag_v1_with_citations_admin_kb_customers_escalations",
+  "uk": "Бот: реєстрація та меню · RAG v1 з цитатами · адмінка: база знань, клієнти, ескалації",
+  "ru": "Бот: регистрация и меню · RAG v1 с цитатами · админка: база знаний, клиенты, эскалации",
+  "en": "Bot: sign-up & menus · RAG v1 with citations · admin: KB, customers, escalations"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "business_flows",
+  "uk": "Бізнес-флоу",
+  "ru": "Бизнес-флоу",
+  "en": "Business flows"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "seminars_with_seat_control_diploma_verification_catalogs_throttled_broadcasts",
+  "uk": "Семінари з контролем місць, верифікація дипломів, каталоги, розсилки з тротлінгом",
+  "ru": "Семинары с контролем мест, верификация дипломов, каталоги, рассылки с тротлингом",
+  "en": "Seminars with seat control, diploma verification, catalogs, throttled broadcasts"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "analytics_polish",
+  "uk": "Аналітика та полірування",
+  "ru": "Аналитика и полировка",
+  "en": "Analytics & polish"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "dashboard_ai_monitoring_audit_viewer_i18n_dark_theme_kb_content_load",
+  "uk": "Дашборд, AI-моніторинг, аудит-в’юер, i18n, темна тема, наповнення бази знань",
+  "ru": "Дашборд, AI-мониторинг, аудит-вьюер, i18n, тёмная тема, наполнение базы знаний",
+  "en": "Dashboard, AI monitoring, audit viewer, i18n, dark theme, KB content load"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "launch",
+  "uk": "Запуск",
+  "ru": "Запуск",
+  "en": "Launch"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "e2e_ai_eval_50_rps_load_test_security_check_production_checklist_go_live",
+  "uk": "E2E + AI-eval, навантажувальний тест 50 rps, security-чек, прод-чекліст, go-live",
+  "ru": "E2E + AI-eval, нагрузочный тест 50 rps, security-чек, прод-чеклист, go-live",
+  "en": "E2E + AI-eval, 50 rps load test, security check, production checklist, go-live"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "demax_ai_assistant_project_analysis",
+  "uk": "Аналіз проєкту DEMAX AI Assistant",
+  "ru": "Анализ проекта DEMAX AI Assistant",
+  "en": "DEMAX AI Assistant — Project Analysis"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "based_on_5_specifications_sad_v2_1_dbspec_api_v1_1_admin_panel_v1_2_deployment_v",
+  "uk": "Оцінка на основі 5 специфікацій: SAD v2.1 · DBSPEC · API v1.1 · Admin Panel v1.2 · Deployment v1.2",
+  "ru": "Оценка на основе 5 спецификаций: SAD v2.1 · DBSPEC · API v1.1 · Admin Panel v1.2 · Deployment v1.2",
+  "en": "Based on 5 specifications: SAD v2.1 · DBSPEC · API v1.1 · Admin Panel v1.2 · Deployment v1.2"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "months",
+  "uk": "місяці",
+  "ru": "месяца",
+  "en": "months"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "to_production",
+  "uk": "до продакшену",
+  "ru": "до продакшена",
+  "en": "to production"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "fixed_price_6_below_the_market_estimate_140_170k",
+  "uk": "фікс-прайс — у 6 разів нижче за ринкову оцінку ($140–170K)",
+  "ru": "фикс-прайс — в 6 раз ниже рыночной оценки ($140–170K)",
+  "en": "fixed price — 6× below the market estimate ($140–170K)"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "super_seniors_the_kindrakevych_brothers_fully_dedicated",
+  "uk": "супер-сеньйори — брати Кіндракевичі, повне занурення",
+  "ru": "супер-сеньора — братья Киндракевичи, полное погружение",
+  "en": "super-seniors — the Kindrakevych brothers, fully dedicated"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "live_demo_ask_the_ai_consultant",
+  "uk": "Живе демо: запитайте AI-консультанта",
+  "ru": "Живое демо: спросите AI-консультанта",
+  "en": "Live demo: ask the AI consultant"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "not_a_mock_a_real_rag_on_this_stand_the_demax_2021_catalog_the_whole_demax_com_u",
+  "uk": "Це не макет — реальний RAG на цьому стенді: каталог DEMAX 2021 + увесь сайт demax.com.ua. Клікніть на запитання — консультант відкриється й відповість.",
+  "ru": "Это не мокап — реальный RAG на этом стенде: каталог DEMAX 2021 + весь сайт demax.com.ua. Кликните вопрос — консультант откроется и ответит.",
+  "en": "Not a mock — a real RAG on this stand: the DEMAX 2021 catalog + the whole demax.com.ua site. Click a question — the consultant opens and answers."
+ },
+ {
+  "namespace": "Analysis",
+  "key": "a_production_ai_platform_already_in_our_portfolio",
+  "uk": "Готова AI-платформа — вже в нашому портфелі",
+  "ru": "Готовая AI-платформа — уже в нашем портфеле",
+  "en": "A production AI platform — already in our portfolio"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "the_demax_consultant_is_built_on_the_same_technology_as_our_own_product_polylog_",
+  "uk": "Консультант DEMAX побудований на тій самій технології, що й наш власний продукт Polylog: багатомовний AI-асистент з RAG, відповідями лише з бази знань, цитуванням джерел та ескалацією на людину. Ми не винаходимо з нуля — переносимо перевірене. Команда — два брати-програмісти: kindrakevich.com.",
+  "ru": "Консультант DEMAX построен на той же технологии, что и наш собственный продукт Polylog: мультиязычный AI-ассистент с RAG, ответами только из базы знаний, цитированием источников и эскалацией на человека. Мы не изобретаем с нуля — переносим проверенное. Команда — два брата-программиста: kindrakevich.com.",
+  "en": "The DEMAX consultant is built on the same technology as our own product Polylog: a multilingual AI assistant with RAG, knowledge-grounded answers, source citations and human handoff. We are not inventing from scratch — we are porting the proven. The team — two programmer brothers: kindrakevich.com."
+ },
+ {
+  "namespace": "Analysis",
+  "key": "scope_of_work",
+  "uk": "Обсяг робіт",
+  "ru": "Объём работ",
+  "en": "Scope of work"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "p_days",
+  "uk": "люд.-днів",
+  "ru": "чел.-дней",
+  "en": "p-days"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "total",
+  "uk": "Разом",
+  "ru": "Итого",
+  "en": "Total"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "person_days",
+  "uk": "люд.-днів",
+  "ru": "чел.-дней",
+  "en": "person-days"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "plan_8_weeks",
+  "uk": "План: 8 тижнів",
+  "ru": "План: 8 недель",
+  "en": "Plan: 8 weeks"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "weeks",
+  "uk": "Тижні",
+  "ru": "Недели",
+  "en": "Weeks"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "why_6_cheaper_and_3_faster",
+  "uk": "Чому у 6 разів дешевше і у 3 рази швидше",
+  "ru": "Почему в 6 раз дешевле и в 3 раза быстрее",
+  "en": "Why 6× cheaper and 3× faster"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "the_ai_core_is_not_written_from_scratch_our_own_polylog_platform_rag_multilingua",
+  "uk": "AI-ядро не пишеться з нуля: у нас є власна платформа Polylog (RAG, багатомовність, ескалації) — переносимо готове, що знімає найдорожчий блок робіт.",
+  "ru": "AI-ядро не пишется с нуля: у нас есть собственная платформа Polylog (RAG, мультиязычность, эскалации) — переносим готовое, что снимает самый дорогой блок работ.",
+  "en": "The AI core is not written from scratch: our own Polylog platform (RAG, multilingual, escalations) is ported in, removing the most expensive workstream."
+ },
+ {
+  "namespace": "Analysis",
+  "key": "the_specifications_are_complete_and_mutually_consistent_no_discovery_phase_api_c",
+  "uk": "Специфікації вже готові та узгоджені між собою — фаза discovery не потрібна, контракти API і схема БД описані до рівня DDL.",
+  "ru": "Спецификации уже готовы и согласованы между собой — фаза discovery не нужна, контракты API и схема БД описаны до уровня DDL.",
+  "en": "The specifications are complete and mutually consistent — no discovery phase; API contracts and the DB schema are specified down to DDL."
+ },
+ {
+  "namespace": "Analysis",
+  "key": "ai_assisted_development_boilerplate_heavy_work_84_endpoints_30_screens_accelerat",
+  "uk": "AI-інструменти розробки: генерація типового коду (84 ендпоінти, 30 екранів) пришвидшується у 3–4 рази зі збереженням senior-контролю якості.",
+  "ru": "AI-инструменты разработки: генерация типового кода (84 эндпоинта, 30 экранов) ускоряется в 3–4 раза при сохранении senior-контроля качества.",
+  "en": "AI-assisted development: boilerplate-heavy work (84 endpoints, 30 screens) accelerates 3–4× while seniors keep quality control."
+ },
+ {
+  "namespace": "Analysis",
+  "key": "this_demo_panel_and_the_live_rag_consultant_are_already_a_working_foundation_des",
+  "uk": "Ця демо-панель і живий RAG-консультант — уже працюючий фундамент: дизайн-система, i18n, теми, 12 модулів та проіндексована база знань DEMAX.",
+  "ru": "Эта демо-панель и живой RAG-консультант — уже работающий фундамент: дизайн-система, i18n, темы, 12 модулей и проиндексированная база знаний DEMAX.",
+  "en": "This demo panel and the live RAG consultant are already a working foundation: design system, i18n, themes, 12 modules and an indexed DEMAX knowledge base."
+ },
+ {
+  "namespace": "Analysis",
+  "key": "a_team_with_zero_overhead_two_super_seniors_the_kindrakevych_brothers_direct_cli",
+  "uk": "Команда без накладних витрат: два супер-сеньйори — брати Кіндракевичі, пряма комунікація із замовником, нульова бюрократія.",
+  "ru": "Команда без накладных расходов: два супер-сеньора — братья Киндракевичи, прямая коммуникация с заказчиком, нулевая бюрократия.",
+  "en": "A team with zero overhead: two super-seniors — the Kindrakevych brothers — direct client communication, no bureaucracy."
+ },
+ {
+  "namespace": "Analysis",
+  "key": "decided_in_week_1",
+  "uk": "Що вирішуємо на тижні 1",
+  "ru": "Что решаем на неделе 1",
+  "en": "Decided in week 1"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "embedding_model_vector_dimension_kb_blocker",
+  "uk": "Ембединг-модель і розмірність вектора (блокер бази знань)",
+  "ru": "Эмбеддинг-модель и размерность вектора (блокер базы знаний)",
+  "en": "Embedding model & vector dimension (KB blocker)"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "job_durability_outbox_vs_durable_redis",
+  "uk": "Надійність фонових задач: outbox чи durable Redis",
+  "ru": "Надёжность фоновых задач: outbox или durable Redis",
+  "en": "Job durability: outbox vs durable Redis"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "hosting_data_residency_eu_ukraine",
+  "uk": "Хостинг і резиденція даних (ЄС / Україна)",
+  "ru": "Хостинг и резиденция данных (ЕС / Украина)",
+  "en": "Hosting & data residency (EU / Ukraine)"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "frontend_stack_react_ts_tailwind_already_chosen_this_demo",
+  "uk": "Стек фронтенду: React + TS + Tailwind — уже обрано (це демо)",
+  "ru": "Стек фронтенда: React + TS + Tailwind — уже выбран (эта демо)",
+  "en": "Frontend stack: React + TS + Tailwind — already chosen (this demo)"
+ },
+ {
+  "namespace": "Analysis",
+  "key": "post_launch_infrastructure_400_700_mo_cloud_llm_api_support_evolution_under_a_se",
+  "uk": "Інфраструктура після запуску: ≈ $400–700/міс (хмара + LLM API). Підтримка та розвиток — за окремим ретейнером.",
+  "ru": "Инфраструктура после запуска: ≈ $400–700/мес (облако + LLM API). Поддержка и развитие — по отдельному ретейнеру.",
+  "en": "Post-launch infrastructure: ≈ $400–700/mo (cloud + LLM API). Support & evolution under a separate retainer."
+ },
+ {
+  "namespace": "Analytics",
+  "key": "analytics",
+  "uk": "Аналітика",
+  "ru": "Аналитика",
+  "en": "Analytics"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "business_metrics_across_the_platform",
+  "uk": "Бізнес-метрики платформи",
+  "ru": "Бизнес-метрики платформы",
+  "en": "Business metrics across the platform"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "demo_csv_exported",
+  "uk": "Демо: CSV вивантажено",
+  "ru": "Демо: CSV выгружен",
+  "en": "Demo: CSV exported"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "total_customers",
+  "uk": "Усього клієнтів",
+  "ru": "Всего клиентов",
+  "en": "Total customers"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "professional",
+  "uk": "Professional",
+  "ru": "Professional",
+  "en": "Professional"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "seminar_sign_ups",
+  "uk": "Реєстрацій на семінари",
+  "ru": "Регистраций на семинары",
+  "en": "Seminar sign-ups"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "broadcast_delivery",
+  "uk": "Доставлюваність розсилок",
+  "ru": "Доставляемость рассылок",
+  "en": "Broadcast delivery"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "customer_growth",
+  "uk": "Зростання клієнтської бази",
+  "ru": "Рост клиентской базы",
+  "en": "Customer growth"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "customers",
+  "uk": "Клієнти",
+  "ru": "Клиенты",
+  "en": "Customers"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "seminar_fill_rate",
+  "uk": "Заповнюваність семінарів, %",
+  "ru": "Заполняемость семинаров, %",
+  "en": "Seminar fill rate, %"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "manager_performance",
+  "uk": "Ефективність менеджерів",
+  "ru": "Эффективность менеджеров",
+  "en": "Manager performance"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "manager",
+  "uk": "Менеджер",
+  "ru": "Менеджер",
+  "en": "Manager"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "resolved",
+  "uk": "Вирішено ескалацій",
+  "ru": "Решено эскалаций",
+  "en": "Resolved"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "avg_response",
+  "uk": "Сер. час відповіді",
+  "ru": "Ср. время ответа",
+  "en": "Avg response"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "popular_questions",
+  "uk": "Популярні запитання",
+  "ru": "Популярные вопросы",
+  "en": "Popular questions"
+ },
+ {
+  "namespace": "Analytics",
+  "key": "campaigns",
+  "uk": "Кампанії",
+  "ru": "Кампании",
+  "en": "Campaigns"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "editor",
+  "uk": "Редактор",
+  "ru": "Редактор",
+  "en": "Editor"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "versions",
+  "uk": "Версії",
+  "ru": "Версии",
+  "en": "Versions"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "chunks",
+  "uk": "Чанки",
+  "ru": "Чанки",
+  "en": "Chunks"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "audit",
+  "uk": "Аудит",
+  "ru": "Аудит",
+  "en": "Audit"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "knowledge_base",
+  "uk": "База знань",
+  "ru": "База знаний",
+  "en": "Knowledge Base"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "draft_saved",
+  "uk": "Чернетку збережено",
+  "ru": "Черновик сохранён",
+  "en": "Draft saved"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "save",
+  "uk": "Зберегти",
+  "ru": "Сохранить",
+  "en": "Save"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "submitted_for_review",
+  "uk": "Надіслано на перевірку",
+  "ru": "Отправлено на проверку",
+  "en": "Submitted for review"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "submit_for_review",
+  "uk": "На перевірку",
+  "ru": "На проверку",
+  "en": "Submit for review"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "this_article_is_live_editing_the_content_resets_it_to_in_review_and_bumps_the_ve",
+  "uk": "Статтю опубліковано. Зміна тексту поверне її в статус «на перевірці» та підніме версію (v' + ((a?.version ?? 0) + 1) + ').",
+  "ru": "Статья опубликована. Изменение текста вернёт её в статус «на проверке» и поднимет версию (v' + ((a?.version ?? 0) + 1) + ').",
+  "en": "This article is live. Editing the content resets it to “in review” and bumps the version (v"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "title",
+  "uk": "Заголовок",
+  "ru": "Заголовок",
+  "en": "Title"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "category",
+  "uk": "Категорія",
+  "ru": "Категория",
+  "en": "Category"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "demo_formatting",
+  "uk": "Демо: форматування",
+  "ru": "Демо: форматирование",
+  "en": "Demo: formatting"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "workflow",
+  "uk": "Workflow",
+  "ru": "Workflow",
+  "en": "Workflow"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "meta",
+  "uk": "Мета",
+  "ru": "Мета",
+  "en": "Meta"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "version",
+  "uk": "Версія",
+  "ru": "Версия",
+  "en": "Version"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "language",
+  "uk": "Мова",
+  "ru": "Язык",
+  "en": "Language"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "citations",
+  "uk": "Цитувань",
+  "ru": "Цитирований",
+  "en": "Citations"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "updated",
+  "uk": "Оновлена",
+  "ru": "Обновлена",
+  "en": "Updated"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "re_index_queued_embedding_pending",
+  "uk": "Переіндексація в черзі (ембединг: pending)",
+  "ru": "Реиндексация в очереди (эмбеддинг: pending)",
+  "en": "Re-index queued (embedding: pending)"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "re_index",
+  "uk": "Переіндексувати",
+  "ru": "Реиндексировать",
+  "en": "Re-index"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "current_version",
+  "uk": "Поточна версія",
+  "ru": "Текущая версия",
+  "en": "Current version"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "published_then_superseded",
+  "uk": "Опублікована та замінена",
+  "ru": "Опубликована и заменена",
+  "en": "Published, then superseded"
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "chunks_are_generated_on_publish_read_only",
+  "uk": "Чанки генеруються автоматично під час публікації. Лише для читання.",
+  "ru": "Чанки генерируются автоматически при публикации. Только чтение.",
+  "en": "Chunks are generated on publish. Read-only."
+ },
+ {
+  "namespace": "ArticleEditor",
+  "key": "dry_skin_loses_moisture_through_a_damaged_lipid_barrier_morning_routine_gentle_c",
+  "uk": "Суха шкіра втрачає вологу через порушений ліпідний бар’єр. Ранковий догляд: м’яке очищення…",
+  "ru": "Сухая кожа теряет влагу из-за нарушенного липидного барьера. Утренний уход: мягкое очищение…",
+  "en": "Dry skin loses moisture through a damaged lipid barrier. Morning routine: gentle cleansing…"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "products_home_care",
+  "uk": "Товари (домашній догляд)",
+  "ru": "Товары (домашний уход)",
+  "en": "Products (home care)"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "professional_preparations",
+  "uk": "Проф. препарати",
+  "ru": "Проф. препараты",
+  "en": "Professional preparations"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "blog_articles",
+  "uk": "Статті блогу",
+  "ru": "Статьи блога",
+  "en": "Blog articles"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "site_pages",
+  "uk": "Сторінки сайту",
+  "ru": "Страницы сайта",
+  "en": "Site pages"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "pdf_catalog_2021",
+  "uk": "Каталог PDF (2021)",
+  "ru": "Каталог PDF (2021)",
+  "en": "PDF catalog (2021)"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "rag_api_unreachable",
+  "uk": "RAG API недоступний",
+  "ru": "RAG API недоступен",
+  "en": "RAG API unreachable"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "ai_assistant_rag",
+  "uk": "AI-асистент (RAG)",
+  "ru": "AI-ассистент (RAG)",
+  "en": "AI Assistant (RAG)"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "live_rag_on_the_local_stand_postgresql_pgvector_hybrid_retrieval_answers_grounde",
+  "uk": "Живий RAG на локальному стенді: PostgreSQL + pgvector, гібридний пошук, відповіді лише з бази знань DEMAX",
+  "ru": "Живой RAG на локальном стенде: PostgreSQL + pgvector, гибридный поиск, ответы только из базы знаний DEMAX",
+  "en": "Live RAG on the local stand: PostgreSQL + pgvector, hybrid retrieval, answers grounded in the DEMAX knowledge base"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "re_index_started",
+  "uk": "Переіндексацію запущено",
+  "ru": "Переиндексация запущена",
+  "en": "Re-index started"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "re_index",
+  "uk": "Переіндексувати",
+  "ru": "Реиндексировать",
+  "en": "Re-index"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "rag_api_is_not_responding_on_localhost_8100_run_cd_demax_rag_docker_compose_up_d",
+  "uk": "RAG API не відповідає на localhost:8100. Запустіть: cd demax-rag && docker compose up -d",
+  "ru": "RAG API не отвечает на localhost:8100. Запустите: cd demax-rag && docker compose up -d",
+  "en": "RAG API is not responding on localhost:8100. Run: cd demax-rag && docker compose up -d"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "embedded_chunks",
+  "uk": "чанків з ембедингами",
+  "ru": "чанков с эмбеддингами",
+  "en": "embedded chunks"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "documents_from_demax_com_ua_pdf",
+  "uk": "документів з demax.com.ua + PDF",
+  "ru": "документов из demax.com.ua + PDF",
+  "en": "documents from demax.com.ua + PDF"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "llm_connected",
+  "uk": "LLM підключено",
+  "ru": "LLM подключён",
+  "en": "LLM connected"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "no_llm_key_extractive_mode",
+  "uk": "LLM-ключ не задано — екстрактивний режим",
+  "ru": "LLM-ключ не задан — экстрактивный режим",
+  "en": "No LLM key — extractive mode"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "ingesting",
+  "uk": "Індексація",
+  "ru": "Индексация",
+  "en": "Ingesting"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "ingest_state",
+  "uk": "Стан індексації",
+  "ru": "Состояние индексации",
+  "en": "Ingest state"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "knowledge_by_source",
+  "uk": "База знань за джерелами",
+  "ru": "База знаний по источникам",
+  "en": "Knowledge by source"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "first_ingest_running_scraping_demax_com_ua_the_pdf_catalog",
+  "uk": "Триває перша індексація: скрейпінг demax.com.ua + каталог PDF…",
+  "ru": "Идёт первая индексация: скрейпинг demax.com.ua + каталог PDF…",
+  "en": "First ingest running: scraping demax.com.ua + the PDF catalog…"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "search_as_the_ai_hybrid",
+  "uk": "Пошук очима AI (гібридний)",
+  "ru": "Поиск глазами AI (гибридный)",
+  "en": "Search as the AI (hybrid)"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "pgvector_cosine_full_text_search_fused_with_rrf_exactly_how_the_assistant_picks_",
+  "uk": "pgvector cosine + повнотекстовий пошук, злиття RRF — саме так асистент обирає джерела.",
+  "ru": "pgvector cosine + полнотекстовый поиск, слияние RRF — именно так ассистент выбирает источники.",
+  "en": "pgvector cosine + full-text search fused with RRF — exactly how the assistant picks sources."
+ },
+ {
+  "namespace": "Assistant",
+  "key": "cream_for_dry_skin",
+  "uk": "крем для сухої шкіри…",
+  "ru": "крем для сухой кожи…",
+  "en": "cream for dry skin…"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "search",
+  "uk": "Знайти",
+  "ru": "Найти",
+  "en": "Search"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "nothing_found",
+  "uk": "Нічого не знайдено",
+  "ru": "Ничего не найдено",
+  "en": "Nothing found"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "try_the_consultant",
+  "uk": "Спробуйте консультанта",
+  "ru": "Попробуйте консультанта",
+  "en": "Try the consultant"
+ },
+ {
+  "namespace": "Assistant",
+  "key": "click_the_floating_button_in_the_bottom_right_corner_the_consultant_widget_runs_",
+  "uk": "Натисніть на плаваючу кнопку в правому нижньому куті — це віджет-консультант із живим RAG: відповіді лише з проіндексованої бази DEMAX, із джерелами та ескалацією менеджеру.",
+  "ru": "Нажмите на плавающую кнопку в правом нижнем углу — это виджет-консультант с живым RAG: ответы только из проиндексированной базы DEMAX, с источниками и эскалацией менеджеру.",
+  "en": "Click the floating button in the bottom-right corner — the consultant widget runs on the live RAG: answers only from the indexed DEMAX base, with sources and manager escalation."
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "audit_log",
+  "uk": "Журнал аудиту",
+  "ru": "Журнал аудита",
+  "en": "Audit log"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "immutable_log_append_only_updates_and_deletes_are_revoked_at_the_database_level",
+  "uk": "Незмінний журнал: лише додавання; зміна та видалення записів заборонені на рівні БД.",
+  "ru": "Неизменяемый журнал: только добавление, изменение и удаление записей запрещены на уровне БД.",
+  "en": "Immutable log: append-only; updates and deletes are revoked at the database level."
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "demo_json_exported",
+  "uk": "Демо: JSON вивантажено",
+  "ru": "Демо: JSON выгружен",
+  "en": "Demo: JSON exported"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "actor_all",
+  "uk": "Актор: усі",
+  "ru": "Актор: все",
+  "en": "Actor: all"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "admins",
+  "uk": "Адміністратори",
+  "ru": "Администраторы",
+  "en": "Admins"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "managers",
+  "uk": "Менеджери",
+  "ru": "Менеджеры",
+  "en": "Managers"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "system",
+  "uk": "Система",
+  "ru": "Система",
+  "en": "System"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "action_all",
+  "uk": "Дія: усі",
+  "ru": "Действие: все",
+  "en": "Action: all"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "entity_all",
+  "uk": "Сутність: усі",
+  "ru": "Сущность: все",
+  "en": "Entity: all"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "no_entries_found",
+  "uk": "Записів не знайдено",
+  "ru": "Записей не найдено",
+  "en": "No entries found"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "id",
+  "uk": "ID",
+  "ru": "ID",
+  "en": "ID"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "time_utc",
+  "uk": "Час (UTC)",
+  "ru": "Время (UTC)",
+  "en": "Time (UTC)"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "actor",
+  "uk": "Актор",
+  "ru": "Актор",
+  "en": "Actor"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "action",
+  "uk": "Дія",
+  "ru": "Действие",
+  "en": "Action"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "entity",
+  "uk": "Сутність",
+  "ru": "Сущность",
+  "en": "Entity"
+ },
+ {
+  "namespace": "AuditLog",
+  "key": "before_after_fields_follow_a_redaction_allow_list_passwords_otps_tokens_and_sign",
+  "uk": "Поля before/after редагуються за allow-list: паролі, OTP, токени та підписані URL ніколи не записуються.",
+  "ru": "Поля before/after редактируются по allow-list: пароли, OTP, токены и подписанные URL никогда не записываются.",
+  "en": "before/after fields follow a redaction allow-list: passwords, OTPs, tokens and signed URLs are never stored."
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "low_confidence",
+  "uk": "низька впевненість",
+  "ru": "низкая уверенность",
+  "en": "low confidence"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "conversation_not_found",
+  "uk": "Діалог не знайдено",
+  "ru": "Диалог не найден",
+  "en": "Conversation not found"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "all_conversations",
+  "uk": "Усі діалоги",
+  "ru": "Все диалоги",
+  "en": "All conversations"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "demo_csv_export_ready",
+  "uk": "Демо: експорт CSV готовий",
+  "ru": "Демо: экспорт CSV готов",
+  "en": "Demo: CSV export ready"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "manager_reply",
+  "uk": "Відповідь менеджера",
+  "ru": "Ответ менеджера",
+  "en": "Manager reply"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "reply_to_the_customer_sent_to_telegram",
+  "uk": "Відповідь клієнту (надійде в Telegram)…",
+  "ru": "Ответ клиенту (уйдёт в Telegram)…",
+  "en": "Reply to the customer (sent to Telegram)…"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "resolve_escalation",
+  "uk": "Закрити ескалацію",
+  "ru": "Закрыть эскалацию",
+  "en": "Resolve escalation"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "resolution_note_required",
+  "uk": "Резолюція (обов’язково)…",
+  "ru": "Резолюция (обязательно)…",
+  "en": "Resolution note (required)…"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "demo_reply_sent",
+  "uk": "Демо: відповідь надіслано",
+  "ru": "Демо: ответ отправлен",
+  "en": "Demo: reply sent"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "send",
+  "uk": "Надіслати",
+  "ru": "Отправить",
+  "en": "Send"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "customer",
+  "uk": "Клієнт",
+  "ru": "Клиент",
+  "en": "Customer"
+ },
+ {
+  "namespace": "ConversationView",
+  "key": "open_profile",
+  "uk": "Відкрити профіль →",
+  "ru": "Открыть профиль →",
+  "en": "Open profile →"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "conversations",
+  "uk": "Діалоги",
+  "ru": "Диалоги",
+  "en": "Conversations"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "customer_conversations_with_the_ai_assistant",
+  "uk": "Історія спілкування клієнтів з AI-асистентом",
+  "ru": "История общения клиентов с AI-ассистентом",
+  "en": "Customer conversations with the AI assistant"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "status_all",
+  "uk": "Статус: усі",
+  "ru": "Статус: все",
+  "en": "Status: all"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "active",
+  "uk": "Активні",
+  "ru": "Активные",
+  "en": "Active"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "escalated",
+  "uk": "Ескальовані",
+  "ru": "Эскалированные",
+  "en": "Escalated"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "closed",
+  "uk": "Закриті",
+  "ru": "Закрытые",
+  "en": "Closed"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "customer",
+  "uk": "Клієнт",
+  "ru": "Клиент",
+  "en": "Customer"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "first_message",
+  "uk": "Перше повідомлення",
+  "ru": "Первое сообщение",
+  "en": "First message"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "intent",
+  "uk": "Інтент",
+  "ru": "Интент",
+  "en": "Intent"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "conf",
+  "uk": "Впев.",
+  "ru": "Увер.",
+  "en": "Conf."
+ },
+ {
+  "namespace": "Conversations",
+  "key": "status",
+  "uk": "Статус",
+  "ru": "Статус",
+  "en": "Status"
+ },
+ {
+  "namespace": "Conversations",
+  "key": "started",
+  "uk": "Розпочато",
+  "ru": "Начат",
+  "en": "Started"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "loyal_customer_interested_in_the_professional_line",
+  "uk": "Постійний клієнт, цікавиться професійною лінійкою.",
+  "ru": "Постоянный клиент, интересуется профессиональной линейкой.",
+  "en": "Loyal customer, interested in the professional line."
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "customer_not_found",
+  "uk": "Клієнта не знайдено",
+  "ru": "Клиент не найден",
+  "en": "Customer not found"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "overview",
+  "uk": "Огляд",
+  "ru": "Обзор",
+  "en": "Overview"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "conversations",
+  "uk": "Діалоги",
+  "ru": "Диалоги",
+  "en": "Conversations"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "verification",
+  "uk": "Верифікація",
+  "ru": "Верификация",
+  "en": "Verification"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "seminars",
+  "uk": "Семінари",
+  "ru": "Семинары",
+  "en": "Seminars"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "notes",
+  "uk": "Нотатки",
+  "ru": "Заметки",
+  "en": "Notes"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "activity",
+  "uk": "Активність",
+  "ru": "Активность",
+  "en": "Activity"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "all_customers",
+  "uk": "Усі клієнти",
+  "ru": "Все клиенты",
+  "en": "All customers"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "demo_message_sent_to_telegram",
+  "uk": "Демо: повідомлення надіслано в Telegram",
+  "ru": "Демо: сообщение отправлено в Telegram",
+  "en": "Demo: message sent to Telegram"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "message_in_telegram",
+  "uk": "Написати в Telegram",
+  "ru": "Написать в Telegram",
+  "en": "Message in Telegram"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "erase_gdpr",
+  "uk": "Стерти (GDPR)",
+  "ru": "Стереть (GDPR)",
+  "en": "Erase (GDPR)"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "phone",
+  "uk": "Телефон",
+  "ru": "Телефон",
+  "en": "Phone"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "city",
+  "uk": "Місто",
+  "ru": "Город",
+  "en": "City"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "role",
+  "uk": "Роль",
+  "ru": "Роль",
+  "en": "Role"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "manager",
+  "uk": "Менеджер",
+  "ru": "Менеджер",
+  "en": "Manager"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "marketing_consent",
+  "uk": "Згода на розсилки",
+  "ru": "Согласие на рассылки",
+  "en": "Marketing consent"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "yes",
+  "uk": "Так",
+  "ru": "Да",
+  "en": "Yes"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "no",
+  "uk": "Ні",
+  "ru": "Нет",
+  "en": "No"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "registered",
+  "uk": "Реєстрація",
+  "ru": "Регистрация",
+  "en": "Registered"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "phone_is_masked_full_reveal_is_not_backed_in_v1_0_oq_16",
+  "uk": "Телефон маскується. Повне розкриття не передбачене у v1.0 (OQ-16).",
+  "ru": "Телефон маскируется. Полное раскрытие не предусмотрено в v1.0 (OQ-16).",
+  "en": "Phone is masked. Full reveal is not backed in v1.0 (OQ-16)."
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "timeline",
+  "uk": "Хронологія",
+  "ru": "Хронология",
+  "en": "Timeline"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "registered_via_telegram",
+  "uk": "Реєстрація через Telegram",
+  "ru": "Регистрация через Telegram",
+  "en": "Registered via Telegram"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "verification_submitted",
+  "uk": "Подано заявку на верифікацію",
+  "ru": "Подана заявка на верификацию",
+  "en": "Verification submitted"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "latest_ai_conversation",
+  "uk": "Останній діалог з AI",
+  "ru": "Последний диалог с AI",
+  "en": "Latest AI conversation"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "last_activity",
+  "uk": "Остання активність",
+  "ru": "Последняя активность",
+  "en": "Last activity"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "no_conversations_yet",
+  "uk": "Діалогів поки немає",
+  "ru": "Диалогов пока нет",
+  "en": "No conversations yet"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "no_verification_requests",
+  "uk": "Заявок на верифікацію немає",
+  "ru": "Заявок на верификацию нет",
+  "en": "No verification requests"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "diploma",
+  "uk": "Диплом",
+  "ru": "Диплом",
+  "en": "Diploma"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "certificate",
+  "uk": "Сертифікат",
+  "ru": "Сертификат",
+  "en": "Certificate"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "demo_signed_url_opened_access_audited",
+  "uk": "Демо: відкрито підписаний URL (доступ записано в аудит)",
+  "ru": "Демо: открыт подписанный URL (доступ записан в аудит)",
+  "en": "Demo: signed URL opened (access audited)"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "document",
+  "uk": "Документ",
+  "ru": "Документ",
+  "en": "Document"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "add_note",
+  "uk": "Додати нотатку",
+  "ru": "Добавить заметку",
+  "en": "Add note"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "internal_note_never_visible_to_the_customer",
+  "uk": "Внутрішня нотатка (не видна клієнту)…",
+  "ru": "Внутренняя заметка (не видна клиенту)…",
+  "en": "Internal note (never visible to the customer)…"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "note_added",
+  "uk": "Нотатку додано",
+  "ru": "Заметка добавлена",
+  "en": "Note added"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "save",
+  "uk": "Зберегти",
+  "ru": "Сохранить",
+  "en": "Save"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "erase_customer_data",
+  "uk": "Стерти дані клієнта",
+  "ru": "Стереть данные клиента",
+  "en": "Erase customer data"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "gdpr_cascade_conversations_registrations_requests_and_notes_will_be_removed_or_a",
+  "uk": "GDPR-каскад: розмови, реєстрації, заявки та нотатки буде видалено або анонімізовано. Дію неможливо скасувати. Введіть ERASE для підтвердження.",
+  "ru": "GDPR-каскад: разговоры, регистрации, заявки и заметки будут удалены или анонимизированы. Действие необратимо. Введите ERASE для подтверждения.",
+  "en": "GDPR cascade: conversations, registrations, requests and notes will be removed or anonymised. This cannot be undone. Type ERASE to confirm."
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "cancel",
+  "uk": "Скасувати",
+  "ru": "Отмена",
+  "en": "Cancel"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "demo_customer_queued_for_erasure",
+  "uk": "Демо: клієнта позначено на стирання",
+  "ru": "Демо: клиент помечен на стирание",
+  "en": "Demo: customer queued for erasure"
+ },
+ {
+  "namespace": "CustomerProfile",
+  "key": "erase_permanently",
+  "uk": "Стерти назавжди",
+  "ru": "Стереть навсегда",
+  "en": "Erase permanently"
+ },
+ {
+  "namespace": "Customers",
+  "key": "customers",
+  "uk": "Клієнти",
+  "ru": "Клиенты",
+  "en": "Customers"
+ },
+ {
+  "namespace": "Customers",
+  "key": "768_profiles_operational_crm_is_the_single_source_of_truth",
+  "uk": "768 профілів · операційна CRM — єдине джерело правди",
+  "ru": "768 профилей · операционная CRM — единый источник правды",
+  "en": "768 profiles · operational CRM is the single source of truth"
+ },
+ {
+  "namespace": "Customers",
+  "key": "search_name_or_username",
+  "uk": "Пошук за іменем або @username…",
+  "ru": "Поиск по имени или @username…",
+  "en": "Search name or @username…"
+ },
+ {
+  "namespace": "Customers",
+  "key": "role_all",
+  "uk": "Роль: усі",
+  "ru": "Роль: все",
+  "en": "Role: all"
+ },
+ {
+  "namespace": "Customers",
+  "key": "verification_all",
+  "uk": "Верифікація: усі",
+  "ru": "Верификация: все",
+  "en": "Verification: all"
+ },
+ {
+  "namespace": "Customers",
+  "key": "approved",
+  "uk": "Схвалена",
+  "ru": "Одобрена",
+  "en": "Approved"
+ },
+ {
+  "namespace": "Customers",
+  "key": "pending",
+  "uk": "Очікує",
+  "ru": "Ожидает",
+  "en": "Pending"
+ },
+ {
+  "namespace": "Customers",
+  "key": "rejected",
+  "uk": "Відхилена",
+  "ru": "Отклонена",
+  "en": "Rejected"
+ },
+ {
+  "namespace": "Customers",
+  "key": "none",
+  "uk": "Немає",
+  "ru": "Нет",
+  "en": "None"
+ },
+ {
+  "namespace": "Customers",
+  "key": "nothing_matches_the_current_filters",
+  "uk": "Нічого не знайдено за заданими фільтрами",
+  "ru": "Ничего не найдено по заданным фильтрам",
+  "en": "Nothing matches the current filters"
+ },
+ {
+  "namespace": "Customers",
+  "key": "customer",
+  "uk": "Клієнт",
+  "ru": "Клиент",
+  "en": "Customer"
+ },
+ {
+  "namespace": "Customers",
+  "key": "city",
+  "uk": "Місто",
+  "ru": "Город",
+  "en": "City"
+ },
+ {
+  "namespace": "Customers",
+  "key": "role",
+  "uk": "Роль",
+  "ru": "Роль",
+  "en": "Role"
+ },
+ {
+  "namespace": "Customers",
+  "key": "verification",
+  "uk": "Верифікація",
+  "ru": "Верификация",
+  "en": "Verification"
+ },
+ {
+  "namespace": "Customers",
+  "key": "manager",
+  "uk": "Менеджер",
+  "ru": "Менеджер",
+  "en": "Manager"
+ },
+ {
+  "namespace": "Customers",
+  "key": "last_active",
+  "uk": "Активність",
+  "ru": "Активность",
+  "en": "Last active"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "good_morning_olga",
+  "uk": "Доброго ранку, Ольго",
+  "ru": "Доброе утро, Ольга",
+  "en": "Good morning, Olga"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "saturday_1_august_2026_all_systems_nominal",
+  "uk": "Субота, 1 серпня 2026 · усе працює штатно",
+  "ru": "Суббота, 1 августа 2026 · всё работает штатно",
+  "en": "Saturday, 1 August 2026 · all systems nominal"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "conversations_today",
+  "uk": "Діалогів сьогодні",
+  "ru": "Диалогов сегодня",
+  "en": "Conversations today"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "18_vs_last_saturday",
+  "uk": "+18% до минулої суботи",
+  "ru": "+18% к прошлой субботе",
+  "en": "+18% vs last Saturday"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "ai_resolved",
+  "uk": "AI закрив сам",
+  "ru": "AI закрыл сам",
+  "en": "AI resolved"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "without_escalation",
+  "uk": "без ескалації",
+  "ru": "без эскалации",
+  "en": "without escalation"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "open_escalations",
+  "uk": "Відкриті ескалації",
+  "ru": "Открытые эскалации",
+  "en": "Open escalations"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "pending_verification",
+  "uk": "Очікують верифікації",
+  "ru": "Ждут верификации",
+  "en": "Pending verification"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "oldest_2_days",
+  "uk": "найстаріша — 2 дні",
+  "ru": "старейшая — 2 дня",
+  "en": "oldest — 2 days"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "conversations_escalations_8_days",
+  "uk": "Діалоги та ескалації, 8 днів",
+  "ru": "Диалоги и эскалации, 8 дней",
+  "en": "Conversations & escalations, 8 days"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "conversations",
+  "uk": "Діалоги",
+  "ru": "Диалоги",
+  "en": "Conversations"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "escalations",
+  "uk": "Ескалації",
+  "ru": "Эскалации",
+  "en": "Escalations"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "ai_confidence",
+  "uk": "Впевненість AI",
+  "ru": "Уверенность AI",
+  "en": "AI confidence"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "answers",
+  "uk": "Відповідей",
+  "ru": "Ответов",
+  "en": "Answers"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "85_of_answers_above_0_6_confidence",
+  "uk": "85% відповідей із впевненістю вище 0.6",
+  "ru": "85% ответов с уверенностью выше 0.6",
+  "en": "85% of answers above 0.6 confidence"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "needs_attention",
+  "uk": "Потребують уваги",
+  "ru": "Требуют внимания",
+  "en": "Needs attention"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "all_escalations",
+  "uk": "Усі ескалації",
+  "ru": "Все эскалации",
+  "en": "All escalations"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "upcoming_seminars",
+  "uk": "Найближчі семінари",
+  "ru": "Ближайшие семинары",
+  "en": "Upcoming seminars"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "knowledge_base",
+  "uk": "База знань",
+  "ru": "База знаний",
+  "en": "Knowledge Base"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "published",
+  "uk": "опубліковано",
+  "ru": "опубликовано",
+  "en": "published"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "in_review",
+  "uk": "на перевірці",
+  "ru": "на проверке",
+  "en": "in review"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "system_health",
+  "uk": "Стан системи",
+  "ru": "Состояние системы",
+  "en": "System health"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "recent_activity",
+  "uk": "Останні дії",
+  "ru": "Последние действия",
+  "en": "Recent activity"
+ },
+ {
+  "namespace": "Dashboard",
+  "key": "audit_log",
+  "uk": "Журнал аудиту",
+  "ru": "Журнал аудита",
+  "en": "Audit log"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "low_confidence",
+  "uk": "Низька впевненість",
+  "ru": "Низкая уверенность",
+  "en": "Low confidence"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "manager_requested",
+  "uk": "Запит менеджера",
+  "ru": "Запрос менеджера",
+  "en": "Manager requested"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "complaint",
+  "uk": "Скарга",
+  "ru": "Жалоба",
+  "en": "Complaint"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "commercial",
+  "uk": "Комерційне питання",
+  "ru": "Коммерческий вопрос",
+  "en": "Commercial"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "escalations",
+  "uk": "Ескалації",
+  "ru": "Эскалации",
+  "en": "Escalations"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "queue_of_questions_the_ai_handed_to_human_managers",
+  "uk": "Черга питань, переданих AI живим менеджерам",
+  "ru": "Очередь вопросов, переданных AI живым менеджерам",
+  "en": "Queue of questions the AI handed to human managers"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "open",
+  "uk": "Відкриті",
+  "ru": "Открытые",
+  "en": "Open"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "assigned",
+  "uk": "Призначені",
+  "ru": "Назначенные",
+  "en": "Assigned"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "resolved",
+  "uk": "Вирішені",
+  "ru": "Решённые",
+  "en": "Resolved"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "dismissed",
+  "uk": "Зняті",
+  "ru": "Снятые",
+  "en": "Dismissed"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "this_queue_is_empty",
+  "uk": "У цій черзі порожньо",
+  "ru": "В этой очереди пусто",
+  "en": "This queue is empty"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "id",
+  "uk": "ID",
+  "ru": "ID",
+  "en": "ID"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "customer",
+  "uk": "Клієнт",
+  "ru": "Клиент",
+  "en": "Customer"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "reason",
+  "uk": "Причина",
+  "ru": "Причина",
+  "en": "Reason"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "conf",
+  "uk": "Впевн.",
+  "ru": "Увер.",
+  "en": "Conf."
+ },
+ {
+  "namespace": "Escalations",
+  "key": "manager",
+  "uk": "Менеджер",
+  "ru": "Менеджер",
+  "en": "Manager"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "age",
+  "uk": "Вік",
+  "ru": "Возраст",
+  "en": "Age"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "demo_escalation_assigned_to_you",
+  "uk": "Демо: ескалацію призначено вам",
+  "ru": "Демо: эскалация назначена вам",
+  "en": "Demo: escalation assigned to you"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "take",
+  "uk": "Взяти",
+  "ru": "Взять",
+  "en": "Take"
+ },
+ {
+  "namespace": "Escalations",
+  "key": "sorted_oldest_first_sla_prioritisation_arrives_once_oq_17_is_decided",
+  "uk": "Сортування: найстаріші зверху. SLA-пріоритизація з’явиться після вирішення OQ-17.",
+  "ru": "Сортировка: старейшие сверху. SLA-приоритизация появится после решения OQ-17.",
+  "en": "Sorted oldest-first. SLA prioritisation arrives once OQ-17 is decided."
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "knowledge_base",
+  "uk": "База знань",
+  "ru": "База знаний",
+  "en": "Knowledge Base"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "the_only_source_of_ai_answers_publishing_triggers_chunking_and_embeddings",
+  "uk": "Єдине джерело відповідей AI. Публікація запускає чанкінг та ембединги.",
+  "ru": "Единственный источник ответов AI. Публикация запускает чанкинг и эмбеддинги.",
+  "en": "The only source of AI answers. Publishing triggers chunking and embeddings."
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "search_as_ai",
+  "uk": "Пошук як AI",
+  "ru": "Поиск как AI",
+  "en": "Search as AI"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "new_article",
+  "uk": "Нова стаття",
+  "ru": "Новая статья",
+  "en": "New article"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "search_titles",
+  "uk": "Пошук за заголовком…",
+  "ru": "Поиск по заголовку…",
+  "en": "Search titles…"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "status_all",
+  "uk": "Статус: усі",
+  "ru": "Статус: все",
+  "en": "Status: all"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "category_all",
+  "uk": "Категорія: усі",
+  "ru": "Категория: все",
+  "en": "Category: all"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "selected",
+  "uk": "вибрано",
+  "ru": "выбрано",
+  "en": "selected"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "re_index",
+  "uk": "Переіндексувати",
+  "ru": "Реиндексировать",
+  "en": "Re-index"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "demo_articles_archived",
+  "uk": "Демо: статті в архіві",
+  "ru": "Демо: статьи в архиве",
+  "en": "Demo: articles archived"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "archive",
+  "uk": "В архів",
+  "ru": "В архив",
+  "en": "Archive"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "no_articles_found",
+  "uk": "Статей не знайдено",
+  "ru": "Статей не найдено",
+  "en": "No articles found"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "article",
+  "uk": "Стаття",
+  "ru": "Статья",
+  "en": "Article"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "category",
+  "uk": "Категорія",
+  "ru": "Категория",
+  "en": "Category"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "version",
+  "uk": "Версія",
+  "ru": "Версия",
+  "en": "Version"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "status",
+  "uk": "Статус",
+  "ru": "Статус",
+  "en": "Status"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "embedding",
+  "uk": "Ембединг",
+  "ru": "Эмбеддинг",
+  "en": "Embedding"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "cited",
+  "uk": "Цитувань",
+  "ru": "Цитирований",
+  "en": "Cited"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "updated",
+  "uk": "Оновлена",
+  "ru": "Обновлена",
+  "en": "Updated"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "search_as_the_ai_sees_it",
+  "uk": "Пошук очима AI",
+  "ru": "Поиск глазами AI",
+  "en": "Search as the AI sees it"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "hybrid_retrieval_pgvector_fts_over_published_chunks_how_the_ai_picks_sources",
+  "uk": "Гібридний пошук (pgvector + FTS) за опублікованими чанками — так AI обирає джерела.",
+  "ru": "Гибридный поиск (pgvector + FTS) по опубликованным чанкам — так AI выбирает источники.",
+  "en": "Hybrid retrieval (pgvector + FTS) over published chunks — how the AI picks sources."
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "dry_skin_in_winter",
+  "uk": "суха шкіра взимку…",
+  "ru": "сухая кожа зимой…",
+  "en": "dry skin in winter…"
+ },
+ {
+  "namespace": "Knowledge",
+  "key": "rich_ceramide_cream_restores_the_barrier_apply_30_minutes_before_going_outside",
+  "uk": "…щільний крем із керамідами відновлює бар’єр; наносити за 30 хвилин до виходу…",
+  "ru": "…плотный крем с керамидами восстанавливает барьер; наносить за 30 минут до выхода…",
+  "en": "…rich ceramide cream restores the barrier; apply 30 minutes before going outside…"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "campaigns",
+  "uk": "Кампанії",
+  "ru": "Кампании",
+  "en": "Campaigns"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "notifications",
+  "uk": "Сповіщення",
+  "ru": "Уведомления",
+  "en": "Notifications"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "campaigns_notifications",
+  "uk": "Розсилки та сповіщення",
+  "ru": "Рассылки и уведомления",
+  "en": "Campaigns & notifications"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "consenting_customers_only_delivery_is_throttled_to_protect_the_telegram_bot",
+  "uk": "Лише клієнтам зі згодою на маркетинг. Доставка дозується — захист від бану Telegram.",
+  "ru": "Только клиентам с согласием на маркетинг. Доставка дозируется — защита от бана Telegram.",
+  "en": "Consenting customers only. Delivery is throttled to protect the Telegram bot."
+ },
+ {
+  "namespace": "Marketing",
+  "key": "new_campaign",
+  "uk": "Нова кампанія",
+  "ru": "Новая кампания",
+  "en": "New campaign"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "campaign",
+  "uk": "Кампанія",
+  "ru": "Кампания",
+  "en": "Campaign"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "audience",
+  "uk": "Аудиторія",
+  "ru": "Аудитория",
+  "en": "Audience"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "sent",
+  "uk": "Надіслано",
+  "ru": "Отправлено",
+  "en": "Sent"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "delivered",
+  "uk": "Доставлено",
+  "ru": "Доставлено",
+  "en": "Delivered"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "failed",
+  "uk": "Помилки",
+  "ru": "Ошибки",
+  "en": "Failed"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "status",
+  "uk": "Статус",
+  "ru": "Статус",
+  "en": "Status"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "all",
+  "uk": "Усі",
+  "ru": "Все",
+  "en": "All"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "send",
+  "uk": "Надіслати",
+  "ru": "Отправить",
+  "en": "Send"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "type",
+  "uk": "Тип",
+  "ru": "Тип",
+  "en": "Type"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "recipient",
+  "uk": "Отримувач",
+  "ru": "Получатель",
+  "en": "Recipient"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "channel",
+  "uk": "Канал",
+  "ru": "Канал",
+  "en": "Channel"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "scheduled",
+  "uk": "Заплановано",
+  "ru": "Запланировано",
+  "en": "Scheduled"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "title",
+  "uk": "Заголовок",
+  "ru": "Заголовок",
+  "en": "Title"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "campaign_title",
+  "uk": "Назва кампанії…",
+  "ru": "Название кампании…",
+  "en": "Campaign title…"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "all_customers",
+  "uk": "Усі клієнти",
+  "ru": "Все клиенты",
+  "en": "All customers"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "start_date",
+  "uk": "Дата старту",
+  "ru": "Дата старта",
+  "en": "Start date"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "message_body",
+  "uk": "Текст повідомлення",
+  "ru": "Текст сообщения",
+  "en": "Message body"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "sent_via_telegram_to_consenting_customers_only",
+  "uk": "Надійде в Telegram лише клієнтам зі згодою",
+  "ru": "Уйдёт в Telegram только клиентам с согласием",
+  "en": "Sent via Telegram to consenting customers only"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "broadcast_text",
+  "uk": "Текст розсилки…",
+  "ru": "Текст рассылки…",
+  "en": "Broadcast text…"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "cancel",
+  "uk": "Скасувати",
+  "ru": "Отмена",
+  "en": "Cancel"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "campaign_saved_as_draft",
+  "uk": "Кампанію збережено як чернетку",
+  "ru": "Кампания сохранена как черновик",
+  "en": "Campaign saved as draft"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "save_draft",
+  "uk": "Зберегти чернетку",
+  "ru": "Сохранить черновик",
+  "en": "Save draft"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "send_campaign",
+  "uk": "Надсилання кампанії",
+  "ru": "Отправка кампании",
+  "en": "Send campaign"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "audience_size",
+  "uk": "В аудиторії",
+  "ru": "В аудитории",
+  "en": "Audience size"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "with_marketing_consent",
+  "uk": "Зі згодою на маркетинг",
+  "ru": "С согласием на маркетинг",
+  "en": "With marketing consent"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "delivery_rate",
+  "uk": "Швидкість доставки",
+  "ru": "Скорость доставки",
+  "en": "Delivery rate"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "idempotent_operation_re_sending_will_not_duplicate_messages",
+  "uk": "Операція ідемпотентна: повторне надсилання не продублює повідомлення.",
+  "ru": "Операция идемпотентна: повторная отправка не продублирует сообщения.",
+  "en": "Idempotent operation: re-sending will not duplicate messages."
+ },
+ {
+  "namespace": "Marketing",
+  "key": "broadcast_started_986_queued",
+  "uk": "Надсилання запущено: 986 у черзі",
+  "ru": "Отправка запущена: 986 в очереди",
+  "en": "Broadcast started: 986 queued"
+ },
+ {
+  "namespace": "Marketing",
+  "key": "send_to_986_customers",
+  "uk": "Надіслати 986 клієнтам",
+  "ru": "Отправить 986 клиентам",
+  "en": "Send to 986 customers"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "seminar_not_found",
+  "uk": "Семінар не знайдено",
+  "ru": "Семинар не найден",
+  "en": "Seminar not found"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "registrations",
+  "uk": "Реєстрації",
+  "ru": "Регистрации",
+  "en": "Registrations"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "attendance",
+  "uk": "Відвідуваність",
+  "ru": "Посещаемость",
+  "en": "Attendance"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "stats",
+  "uk": "Статистика",
+  "ru": "Статистика",
+  "en": "Stats"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "all_seminars",
+  "uk": "Усі семінари",
+  "ru": "Все семинары",
+  "en": "All seminars"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "demo_registration_closed",
+  "uk": "Демо: реєстрацію закрито",
+  "ru": "Демо: регистрация закрыта",
+  "en": "Demo: registration closed"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "close_registration",
+  "uk": "Закрити реєстрацію",
+  "ru": "Закрыть регистрацию",
+  "en": "Close registration"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "participant",
+  "uk": "Учасник",
+  "ru": "Участник",
+  "en": "Participant"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "city",
+  "uk": "Місто",
+  "ru": "Город",
+  "en": "City"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "registered",
+  "uk": "Дата реєстрації",
+  "ru": "Дата регистрации",
+  "en": "Registered"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "status",
+  "uk": "Статус",
+  "ru": "Статус",
+  "en": "Status"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "selected",
+  "uk": "вибрано",
+  "ru": "выбрано",
+  "en": "selected"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "attended",
+  "uk": "Відвідав",
+  "ru": "Посетил",
+  "en": "Attended"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "no_show",
+  "uk": "Не прийшов",
+  "ru": "Не пришёл",
+  "en": "No-show"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "fill_rate",
+  "uk": "Заповненість",
+  "ru": "Заполненность",
+  "en": "Fill rate"
+ },
+ {
+  "namespace": "SeminarDetail",
+  "key": "show_rate",
+  "uk": "Доходимість",
+  "ru": "Доходимость",
+  "en": "Show rate"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "seminar_created_draft",
+  "uk": "Семінар створено (чернетка)",
+  "ru": "Семинар создан (черновик)",
+  "en": "Seminar created (draft)"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "seminars_webinars",
+  "uk": "Семінари та вебінари",
+  "ru": "Семинары и вебинары",
+  "en": "Seminars & webinars"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "lifecycle_draft_open_closed_cancelled",
+  "uk": "Життєвий цикл: чернетка → відкрито → закрито/скасовано",
+  "ru": "Жизненный цикл: черновик → открыт → закрыт/отменён",
+  "en": "Lifecycle: draft → open → closed/cancelled"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "create",
+  "uk": "Створити",
+  "ru": "Создать",
+  "en": "Create"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "event",
+  "uk": "Подія",
+  "ru": "Событие",
+  "en": "Event"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "date",
+  "uk": "Дата",
+  "ru": "Дата",
+  "en": "Date"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "seats",
+  "uk": "Місця",
+  "ru": "Места",
+  "en": "Seats"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "fill",
+  "uk": "Заповнено",
+  "ru": "Заполнено",
+  "en": "Fill"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "status",
+  "uk": "Статус",
+  "ru": "Статус",
+  "en": "Status"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "unlimited",
+  "uk": "без ліміту",
+  "ru": "без лимита",
+  "en": "unlimited"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "new_seminar",
+  "uk": "Новий семінар",
+  "ru": "Новый семинар",
+  "en": "New seminar"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "title",
+  "uk": "Назва",
+  "ru": "Название",
+  "en": "Title"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "3_250_characters",
+  "uk": "Від 3 до 250 символів",
+  "ru": "От 3 до 250 символов",
+  "en": "3–250 characters"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "e_g_carboxytherapy_hands_on",
+  "uk": "Наприклад: Карбокситерапія — практикум",
+  "ru": "Например: Карбокситерапия — практикум",
+  "en": "e.g. Carboxytherapy hands-on"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "type",
+  "uk": "Тип",
+  "ru": "Тип",
+  "en": "Type"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "webinar",
+  "uk": "Вебінар",
+  "ru": "Вебинар",
+  "en": "Webinar"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "offline",
+  "uk": "Офлайн",
+  "ru": "Офлайн",
+  "en": "Offline"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "date_time",
+  "uk": "Дата й час",
+  "ru": "Дата и время",
+  "en": "Date & time"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "required",
+  "uk": "Обов’язкове поле",
+  "ru": "Обязательное поле",
+  "en": "Required"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "location_link",
+  "uk": "Локація / посилання",
+  "ru": "Локация / ссылка",
+  "en": "Location / link"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "address_or_stream_url",
+  "uk": "Адреса або URL трансляції",
+  "ru": "Адрес или URL трансляции",
+  "en": "Address or stream URL"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "capacity",
+  "uk": "Місткість",
+  "ru": "Вместимость",
+  "en": "Capacity"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "empty_unlimited",
+  "uk": "Порожньо — без ліміту",
+  "ru": "Пусто — без лимита",
+  "en": "Empty = unlimited"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "numbers_only",
+  "uk": "Лише число",
+  "ru": "Только число",
+  "en": "Numbers only"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "description",
+  "uk": "Опис",
+  "ru": "Описание",
+  "en": "Description"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "cancel",
+  "uk": "Скасувати",
+  "ru": "Отмена",
+  "en": "Cancel"
+ },
+ {
+  "namespace": "Seminars",
+  "key": "create_draft",
+  "uk": "Створити чернетку",
+  "ru": "Создать черновик",
+  "en": "Create draft"
+ },
+ {
+  "namespace": "Settings",
+  "key": "settings",
+  "uk": "Налаштування",
+  "ru": "Настройки",
+  "en": "Settings"
+ },
+ {
+  "namespace": "Settings",
+  "key": "platform_parameters_are_set_at_deployment_level_12_factor_read_only_here",
+  "uk": "Параметри платформи задаються на рівні деплою (12-factor). Тут — лише перегляд.",
+  "ru": "Параметры платформы задаются на уровне деплоя (12-factor). Здесь — только просмотр.",
+  "en": "Platform parameters are set at deployment level (12-factor). Read-only here."
+ },
+ {
+  "namespace": "Settings",
+  "key": "staff_roles",
+  "uk": "Персонал і ролі",
+  "ru": "Персонал и роли",
+  "en": "Staff & roles"
+ },
+ {
+  "namespace": "Settings",
+  "key": "the_only_editable_section",
+  "uk": "Єдиний редагований розділ",
+  "ru": "Единственный редактируемый раздел",
+  "en": "The only editable section"
+ },
+ {
+  "namespace": "Settings",
+  "key": "open",
+  "uk": "Відкрити",
+  "ru": "Открыть",
+  "en": "Open"
+ },
+ {
+  "namespace": "Settings",
+  "key": "general",
+  "uk": "Загальні",
+  "ru": "Общие",
+  "en": "General"
+ },
+ {
+  "namespace": "Settings",
+  "key": "domain",
+  "uk": "Домен",
+  "ru": "Домен",
+  "en": "Domain"
+ },
+ {
+  "namespace": "Settings",
+  "key": "environment",
+  "uk": "Середовище",
+  "ru": "Среда",
+  "en": "Environment"
+ },
+ {
+  "namespace": "Settings",
+  "key": "languages",
+  "uk": "Мови",
+  "ru": "Языки",
+  "en": "Languages"
+ },
+ {
+  "namespace": "Settings",
+  "key": "timezone",
+  "uk": "Часовий пояс",
+  "ru": "Часовой пояс",
+  "en": "Timezone"
+ },
+ {
+  "namespace": "Settings",
+  "key": "bot",
+  "uk": "Бот",
+  "ru": "Бот",
+  "en": "Bot"
+ },
+ {
+  "namespace": "Settings",
+  "key": "webhook",
+  "uk": "Webhook",
+  "ru": "Webhook",
+  "en": "Webhook"
+ },
+ {
+  "namespace": "Settings",
+  "key": "broadcast_throttle",
+  "uk": "Тротлінг розсилок",
+  "ru": "Тротлинг рассылок",
+  "en": "Broadcast throttle"
+ },
+ {
+  "namespace": "Settings",
+  "key": "ai_parameters",
+  "uk": "AI-параметри",
+  "ru": "AI-параметры",
+  "en": "AI parameters"
+ },
+ {
+  "namespace": "Settings",
+  "key": "provider",
+  "uk": "Провайдер",
+  "ru": "Провайдер",
+  "en": "Provider"
+ },
+ {
+  "namespace": "Settings",
+  "key": "answer_threshold",
+  "uk": "Поріг відповіді",
+  "ru": "Порог ответа",
+  "en": "Answer threshold"
+ },
+ {
+  "namespace": "Settings",
+  "key": "escalation_threshold",
+  "uk": "Поріг ескалації",
+  "ru": "Порог эскалации",
+  "en": "Escalation threshold"
+ },
+ {
+  "namespace": "Settings",
+  "key": "retrieval_top_k",
+  "uk": "Retrieval top-k",
+  "ru": "Retrieval top-k",
+  "en": "Retrieval top-k"
+ },
+ {
+  "namespace": "Settings",
+  "key": "knowledge_base",
+  "uk": "База знань",
+  "ru": "База знаний",
+  "en": "Knowledge Base"
+ },
+ {
+  "namespace": "Settings",
+  "key": "embedding_model",
+  "uk": "Ембединг-модель",
+  "ru": "Эмбеддинг-модель",
+  "en": "Embedding model"
+ },
+ {
+  "namespace": "Settings",
+  "key": "chunk_size",
+  "uk": "Чанк",
+  "ru": "Чанк",
+  "en": "Chunk size"
+ },
+ {
+  "namespace": "Settings",
+  "key": "retrieval",
+  "uk": "Пошук",
+  "ru": "Поиск",
+  "en": "Retrieval"
+ },
+ {
+  "namespace": "Settings",
+  "key": "why_is_everything_locked",
+  "uk": "Чому тут нічого не можна змінювати?",
+  "ru": "Почему тут нельзя ничего менять?",
+  "en": "Why is everything locked?"
+ },
+ {
+  "namespace": "Settings",
+  "key": "per_the_v1_0_spec_there_is_no_settings_table_oq_15_configuration_comes_from_envi",
+  "uk": "За специфікацією v1.0 таблиці налаштувань немає (OQ-15): конфігурація задається змінними середовища під час деплою. Це унеможливлює випадкову поломку продакшену з UI і робить кожну зміну параметра перевірною через CI/CD.",
+  "ru": "По спецификации v1.0 таблицы настроек нет (OQ-15): конфигурация задаётся переменными окружения при деплое. Это исключает случайную поломку продакшена из UI и делает каждую смену параметра проверяемой через CI/CD.",
+  "en": "Per the v1.0 spec there is no settings table (OQ-15): configuration comes from environment variables at deploy time. This prevents accidental production breakage from the UI and makes every parameter change reviewable through CI/CD."
+ },
+ {
+  "namespace": "Staff",
+  "key": "staff_roles",
+  "uk": "Персонал і ролі",
+  "ru": "Персонал и роли",
+  "en": "Staff & roles"
+ },
+ {
+  "namespace": "Staff",
+  "key": "managers_and_administrators_sign_in_email_password_mandatory_mfa",
+  "uk": "Менеджери та адміністратори. Вхід: email + пароль + MFA (обов’язково).",
+  "ru": "Менеджеры и администраторы. Вход: email + пароль + MFA (обязательно).",
+  "en": "Managers and administrators. Sign-in: email + password + mandatory MFA."
+ },
+ {
+  "namespace": "Staff",
+  "key": "add_manager",
+  "uk": "Додати менеджера",
+  "ru": "Добавить менеджера",
+  "en": "Add manager"
+ },
+ {
+  "namespace": "Staff",
+  "key": "staff_member",
+  "uk": "Співробітник",
+  "ru": "Сотрудник",
+  "en": "Staff member"
+ },
+ {
+  "namespace": "Staff",
+  "key": "role",
+  "uk": "Роль",
+  "ru": "Роль",
+  "en": "Role"
+ },
+ {
+  "namespace": "Staff",
+  "key": "region",
+  "uk": "Регіон",
+  "ru": "Регион",
+  "en": "Region"
+ },
+ {
+  "namespace": "Staff",
+  "key": "portfolio",
+  "uk": "Портфель",
+  "ru": "Портфель",
+  "en": "Portfolio"
+ },
+ {
+  "namespace": "Staff",
+  "key": "last_login",
+  "uk": "Останній вхід",
+  "ru": "Последний вход",
+  "en": "Last login"
+ },
+ {
+  "namespace": "Staff",
+  "key": "status",
+  "uk": "Статус",
+  "ru": "Статус",
+  "en": "Status"
+ },
+ {
+  "namespace": "Staff",
+  "key": "administrator",
+  "uk": "Адміністратор",
+  "ru": "Администратор",
+  "en": "Administrator"
+ },
+ {
+  "namespace": "Staff",
+  "key": "manager",
+  "uk": "Менеджер",
+  "ru": "Менеджер",
+  "en": "Manager"
+ },
+ {
+  "namespace": "Staff",
+  "key": "demo_manager_deactivated_customers_will_be_reassigned",
+  "uk": "Демо: менеджера деактивовано, клієнтів буде перерозподілено",
+  "ru": "Демо: менеджер деактивирован, клиенты будут перераспределены",
+  "en": "Demo: manager deactivated, customers will be reassigned"
+ },
+ {
+  "namespace": "Staff",
+  "key": "deactivate",
+  "uk": "Деактивувати",
+  "ru": "Деактивировать",
+  "en": "Deactivate"
+ },
+ {
+  "namespace": "Staff",
+  "key": "the_last_active_administrator_cannot_be_demoted_or_removed_deactivating_a_manage",
+  "uk": "Останнього активного адміністратора не можна понизити або видалити. Деактивація менеджера запускає перерозподіл його портфеля.",
+  "ru": "Последнего активного администратора нельзя понизить или удалить. Деактивация менеджера запускает перераспределение его портфеля.",
+  "en": "The last active administrator cannot be demoted or removed. Deactivating a manager triggers portfolio reassignment."
+ },
+ {
+  "namespace": "Staff",
+  "key": "new_staff_member",
+  "uk": "Новий співробітник",
+  "ru": "Новый сотрудник",
+  "en": "New staff member"
+ },
+ {
+  "namespace": "Staff",
+  "key": "invite_sent_mfa_is_enrolled_on_first_sign_in",
+  "uk": "Запрошення надіслано. MFA налаштовується під час першого входу.",
+  "ru": "Приглашение отправлено. MFA настраивается при первом входе.",
+  "en": "Invite sent. MFA is enrolled on first sign-in."
+ },
+ {
+  "namespace": "Staff",
+  "key": "name",
+  "uk": "Ім’я",
+  "ru": "Имя",
+  "en": "Name"
+ },
+ {
+  "namespace": "Staff",
+  "key": "enter_a_name",
+  "uk": "Введіть ім’я",
+  "ru": "Введите имя",
+  "en": "Enter a name"
+ },
+ {
+  "namespace": "Staff",
+  "key": "email",
+  "uk": "Email",
+  "ru": "Email",
+  "en": "Email"
+ },
+ {
+  "namespace": "Staff",
+  "key": "invalid_email",
+  "uk": "Некоректний email",
+  "ru": "Неверный email",
+  "en": "Invalid email"
+ },
+ {
+  "namespace": "Staff",
+  "key": "enter_a_region",
+  "uk": "Вкажіть регіон",
+  "ru": "Укажите регион",
+  "en": "Enter a region"
+ },
+ {
+  "namespace": "Staff",
+  "key": "capacity",
+  "uk": "Ліміт клієнтів",
+  "ru": "Лимит клиентов",
+  "en": "Capacity"
+ },
+ {
+  "namespace": "Staff",
+  "key": "0_or_more",
+  "uk": "0 або більше",
+  "ru": "0 или больше",
+  "en": "0 or more"
+ },
+ {
+  "namespace": "Staff",
+  "key": "no_password_is_set_here_the_member_receives_an_invite_link",
+  "uk": "Пароль тут не задається: співробітник отримає посилання-запрошення.",
+  "ru": "Пароль не задаётся здесь: сотрудник получит ссылку-приглашение.",
+  "en": "No password is set here: the member receives an invite link."
+ },
+ {
+  "namespace": "Staff",
+  "key": "cancel",
+  "uk": "Скасувати",
+  "ru": "Отмена",
+  "en": "Cancel"
+ },
+ {
+  "namespace": "Staff",
+  "key": "invite",
+  "uk": "Запросити",
+  "ru": "Пригласить",
+  "en": "Invite"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "approved_customer_elevated_to_professional",
+  "uk": "Схвалено. Роль клієнта підвищено до Professional",
+  "ru": "Одобрено. Роль клиента повышена до Professional",
+  "en": "Approved. Customer elevated to Professional"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "rejected_customer_notified_with_the_reason",
+  "uk": "Відхилено. Клієнта повідомлено про причину",
+  "ru": "Отклонено. Клиент уведомлён с причиной",
+  "en": "Rejected. Customer notified with the reason"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "professional_verification",
+  "uk": "Верифікація спеціалістів",
+  "ru": "Верификация специалистов",
+  "en": "Professional verification"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "diploma_review_for_cosmetologists_approval_unlocks_the_professional_catalog",
+  "uk": "Перевірка дипломів косметологів. Схвалення відкриває професійний каталог.",
+  "ru": "Проверка дипломов косметологов. Одобрение открывает профессиональный каталог.",
+  "en": "Diploma review for cosmetologists. Approval unlocks the professional catalog."
+ },
+ {
+  "namespace": "Verifications",
+  "key": "queue",
+  "uk": "Черга",
+  "ru": "Очередь",
+  "en": "Queue"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "approved",
+  "uk": "Схвалені",
+  "ru": "Одобренные",
+  "en": "Approved"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "rejected",
+  "uk": "Відхилені",
+  "ru": "Отклонённые",
+  "en": "Rejected"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "queue_is_empty_great_job",
+  "uk": "Черга порожня — чудова робота",
+  "ru": "Очередь пуста — отличная работа",
+  "en": "Queue is empty — great job"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "customer",
+  "uk": "Клієнт",
+  "ru": "Клиент",
+  "en": "Customer"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "document",
+  "uk": "Документ",
+  "ru": "Документ",
+  "en": "Document"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "submitted",
+  "uk": "Подано",
+  "ru": "Подано",
+  "en": "Submitted"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "reviewed_by",
+  "uk": "Перевірив",
+  "ru": "Проверил",
+  "en": "Reviewed by"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "status",
+  "uk": "Статус",
+  "ru": "Статус",
+  "en": "Status"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "diploma",
+  "uk": "Диплом",
+  "ru": "Диплом",
+  "en": "Diploma"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "certificate",
+  "uk": "Сертифікат",
+  "ru": "Сертификат",
+  "en": "Certificate"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "review",
+  "uk": "Перевірити",
+  "ru": "Проверить",
+  "en": "Review"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "document_review",
+  "uk": "Перевірка документа",
+  "ru": "Проверка документа",
+  "en": "Document review"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "viewed_via_signed_url_expires_in_5_min_access_is_audited",
+  "uk": "Перегляд за підписаним URL (діє 5 хвилин). Доступ записано в аудит.",
+  "ru": "Просмотр по подписанному URL (истекает через 5 минут). Доступ записан в аудит.",
+  "en": "Viewed via signed URL (expires in 5 min). Access is audited."
+ },
+ {
+  "namespace": "Verifications",
+  "key": "rejection_reason_required_sent_to_the_customer",
+  "uk": "Причина відмови (обов’язково, надійде клієнту)…",
+  "ru": "Причина отказа (обязательно, уйдёт клиенту)…",
+  "en": "Rejection reason (required, sent to the customer)…"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "back",
+  "uk": "Назад",
+  "ru": "Назад",
+  "en": "Back"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "reject",
+  "uk": "Відхилити",
+  "ru": "Отклонить",
+  "en": "Reject"
+ },
+ {
+  "namespace": "Verifications",
+  "key": "approve_elevate_role",
+  "uk": "Схвалити та підвищити роль",
+  "ru": "Одобрить и повысить роль",
+  "en": "Approve & elevate role"
+ }
+]

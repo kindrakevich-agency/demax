@@ -1,17 +1,19 @@
 import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts'
 import { useApp } from '../lib/app'
 
-/* Palette validated with dataviz six-checks (light on #FFFFFF, dark on #201C19). */
+/* Кольори серій — насичені відповідники бежевого кольору бренду DEMAX
+   (#C6A48A сам по собі надто приглушений і на графіку читається як сірий).
+   Перевірено валідатором dataviz: світла тема на #FFFFFF, темна на #141312. */
 export function useChartTheme() {
   const { dark } = useApp()
   return {
-    s1: dark ? '#CC7F3F' : '#C2703D',
+    s1: dark ? '#B57F3C' : '#A66A2E',
     s2: dark ? '#2E9DC4' : '#0F80A8',
-    grid: dark ? 'rgba(196,188,178,0.12)' : 'rgba(58,52,46,0.10)',
-    ink: dark ? '#9C948B' : '#776F67',
-    tooltipBg: dark ? '#2B2622' : '#FFFFFF',
-    tooltipBorder: dark ? '#3A342E' : '#DDD6CC',
-    text: dark ? '#EDE7DF' : '#201C19',
+    grid: dark ? 'rgba(195,186,175,0.12)' : 'rgba(50,47,43,0.10)',
+    ink: dark ? '#9A9188' : '#736C63',
+    tooltipBg: dark ? '#201E1C' : '#FFFFFF',
+    tooltipBorder: dark ? '#322F2B' : '#DED5C9',
+    text: dark ? '#EDE7DE' : '#141312',
   }
 }
 

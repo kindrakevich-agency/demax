@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, BookOpen, Users, MessagesSquare, Flame, BadgeCheck, GraduationCap,
   Megaphone, Activity, BarChart3, UserCog, ScrollText, Settings, Search, Sun, Moon,
-  Bell, ChevronDown, FileSpreadsheet, Menu, X, Bot,
+  Bell, ChevronDown, FileSpreadsheet, Menu, X, Bot, Languages,
 } from 'lucide-react'
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
@@ -17,43 +17,44 @@ const pendingVer = verifications.filter((v) => v.status === 'pending').length
 
 const groups: { title: Bi; items: Item[] }[] = [
   {
-    title: { ru: 'Обзор', en: 'Overview' },
+    title: { uk: 'Огляд', ru: 'Обзор', en: 'Overview' },
     items: [
-      { to: '/', label: { ru: 'Дашборд', en: 'Dashboard' }, icon: LayoutDashboard },
-      { to: '/assistant', label: { ru: 'AI-ассистент', en: 'AI Assistant' }, icon: Bot },
-      { to: '/analysis', label: { ru: 'Анализ проекта', en: 'Project Analysis' }, icon: FileSpreadsheet },
+      { to: '/', label: { uk: 'Дашборд', ru: 'Дашборд', en: 'Dashboard' }, icon: LayoutDashboard },
+      { to: '/assistant', label: { uk: 'AI-асистент', ru: 'AI-ассистент', en: 'AI Assistant' }, icon: Bot },
+      { to: '/analysis', label: { uk: 'Аналіз проєкту', ru: 'Анализ проекта', en: 'Project Analysis' }, icon: FileSpreadsheet },
     ],
   },
   {
-    title: { ru: 'Операции', en: 'Operations' },
+    title: { uk: 'Операції', ru: 'Операции', en: 'Operations' },
     items: [
-      { to: '/customers', label: { ru: 'Клиенты', en: 'Customers' }, icon: Users },
-      { to: '/conversations', label: { ru: 'Диалоги', en: 'Conversations' }, icon: MessagesSquare },
-      { to: '/escalations', label: { ru: 'Эскалации', en: 'Escalations' }, icon: Flame, count: openEsc },
-      { to: '/verifications', label: { ru: 'Верификация', en: 'Verification' }, icon: BadgeCheck, count: pendingVer },
+      { to: '/customers', label: { uk: 'Клієнти', ru: 'Клиенты', en: 'Customers' }, icon: Users },
+      { to: '/conversations', label: { uk: 'Діалоги', ru: 'Диалоги', en: 'Conversations' }, icon: MessagesSquare },
+      { to: '/escalations', label: { uk: 'Ескалації', ru: 'Эскалации', en: 'Escalations' }, icon: Flame, count: openEsc },
+      { to: '/verifications', label: { uk: 'Верифікація', ru: 'Верификация', en: 'Verification' }, icon: BadgeCheck, count: pendingVer },
     ],
   },
   {
-    title: { ru: 'Контент', en: 'Content' },
+    title: { uk: 'Контент', ru: 'Контент', en: 'Content' },
     items: [
-      { to: '/knowledge', label: { ru: 'База знаний', en: 'Knowledge Base' }, icon: BookOpen },
-      { to: '/seminars', label: { ru: 'Семинары', en: 'Seminars' }, icon: GraduationCap },
-      { to: '/marketing', label: { ru: 'Рассылки', en: 'Campaigns' }, icon: Megaphone },
+      { to: '/knowledge', label: { uk: 'База знань', ru: 'База знаний', en: 'Knowledge Base' }, icon: BookOpen },
+      { to: '/seminars', label: { uk: 'Семінари', ru: 'Семинары', en: 'Seminars' }, icon: GraduationCap },
+      { to: '/marketing', label: { uk: 'Розсилки', ru: 'Рассылки', en: 'Campaigns' }, icon: Megaphone },
     ],
   },
   {
-    title: { ru: 'Аналитика', en: 'Insights' },
+    title: { uk: 'Аналітика', ru: 'Аналитика', en: 'Insights' },
     items: [
-      { to: '/ai-monitoring', label: { ru: 'AI-мониторинг', en: 'AI Monitoring' }, icon: Activity },
-      { to: '/analytics', label: { ru: 'Аналитика', en: 'Analytics' }, icon: BarChart3 },
+      { to: '/ai-monitoring', label: { uk: 'AI-моніторинг', ru: 'AI-мониторинг', en: 'AI Monitoring' }, icon: Activity },
+      { to: '/analytics', label: { uk: 'Аналітика', ru: 'Аналитика', en: 'Analytics' }, icon: BarChart3 },
     ],
   },
   {
-    title: { ru: 'Система', en: 'System' },
+    title: { uk: 'Система', ru: 'Система', en: 'System' },
     items: [
-      { to: '/staff', label: { ru: 'Персонал', en: 'Staff & Roles' }, icon: UserCog },
-      { to: '/audit', label: { ru: 'Аудит', en: 'Audit Log' }, icon: ScrollText },
-      { to: '/settings', label: { ru: 'Настройки', en: 'Settings' }, icon: Settings },
+      { to: '/staff', label: { uk: 'Персонал', ru: 'Персонал', en: 'Staff & Roles' }, icon: UserCog },
+      { to: '/audit', label: { uk: 'Аудит', ru: 'Аудит', en: 'Audit Log' }, icon: ScrollText },
+      { to: '/translations', label: { uk: 'Переклади', ru: 'Переводы', en: 'Translations' }, icon: Languages },
+      { to: '/settings', label: { uk: 'Налаштування', ru: 'Настройки', en: 'Settings' }, icon: Settings },
     ],
   },
 ]
@@ -141,9 +142,9 @@ export default function Shell() {
           <div className="relative max-w-md flex-1">
             <Search size={15} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-ink-400" />
             <input
-              placeholder={L({ ru: 'Поиск: клиенты, статьи, товары…', en: 'Search customers, articles, products…' })}
+              placeholder={L({ uk: 'Пошук: клієнти, статті, товари…', ru: 'Поиск: клиенты, статьи, товары…', en: 'Search customers, articles, products…' })}
               className="w-full rounded-full border-transparent bg-white/70 py-2 pr-4 pl-9.5 text-sm shadow-none placeholder:text-ink-400 focus:border-copper-500 focus:bg-white focus:ring-copper-500/25 dark:bg-ink-800/70 dark:text-ivory-100 dark:focus:bg-ink-800"
-              onKeyDown={(e) => e.key === 'Enter' && toast({ ru: 'Демо: глобальный поиск', en: 'Demo: global search' })}
+              onKeyDown={(e) => e.key === 'Enter' && toast({ uk: 'Демо: глобальний пошук', ru: 'Демо: глобальный поиск', en: 'Demo: global search' })}
             />
           </div>
 
@@ -154,7 +155,7 @@ export default function Shell() {
 
             {/* language switch */}
             <div className="flex overflow-hidden rounded-full border border-ink-200 text-xs font-bold dark:border-ink-700">
-              {(['ru', 'en'] as const).map((l) => (
+              {(['uk', 'ru', 'en'] as const).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
@@ -172,7 +173,7 @@ export default function Shell() {
             </button>
 
             <button
-              onClick={() => toast({ ru: '3 новых уведомления', en: '3 new notifications' })}
+              onClick={() => toast({ uk: '3 нові сповіщення', ru: '3 новых уведомления', en: '3 new notifications' })}
               className="relative rounded-full p-2 text-ink-500 hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-800 dark:hover:text-ivory-100"
               aria-label="notifications"
             >
@@ -186,16 +187,16 @@ export default function Shell() {
                 <span className="flex size-8 items-center justify-center rounded-full bg-copper-600/15 font-display text-xs font-semibold text-copper-700 dark:bg-copper-400/20 dark:text-copper-300">ОК</span>
                 <span className="hidden text-left sm:block">
                   <span className="block text-xs leading-tight font-bold text-ink-900 dark:text-ivory-100">Ольга Коваль</span>
-                  <span className="block text-[10px] leading-tight text-ink-400">{L({ ru: 'Администратор', en: 'Administrator' })}</span>
+                  <span className="block text-[10px] leading-tight text-ink-400">{L({ uk: 'Адміністратор', ru: 'Администратор', en: 'Administrator' })}</span>
                 </span>
                 <ChevronDown size={14} className="text-ink-400" />
               </button>
               {userMenu && (
                 <div className="animate-rise absolute right-0 mt-2 w-48 rounded-xl border border-ink-200/60 bg-white p-1.5 shadow-pop dark:border-ink-700 dark:bg-ink-900">
                   {[
-                    { b: { ru: 'Мой профиль', en: 'My profile' } as Bi, act: () => { nav('/staff'); } },
-                    { b: { ru: 'Настройки', en: 'Settings' } as Bi, act: () => { nav('/settings'); } },
-                    { b: { ru: 'Выйти', en: 'Sign out' } as Bi, act: () => toast({ ru: 'Демо: выход отключён', en: 'Demo: sign-out disabled' }) },
+                    { b: { uk: 'Мій профіль', ru: 'Мой профиль', en: 'My profile' } as Bi, act: () => { nav('/staff'); } },
+                    { b: { uk: 'Налаштування', ru: 'Настройки', en: 'Settings' } as Bi, act: () => { nav('/settings'); } },
+                    { b: { uk: 'Вийти', ru: 'Выйти', en: 'Sign out' } as Bi, act: () => toast({ uk: 'Демо: вихід вимкнено', ru: 'Демо: выход отключён', en: 'Demo: sign-out disabled' }) },
                   ].map((m) => (
                     <button
                       key={m.b.en}

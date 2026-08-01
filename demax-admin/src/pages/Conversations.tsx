@@ -14,26 +14,26 @@ export default function Conversations() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'Диалоги', en: 'Conversations' }}
-        subtitle={{ ru: 'История общения клиентов с AI-ассистентом', en: 'Customer conversations with the AI assistant' }}
+        title={{ uk: 'Діалоги', ru: 'Диалоги', en: 'Conversations' }}
+        subtitle={{ uk: 'Історія спілкування клієнтів з AI-асистентом', ru: 'История общения клиентов с AI-ассистентом', en: 'Customer conversations with the AI assistant' }}
       />
       <Card pad={false}>
         <div className="flex items-center gap-3 border-b border-ink-100 p-4 dark:border-ink-800">
           <Select value={status} onChange={(e) => setStatus(e.target.value)} className="w-52">
-            <option value="">{L({ ru: 'Статус: все', en: 'Status: all' })}</option>
-            <option value="active">{L({ ru: 'Активные', en: 'Active' })}</option>
-            <option value="escalated">{L({ ru: 'Эскалированные', en: 'Escalated' })}</option>
-            <option value="closed">{L({ ru: 'Закрытые', en: 'Closed' })}</option>
+            <option value="">{L({ uk: 'Статус: усі', ru: 'Статус: все', en: 'Status: all' })}</option>
+            <option value="active">{L({ uk: 'Активні', ru: 'Активные', en: 'Active' })}</option>
+            <option value="escalated">{L({ uk: 'Ескальовані', ru: 'Эскалированные', en: 'Escalated' })}</option>
+            <option value="closed">{L({ uk: 'Закриті', ru: 'Закрытые', en: 'Closed' })}</option>
           </Select>
         </div>
         <Table
           head={[
-            { ru: 'Клиент', en: 'Customer' },
-            { ru: 'Первое сообщение', en: 'First message' },
-            { ru: 'Интент', en: 'Intent' },
-            { ru: 'Увер.', en: 'Conf.' },
-            { ru: 'Статус', en: 'Status' },
-            { ru: 'Начат', en: 'Started' },
+            { uk: 'Клієнт', ru: 'Клиент', en: 'Customer' },
+            { uk: 'Перше повідомлення', ru: 'Первое сообщение', en: 'First message' },
+            { uk: 'Інтент', ru: 'Интент', en: 'Intent' },
+            { uk: 'Впев.', ru: 'Увер.', en: 'Conf.' },
+            { uk: 'Статус', ru: 'Статус', en: 'Status' },
+            { uk: 'Розпочато', ru: 'Начат', en: 'Started' },
           ]}
         >
           {rows.map((v) => {

@@ -132,6 +132,7 @@ export function useTypewriter(target: string, animate: boolean): string {
 /* ---------- conversation persistence ---------- */
 
 const KEY = 'demax-assistant-conversation'
+const OPEN_KEY = 'demax-assistant-open'
 
 export const readConversationId = (): string | null => {
   try {
@@ -153,6 +154,44 @@ export const clearConversationId = () => {
   } catch {
     /* ignore */
   }
+}
+
+/** Панель лишається відкритою після перезавантаження сторінки. */
+export const readOpenState = (): boolean => {
+  try {
+    return localStorage.getItem(OPEN_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+export const writeOpenState = (open: boolean) => {
+  try {
+    localStorage.setItem(OPEN_KEY, open ? '1' : '0')
+  } catch {
+    /* ignore */
+  }
+}
+
+/* ---------- Історія розмови ---------- */
+
+export type HistoryMessage = {
+  id: string
+  sender: 'customer' | 'ai' | 'manager'
+  content: string
+  confidence: number | null
+  sources: Source[]
+}
+
+/** Відновлює збережену розмову з сервера (щоб не починати з нуля щоразу). */
+export async function fetchConversation(
+  conversationId: string,
+  signal?: AbortSignal,
+): Promise<HistoryMessage[] | null> {
+  const r = await fetch(`${RAG_ORIGIN}/v1/me/conversations/${conversationId}/messages`, { signal })
+  if (r.status === 404) return null
+  if (!r.ok) throw new Error(`history_failed: ${r.status}`)
+  const j = await r.json()
+  return j.data as HistoryMessage[]
 }
 
 /* ---------- RAG API client ---------- */
@@ -184,7 +223,7 @@ export type ChatResponse = {
 export async function sendChat(
   text: string,
   conversationId: string | null,
-  language: 'ru' | 'en',
+  language: 'uk' | 'ru' | 'en',
   signal?: AbortSignal,
 ): Promise<ChatResponse> {
   const r = await fetch(`${RAG_ORIGIN}/v1/me/conversations/messages`, {

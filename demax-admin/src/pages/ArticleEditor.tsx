@@ -42,28 +42,28 @@ export default function ArticleEditor() {
   const isPublished = a?.status === 'published'
 
   const tabs: { key: Tab; label: Bi }[] = [
-    { key: 'editor', label: { ru: 'Редактор', en: 'Editor' } },
-    { key: 'versions', label: { ru: 'Версии', en: 'Versions' } },
-    { key: 'chunks', label: { ru: 'Чанки', en: 'Chunks' } },
-    { key: 'audit', label: { ru: 'Аудит', en: 'Audit' } },
+    { key: 'editor', label: { uk: 'Редактор', ru: 'Редактор', en: 'Editor' } },
+    { key: 'versions', label: { uk: 'Версії', ru: 'Версии', en: 'Versions' } },
+    { key: 'chunks', label: { uk: 'Чанки', ru: 'Чанки', en: 'Chunks' } },
+    { key: 'audit', label: { uk: 'Аудит', ru: 'Аудит', en: 'Audit' } },
   ]
 
   return (
     <div>
       <Link to="/knowledge" className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-500 hover:text-copper-700 dark:hover:text-copper-300">
-        <ArrowLeft size={15} /> {L({ ru: 'База знаний', en: 'Knowledge Base' })}
+        <ArrowLeft size={15} /> {L({ uk: 'База знань', ru: 'База знаний', en: 'Knowledge Base' })}
       </Link>
 
       <PageHeader
-        title={{ ru: a ? 'Редактирование статьи' : 'Новая статья', en: a ? 'Edit article' : 'New article' }}
+        title={{ uk: a ? 'Редагування статті' : 'Нова стаття', ru: a ? 'Редактирование статьи' : 'Новая статья', en: a ? 'Edit article' : 'New article' }}
         actions={
           <>
             {a && <Status s={a.status} />}
-            <Button variant="secondary" size="sm" onClick={() => toast({ ru: 'Черновик сохранён', en: 'Draft saved' })}>
-              {L({ ru: 'Сохранить', en: 'Save' })}
+            <Button variant="secondary" size="sm" onClick={() => toast({ uk: 'Чернетку збережено', ru: 'Черновик сохранён', en: 'Draft saved' })}>
+              {L({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}
             </Button>
-            <Button size="sm" onClick={() => toast({ ru: 'Отправлено на проверку', en: 'Submitted for review' })}>
-              {L({ ru: 'На проверку', en: 'Submit for review' })}
+            <Button size="sm" onClick={() => toast({ uk: 'Надіслано на перевірку', ru: 'Отправлено на проверку', en: 'Submitted for review' })}>
+              {L({ uk: 'На перевірку', ru: 'На проверку', en: 'Submit for review' })}
             </Button>
           </>
         }
@@ -72,6 +72,7 @@ export default function ArticleEditor() {
       {isPublished && (
         <div className="animate-rise mb-4 rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
           {L({
+            uk: 'Статтю опубліковано. Зміна тексту поверне її в статус «на перевірці» та підніме версію (v' + ((a?.version ?? 0) + 1) + ').',
             ru: 'Статья опубликована. Изменение текста вернёт её в статус «на проверке» и поднимет версию (v' + ((a?.version ?? 0) + 1) + ').',
             en: 'This article is live. Editing the content resets it to “in review” and bumps the version (v' + ((a?.version ?? 0) + 1) + ').',
           })}
@@ -86,11 +87,11 @@ export default function ArticleEditor() {
             <Card>
               <div className="grid gap-4 sm:grid-cols-3">
                 <div className="sm:col-span-2">
-                  <Field label={{ ru: 'Заголовок', en: 'Title' }}>
+                  <Field label={{ uk: 'Заголовок', ru: 'Заголовок', en: 'Title' }}>
                     <Input value={title} onChange={(e) => setTitle(e.target.value)} maxLength={250} />
                   </Field>
                 </div>
-                <Field label={{ ru: 'Категория', en: 'Category' }}>
+                <Field label={{ uk: 'Категорія', ru: 'Категория', en: 'Category' }}>
                   <Select defaultValue={a?.category ?? 'skincare'}>
                     {['skincare', 'protocols', 'products', 'faq'].map((c) => <option key={c}>{c}</option>)}
                   </Select>
@@ -101,7 +102,7 @@ export default function ArticleEditor() {
             <Card pad={false}>
               <div className="flex items-center gap-1 border-b border-ink-100 px-3 py-2 dark:border-ink-800">
                 {[Bold, Italic, Heading2, List, Link2].map((I, i) => (
-                  <button key={i} className="rounded-lg p-2 text-ink-500 hover:bg-ink-100 hover:text-ink-900 dark:hover:bg-ink-800 dark:hover:text-ivory-100" onClick={() => toast({ ru: 'Демо: форматирование', en: 'Demo: formatting' })}>
+                  <button key={i} className="rounded-lg p-2 text-ink-500 hover:bg-ink-100 hover:text-ink-900 dark:hover:bg-ink-800 dark:hover:text-ivory-100" onClick={() => toast({ uk: 'Демо: форматування', ru: 'Демо: форматирование', en: 'Demo: formatting' })}>
                     <I size={15} />
                   </button>
                 ))}
@@ -124,7 +125,7 @@ export default function ArticleEditor() {
 
           <div className="space-y-4">
             <Card>
-              <SectionTitle>{L({ ru: 'Workflow', en: 'Workflow' })}</SectionTitle>
+              <SectionTitle>{L({ uk: 'Workflow', ru: 'Workflow', en: 'Workflow' })}</SectionTitle>
               <ol className="space-y-2 text-sm">
                 {(['draft', 'in_review', 'approved', 'published'] as const).map((s, i) => {
                   const reached = a ? ['draft', 'in_review', 'approved', 'published'].indexOf(a.status) >= i : i === 0
@@ -139,15 +140,15 @@ export default function ArticleEditor() {
             </Card>
             {a && (
               <Card>
-                <SectionTitle>{L({ ru: 'Мета', en: 'Meta' })}</SectionTitle>
+                <SectionTitle>{L({ uk: 'Мета', ru: 'Мета', en: 'Meta' })}</SectionTitle>
                 <dl className="space-y-2 text-sm">
-                  <div className="flex justify-between"><dt className="text-ink-400">{L({ ru: 'Версия', en: 'Version' })}</dt><dd className="font-mono">v{a.version}</dd></div>
-                  <div className="flex justify-between"><dt className="text-ink-400">{L({ ru: 'Язык', en: 'Language' })}</dt><dd className="font-mono uppercase">{a.language}</dd></div>
-                  <div className="flex justify-between"><dt className="text-ink-400">{L({ ru: 'Цитирований', en: 'Citations' })}</dt><dd className="font-mono">{a.cited}</dd></div>
-                  <div className="flex justify-between"><dt className="text-ink-400">{L({ ru: 'Обновлена', en: 'Updated' })}</dt><dd>{fmtDate(a.updated, lang)}</dd></div>
+                  <div className="flex justify-between"><dt className="text-ink-400">{L({ uk: 'Версія', ru: 'Версия', en: 'Version' })}</dt><dd className="font-mono">v{a.version}</dd></div>
+                  <div className="flex justify-between"><dt className="text-ink-400">{L({ uk: 'Мова', ru: 'Язык', en: 'Language' })}</dt><dd className="font-mono uppercase">{a.language}</dd></div>
+                  <div className="flex justify-between"><dt className="text-ink-400">{L({ uk: 'Цитувань', ru: 'Цитирований', en: 'Citations' })}</dt><dd className="font-mono">{a.cited}</dd></div>
+                  <div className="flex justify-between"><dt className="text-ink-400">{L({ uk: 'Оновлена', ru: 'Обновлена', en: 'Updated' })}</dt><dd>{fmtDate(a.updated, lang)}</dd></div>
                 </dl>
-                <Button variant="secondary" size="sm" className="mt-4 w-full" onClick={() => toast({ ru: 'Реиндексация в очереди (эмбеддинг: pending)', en: 'Re-index queued (embedding: pending)' })}>
-                  <RefreshCw size={13} /> {L({ ru: 'Реиндексировать', en: 'Re-index' })}
+                <Button variant="secondary" size="sm" className="mt-4 w-full" onClick={() => toast({ uk: 'Переіндексація в черзі (ембединг: pending)', ru: 'Реиндексация в очереди (эмбеддинг: pending)', en: 'Re-index queued (embedding: pending)' })}>
+                  <RefreshCw size={13} /> {L({ uk: 'Переіндексувати', ru: 'Реиндексировать', en: 'Re-index' })}
                 </Button>
               </Card>
             )}
@@ -161,7 +162,7 @@ export default function ArticleEditor() {
             {Array.from({ length: a?.version ?? 1 }, (_, i) => (a?.version ?? 1) - i).map((v) => (
               <div key={v} className="flex items-center gap-4 px-5 py-3.5 text-sm">
                 <span className="font-mono font-bold text-copper-700 dark:text-copper-300">v{v}</span>
-                <span className="flex-1 text-ink-500">{v === a?.version ? L({ ru: 'Текущая версия', en: 'Current version' }) : L({ ru: 'Опубликована и заменена', en: 'Published, then superseded' })}</span>
+                <span className="flex-1 text-ink-500">{v === a?.version ? L({ uk: 'Поточна версія', ru: 'Текущая версия', en: 'Current version' }) : L({ uk: 'Опублікована та замінена', ru: 'Опубликована и заменена', en: 'Published, then superseded' })}</span>
                 <span className="text-xs text-ink-400">{fmtDate(a?.updated ?? '', lang)}</span>
               </div>
             ))}
@@ -171,7 +172,7 @@ export default function ArticleEditor() {
 
       {tab === 'chunks' && (
         <div className="space-y-3">
-          <p className="text-xs text-ink-400">{L({ ru: 'Чанки генерируются автоматически при публикации. Только чтение.', en: 'Chunks are generated on publish. Read-only.' })}</p>
+          <p className="text-xs text-ink-400">{L({ uk: 'Чанки генеруються автоматично під час публікації. Лише для читання.', ru: 'Чанки генерируются автоматически при публикации. Только чтение.', en: 'Chunks are generated on publish. Read-only.' })}</p>
           {[0, 1, 2].map((i) => (
             <Card key={i}>
               <div className="mb-1.5 flex items-center justify-between">
@@ -179,7 +180,7 @@ export default function ArticleEditor() {
                 <Status s="ready" />
               </div>
               <p className="text-sm text-ink-600 dark:text-ink-300">
-                {L({ ru: 'Сухая кожа теряет влагу из-за нарушенного липидного барьера. Утренний уход: мягкое очищение…', en: 'Dry skin loses moisture through a damaged lipid barrier. Morning routine: gentle cleansing…' })}
+                {L({ uk: 'Суха шкіра втрачає вологу через порушений ліпідний бар’єр. Ранковий догляд: м’яке очищення…', ru: 'Сухая кожа теряет влагу из-за нарушенного липидного барьера. Утренний уход: мягкое очищение…', en: 'Dry skin loses moisture through a damaged lipid barrier. Morning routine: gentle cleansing…' })}
               </p>
             </Card>
           ))}

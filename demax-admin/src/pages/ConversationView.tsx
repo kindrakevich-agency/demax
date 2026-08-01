@@ -45,7 +45,7 @@ function Bubble({ m }: { m: Msg }) {
           })}
           {m.sender === 'ai' && m.confidence !== undefined && m.confidence < 0.5 && (
             <span className="rounded-full bg-rose-100 px-2 py-0.5 font-bold text-rose-800 dark:bg-rose-500/15 dark:text-rose-400">
-              {L({ ru: 'низкая уверенность', en: 'low confidence' })}
+              {L({ uk: 'низька впевненість', ru: 'низкая уверенность', en: 'low confidence' })}
             </span>
           )}
         </div>
@@ -62,21 +62,21 @@ export default function ConversationView() {
   const [note, setNote] = useState('')
 
   const v = convById(id ?? '')
-  if (!v) return <EmptyState text={{ ru: 'Диалог не найден', en: 'Conversation not found' }} />
+  if (!v) return <EmptyState text={{ uk: 'Діалог не знайдено', ru: 'Диалог не найден', en: 'Conversation not found' }} />
   const c = customerById(v.customerId)
 
   return (
     <div>
       <Link to="/conversations" className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-500 hover:text-copper-700 dark:hover:text-copper-300">
-        <ArrowLeft size={15} /> {L({ ru: 'Все диалоги', en: 'All conversations' })}
+        <ArrowLeft size={15} /> {L({ uk: 'Усі діалоги', ru: 'Все диалоги', en: 'All conversations' })}
       </Link>
 
       <PageHeader
-        title={{ ru: `Диалог с ${c?.name ?? ''}`, en: `Conversation with ${c?.name ?? ''}` }}
-        subtitle={{ ru: `Начат ${fmtDate(v.started, lang, true)} · интент: ${v.intent}`, en: `Started ${fmtDate(v.started, lang, true)} · intent: ${v.intent}` }}
+        title={{ uk: `Діалог з ${c?.name ?? ''}`, ru: `Диалог с ${c?.name ?? ''}`, en: `Conversation with ${c?.name ?? ''}` }}
+        subtitle={{ uk: `Розпочато ${fmtDate(v.started, lang, true)} · інтент: ${v.intent}`, ru: `Начат ${fmtDate(v.started, lang, true)} · интент: ${v.intent}`, en: `Started ${fmtDate(v.started, lang, true)} · intent: ${v.intent}` }}
         actions={
           <>
-            <Button variant="secondary" size="sm" onClick={() => toast({ ru: 'Демо: экспорт CSV готов', en: 'Demo: CSV export ready' })}>
+            <Button variant="secondary" size="sm" onClick={() => toast({ uk: 'Демо: експорт CSV готовий', ru: 'Демо: экспорт CSV готов', en: 'Demo: CSV export ready' })}>
               <Download size={14} /> CSV
             </Button>
             <Status s={v.status} />
@@ -92,32 +92,32 @@ export default function ConversationView() {
         <div className="space-y-4">
           {v.status === 'escalated' && (
             <Card>
-              <SectionTitle>{L({ ru: 'Ответ менеджера', en: 'Manager reply' })}</SectionTitle>
-              <Textarea rows={4} maxLength={2000} value={reply} onChange={(e) => setReply(e.target.value)} placeholder={L({ ru: 'Ответ клиенту (уйдёт в Telegram)…', en: 'Reply to the customer (sent to Telegram)…' })} />
+              <SectionTitle>{L({ uk: 'Відповідь менеджера', ru: 'Ответ менеджера', en: 'Manager reply' })}</SectionTitle>
+              <Textarea rows={4} maxLength={2000} value={reply} onChange={(e) => setReply(e.target.value)} placeholder={L({ uk: 'Відповідь клієнту (надійде в Telegram)…', ru: 'Ответ клиенту (уйдёт в Telegram)…', en: 'Reply to the customer (sent to Telegram)…' })} />
               <label className="mt-3 flex items-center gap-2 text-sm">
                 <input type="checkbox" checked={resolve} onChange={(e) => setResolve(e.target.checked)} className="rounded border-ink-300 text-copper-600 focus:ring-copper-500/40" />
-                {L({ ru: 'Закрыть эскалацию', en: 'Resolve escalation' })}
+                {L({ uk: 'Закрити ескалацію', ru: 'Закрыть эскалацию', en: 'Resolve escalation' })}
               </label>
               {resolve && (
-                <Textarea rows={2} className="mt-2" value={note} onChange={(e) => setNote(e.target.value)} placeholder={L({ ru: 'Резолюция (обязательно)…', en: 'Resolution note (required)…' })} />
+                <Textarea rows={2} className="mt-2" value={note} onChange={(e) => setNote(e.target.value)} placeholder={L({ uk: 'Резолюція (обов’язково)…', ru: 'Резолюция (обязательно)…', en: 'Resolution note (required)…' })} />
               )}
               <Button
                 className="mt-3 w-full"
                 disabled={!reply.trim() || (resolve && !note.trim())}
-                onClick={() => { setReply(''); setNote(''); setResolve(false); toast({ ru: 'Демо: ответ отправлен', en: 'Demo: reply sent' }) }}
+                onClick={() => { setReply(''); setNote(''); setResolve(false); toast({ uk: 'Демо: відповідь надіслано', ru: 'Демо: ответ отправлен', en: 'Demo: reply sent' }) }}
               >
-                {L({ ru: 'Отправить', en: 'Send' })}
+                {L({ uk: 'Надіслати', ru: 'Отправить', en: 'Send' })}
               </Button>
             </Card>
           )}
           <Card>
-            <SectionTitle>{L({ ru: 'Клиент', en: 'Customer' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'Клієнт', ru: 'Клиент', en: 'Customer' })}</SectionTitle>
             <div className="space-y-1.5 text-sm">
               <div className="font-semibold">{c?.name}</div>
               <div className="text-ink-500">{c?.phone}</div>
               <div className="text-ink-500">{c?.city}</div>
               <Link to={`/customers/${c?.id}`} className="inline-block pt-1 text-xs font-bold text-copper-700 hover:underline dark:text-copper-300">
-                {L({ ru: 'Открыть профиль →', en: 'Open profile →' })}
+                {L({ uk: 'Відкрити профіль →', ru: 'Открыть профиль →', en: 'Open profile →' })}
               </Link>
             </div>
           </Card>

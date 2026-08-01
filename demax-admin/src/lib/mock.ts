@@ -274,17 +274,17 @@ export const growth = [
 ]
 
 export const topQuestions = [
-  { q: { ru: 'Подбор ухода по типу кожи', en: 'Skincare routine by skin type' }, n: 214 },
-  { q: { ru: 'Постпилинговый уход', en: 'Post-peeling care' }, n: 156 },
-  { q: { ru: 'Наличие и цены продуктов', en: 'Product availability & prices' }, n: 133 },
-  { q: { ru: 'Даты семинаров', en: 'Seminar dates' }, n: 121 },
-  { q: { ru: 'Статус верификации', en: 'Verification status' }, n: 87 },
+  { q: { uk: 'Підбір догляду за типом шкіри', ru: 'Подбор ухода по типу кожи', en: 'Skincare routine by skin type' }, n: 214 },
+  { q: { uk: 'Постпілінговий догляд', ru: 'Постпилинговый уход', en: 'Post-peeling care' }, n: 156 },
+  { q: { uk: 'Наявність і ціни продуктів', ru: 'Наличие и цены продуктов', en: 'Product availability & prices' }, n: 133 },
+  { q: { uk: 'Дати семінарів', ru: 'Даты семинаров', en: 'Seminar dates' }, n: 121 },
+  { q: { uk: 'Статус верифікації', ru: 'Статус верификации', en: 'Verification status' }, n: 87 },
 ]
 
 export const notFoundTopics = [
-  { q: { ru: 'Совместимость с инъекционными процедурами', en: 'Compatibility with injectables' }, n: 31 },
-  { q: { ru: 'Уход при беременности', en: 'Care during pregnancy' }, n: 24 },
-  { q: { ru: 'Детская косметика', en: 'Kids cosmetics' }, n: 11 },
+  { q: { uk: 'Сумісність з ін’єкційними процедурами', ru: 'Совместимость с инъекционными процедурами', en: 'Compatibility with injectables' }, n: 31 },
+  { q: { uk: 'Догляд під час вагітності', ru: 'Уход при беременности', en: 'Care during pregnancy' }, n: 24 },
+  { q: { uk: 'Дитяча косметика', ru: 'Детская косметика', en: 'Kids cosmetics' }, n: 11 },
 ]
 
 export const customerById = (id: string) => customers.find((c) => c.id === id)

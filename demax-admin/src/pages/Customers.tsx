@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp, fmtDate } from '../lib/app'
-import { PageHeader, Card, Table, Tr, Td, Status, Avatar, Input, Select, Chip, LoadMore, EmptyState, Mono } from '../components/ui'
+import { PageHeader, Card, Table, Tr, Td, Status, Avatar, Input, Select, Chip, LoadMore, EmptyState, Mono, applySort } from '../components/ui'
+import type { SortState } from '../components/ui'
 import { customers, managerById } from '../lib/mock'
 
 export default function Customers() {
@@ -10,6 +11,7 @@ export default function Customers() {
   const [q, setQ] = useState('')
   const [role, setRole] = useState('')
   const [ver, setVer] = useState('')
+  const [sort, setSort] = useState<SortState>(null)
 
   const rows = useMemo(
     () =>
@@ -22,50 +24,62 @@ export default function Customers() {
     [q, role, ver],
   )
 
+  const sorted = useMemo(
+    () =>
+      applySort(rows, sort, (c, k) =>
+        k === 'name' ? c.name : k === 'city' ? c.city : k === 'role' ? c.role
+        : k === 'verification' ? c.verification : k === 'manager' ? managerById(c.managerId)?.name
+        : k === 'lastActive' ? Date.parse(c.lastActive) : null,
+      ),
+    [rows, sort],
+  )
+
   return (
     <div>
       <PageHeader
-        title={{ ru: 'Клиенты', en: 'Customers' }}
-        subtitle={{ ru: '768 профилей · операционная CRM — единый источник правды', en: '768 profiles · operational CRM is the single source of truth' }}
+        title={{ uk: 'Клієнти', ru: 'Клиенты', en: 'Customers' }}
+        subtitle={{ uk: '768 профілів · операційна CRM — єдине джерело правди', ru: '768 профилей · операционная CRM — единый источник правды', en: '768 profiles · operational CRM is the single source of truth' }}
       />
 
       <Card pad={false}>
         <div className="flex flex-wrap items-center gap-3 border-b border-ink-100 p-4 dark:border-ink-800">
-          <Input placeholder={L({ ru: 'Поиск по имени или @username…', en: 'Search name or @username…' })} value={q} onChange={(e) => setQ(e.target.value)} className="max-w-xs" />
+          <Input placeholder={L({ uk: 'Пошук за іменем або @username…', ru: 'Поиск по имени или @username…', en: 'Search name or @username…' })} value={q} onChange={(e) => setQ(e.target.value)} className="max-w-xs" />
           <Select value={role} onChange={(e) => setRole(e.target.value)} className="w-44">
-            <option value="">{L({ ru: 'Роль: все', en: 'Role: all' })}</option>
+            <option value="">{L({ uk: 'Роль: усі', ru: 'Роль: все', en: 'Role: all' })}</option>
             <option value="home_care">Home Care</option>
             <option value="professional">Professional</option>
           </Select>
           <Select value={ver} onChange={(e) => setVer(e.target.value)} className="w-48">
-            <option value="">{L({ ru: 'Верификация: все', en: 'Verification: all' })}</option>
-            <option value="approved">{L({ ru: 'Одобрена', en: 'Approved' })}</option>
-            <option value="pending">{L({ ru: 'Ожидает', en: 'Pending' })}</option>
-            <option value="rejected">{L({ ru: 'Отклонена', en: 'Rejected' })}</option>
-            <option value="none">{L({ ru: 'Нет', en: 'None' })}</option>
+            <option value="">{L({ uk: 'Верифікація: усі', ru: 'Верификация: все', en: 'Verification: all' })}</option>
+            <option value="approved">{L({ uk: 'Схвалена', ru: 'Одобрена', en: 'Approved' })}</option>
+            <option value="pending">{L({ uk: 'Очікує', ru: 'Ожидает', en: 'Pending' })}</option>
+            <option value="rejected">{L({ uk: 'Відхилена', ru: 'Отклонена', en: 'Rejected' })}</option>
+            <option value="none">{L({ uk: 'Немає', ru: 'Нет', en: 'None' })}</option>
           </Select>
           {(q || role || ver) && (
             <Chip onRemove={() => { setQ(''); setRole(''); setVer('') }}>
-              {L({ ru: `Найдено: ${rows.length}`, en: `Found: ${rows.length}` })}
+              {L({ uk: `Знайдено: ${rows.length}`, ru: `Найдено: ${rows.length}`, en: `Found: ${rows.length}` })}
             </Chip>
           )}
         </div>
 
         {rows.length === 0 ? (
-          <EmptyState text={{ ru: 'Ничего не найдено по заданным фильтрам', en: 'Nothing matches the current filters' }} />
+          <EmptyState text={{ uk: 'Нічого не знайдено за заданими фільтрами', ru: 'Ничего не найдено по заданным фильтрам', en: 'Nothing matches the current filters' }} />
         ) : (
           <>
             <Table
+              sort={sort}
+              onSort={setSort}
               head={[
-                { ru: 'Клиент', en: 'Customer' },
-                { ru: 'Город', en: 'City' },
-                { ru: 'Роль', en: 'Role' },
-                { ru: 'Верификация', en: 'Verification' },
-                { ru: 'Менеджер', en: 'Manager' },
-                { ru: 'Активность', en: 'Last active' },
+                { uk: 'Клієнт', ru: 'Клиент', en: 'Customer', sortKey: 'name' },
+                { uk: 'Місто', ru: 'Город', en: 'City', sortKey: 'city' },
+                { uk: 'Роль', ru: 'Роль', en: 'Role', sortKey: 'role' },
+                { uk: 'Верифікація', ru: 'Верификация', en: 'Verification', sortKey: 'verification' },
+                { uk: 'Менеджер', ru: 'Менеджер', en: 'Manager', sortKey: 'manager' },
+                { uk: 'Активність', ru: 'Активность', en: 'Last active', sortKey: 'lastActive' },
               ]}
             >
-              {rows.map((c) => (
+              {sorted.map((c) => (
                 <Tr key={c.id} onClick={() => nav(`/customers/${c.id}`)}>
                   <Td>
                     <div className="flex items-center gap-3">

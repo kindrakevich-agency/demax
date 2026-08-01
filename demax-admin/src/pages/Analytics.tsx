@@ -18,8 +18,8 @@ export default function Analytics() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'Аналитика', en: 'Analytics' }}
-        subtitle={{ ru: 'Бизнес-метрики платформы', en: 'Business metrics across the platform' }}
+        title={{ uk: 'Аналітика', ru: 'Аналитика', en: 'Analytics' }}
+        subtitle={{ uk: 'Бізнес-метрики платформи', ru: 'Бизнес-метрики платформы', en: 'Business metrics across the platform' }}
         actions={
           <>
             <div className="flex overflow-hidden rounded-full border border-ink-200 text-xs font-bold dark:border-ink-700">
@@ -33,7 +33,7 @@ export default function Analytics() {
                 </button>
               ))}
             </div>
-            <Button variant="secondary" size="sm" onClick={() => toast({ ru: 'Демо: CSV выгружен', en: 'Demo: CSV exported' })}>
+            <Button variant="secondary" size="sm" onClick={() => toast({ uk: 'Демо: CSV вивантажено', ru: 'Демо: CSV выгружен', en: 'Demo: CSV exported' })}>
               <Download size={14} /> CSV
             </Button>
           </>
@@ -41,31 +41,31 @@ export default function Analytics() {
       />
 
       <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <Stat label={{ ru: 'Всего клиентов', en: 'Total customers' }} value="768" hint="+37 / 30d" accent />
-        <Stat label={{ ru: 'Professional', en: 'Professional' }} value="214" hint="28%" />
-        <Stat label={{ ru: 'Регистраций на семинары', en: 'Seminar sign-ups' }} value="432" hint="30d" />
-        <Stat label={{ ru: 'Доставляемость рассылок', en: 'Broadcast delivery' }} value="96.4%" />
+        <Stat label={{ uk: 'Усього клієнтів', ru: 'Всего клиентов', en: 'Total customers' }} value="768" hint="+37 / 30d" accent />
+        <Stat label={{ uk: 'Professional', ru: 'Professional', en: 'Professional' }} value="214" hint="28%" />
+        <Stat label={{ uk: 'Реєстрацій на семінари', ru: 'Регистраций на семинары', en: 'Seminar sign-ups' }} value="432" hint="30d" />
+        <Stat label={{ uk: 'Доставлюваність розсилок', ru: 'Доставляемость рассылок', en: 'Broadcast delivery' }} value="96.4%" />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Card className="animate-rise-1">
-          <SectionTitle>{L({ ru: 'Рост клиентской базы', en: 'Customer growth' })}</SectionTitle>
-          <TrendChart data={growth} xKey="m" series={[{ key: 'customers', name: L({ ru: 'Клиенты', en: 'Customers' }) }]} />
+          <SectionTitle>{L({ uk: 'Зростання клієнтської бази', ru: 'Рост клиентской базы', en: 'Customer growth' })}</SectionTitle>
+          <TrendChart data={growth} xKey="m" series={[{ key: 'customers', name: L({ uk: 'Клієнти', ru: 'Клиенты', en: 'Customers' }) }]} />
         </Card>
 
         <Card className="animate-rise-1">
-          <SectionTitle>{L({ ru: 'Заполняемость семинаров, %', en: 'Seminar fill rate, %' })}</SectionTitle>
+          <SectionTitle>{L({ uk: 'Заповнюваність семінарів, %', ru: 'Заполняемость семинаров, %', en: 'Seminar fill rate, %' })}</SectionTitle>
           <BarsChart data={seminarFill} xKey="name" yKey="fill" name="%" />
         </Card>
 
         <Card className="animate-rise-2" pad={false}>
-          <div className="px-5 pt-5 pb-2"><SectionTitle>{L({ ru: 'Эффективность менеджеров', en: 'Manager performance' })}</SectionTitle></div>
+          <div className="px-5 pt-5 pb-2"><SectionTitle>{L({ uk: 'Ефективність менеджерів', ru: 'Эффективность менеджеров', en: 'Manager performance' })}</SectionTitle></div>
           <Table
             head={[
-              { ru: 'Менеджер', en: 'Manager' },
-              { ru: 'Клиентов', en: 'Customers' },
-              { ru: 'Решено эскалаций', en: 'Resolved' },
-              { ru: 'Ср. время ответа', en: 'Avg response' },
+              { uk: 'Менеджер', ru: 'Менеджер', en: 'Manager' },
+              { uk: 'Клієнтів', ru: 'Клиентов', en: 'Customers' },
+              { uk: 'Вирішено ескалацій', ru: 'Решено эскалаций', en: 'Resolved' },
+              { uk: 'Сер. час відповіді', ru: 'Ср. время ответа', en: 'Avg response' },
             ]}
           >
             {managers.filter((m) => m.active).map((m, i) => (
@@ -81,11 +81,11 @@ export default function Analytics() {
 
         <div className="animate-rise-2 space-y-4">
           <Card>
-            <SectionTitle>{L({ ru: 'Популярные вопросы', en: 'Popular questions' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'Популярні запитання', ru: 'Популярные вопросы', en: 'Popular questions' })}</SectionTitle>
             <RankList items={topQuestions.slice(0, 4).map((t) => ({ label: L(t.q), n: t.n }))} />
           </Card>
           <Card>
-            <SectionTitle>{L({ ru: 'Кампании', en: 'Campaigns' })}</SectionTitle>
+            <SectionTitle>{L({ uk: 'Кампанії', ru: 'Кампании', en: 'Campaigns' })}</SectionTitle>
             <div className="space-y-2.5 text-sm">
               {promotions.filter((p) => p.sent > 0).map((p) => (
                 <div key={p.id} className="flex items-center justify-between gap-3">

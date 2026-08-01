@@ -65,6 +65,20 @@ CREATE INDEX IF NOT EXISTS idx_chunks_article ON knowledge_chunks(article_id);
 CREATE INDEX IF NOT EXISTS idx_articles_fts ON knowledge_articles
     USING GIN (to_tsvector('simple', title || ' ' || content));
 
+-- Переклади інтерфейсу: єдине джерело правди для всіх мов адмінки.
+-- Ключ — стабільний ідентифікатор рядка, значення — по мові.
+CREATE TABLE IF NOT EXISTS ui_translations (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    namespace TEXT NOT NULL,
+    key TEXT NOT NULL,
+    uk TEXT NOT NULL,
+    ru TEXT NOT NULL,
+    en TEXT NOT NULL,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    UNIQUE (namespace, key)
+);
+CREATE INDEX IF NOT EXISTS idx_ui_translations_ns ON ui_translations(namespace);
+
 CREATE TABLE IF NOT EXISTS ai_conversations (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     status TEXT NOT NULL DEFAULT 'active',

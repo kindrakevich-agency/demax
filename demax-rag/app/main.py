@@ -15,7 +15,7 @@ import os
 import uuid
 
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -37,9 +37,32 @@ app.add_middleware(
 )
 
 
+def _seed_translations() -> None:
+    """Наповнює ui_translations рядками інтерфейсу (ідемпотентно)."""
+    import json
+    import pathlib
+
+    f = pathlib.Path(__file__).parent / "translations_seed.json"
+    if not f.exists():
+        return
+    rows = json.loads(f.read_text(encoding="utf-8"))
+    with db.pool().connection() as conn:
+        with conn.cursor() as cur:
+            cur.executemany(
+                "INSERT INTO ui_translations (namespace, key, uk, ru, en) VALUES (%s,%s,%s,%s,%s) "
+                "ON CONFLICT (namespace, key) DO NOTHING",
+                [(r["namespace"], r["key"], r["uk"], r["ru"], r["en"]) for r in rows],
+            )
+    logging.getLogger("startup").info("ui_translations seeded: %d", len(rows))
+
+
 @app.on_event("startup")
 def _startup() -> None:
     db.init_schema()
+    try:
+        _seed_translations()
+    except Exception:  # noqa: BLE001 — сід не має валити старт сервісу
+        logging.getLogger("startup").exception("translation seed failed")
     ingest.ensure_ingested_async()
 
 
@@ -87,6 +110,47 @@ def ready() -> dict:
     }
 
 
+class TranslationIn(BaseModel):
+    namespace: str = Field(min_length=1, max_length=64)
+    key: str = Field(min_length=1, max_length=200)
+    uk: str
+    ru: str
+    en: str
+
+
+@app.get("/v1/admin/translations")
+def list_translations(namespace: str | None = None) -> dict:
+    """Переклади інтерфейсу з БД (spec-additive)."""
+    with db.pool().connection() as conn:
+        if namespace:
+            rows = conn.execute(
+                "SELECT namespace, key, uk, ru, en FROM ui_translations WHERE namespace = %s ORDER BY key",
+                (namespace,),
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT namespace, key, uk, ru, en FROM ui_translations ORDER BY namespace, key"
+            ).fetchall()
+    return {
+        "data": [
+            {"namespace": r[0], "key": r[1], "uk": r[2], "ru": r[3], "en": r[4]} for r in rows
+        ]
+    }
+
+
+@app.put("/v1/admin/translations")
+def upsert_translation(body: TranslationIn) -> dict:
+    """Створити або оновити рядок перекладу (редагується з адмінки)."""
+    with db.pool().connection() as conn:
+        conn.execute(
+            "INSERT INTO ui_translations (namespace, key, uk, ru, en) VALUES (%s, %s, %s, %s, %s) "
+            "ON CONFLICT (namespace, key) DO UPDATE SET uk = EXCLUDED.uk, ru = EXCLUDED.ru, "
+            "en = EXCLUDED.en, updated_at = now()",
+            (body.namespace, body.key, body.uk, body.ru, body.en),
+        )
+    return {"status": "saved", "namespace": body.namespace, "key": body.key}
+
+
 @app.get("/v1/admin/knowledge/articles")
 def articles() -> dict:
     return {"data": db.article_stats(), "total_chunks": db.chunk_count()}
@@ -116,6 +180,41 @@ def knowledge_search(body: SearchIn) -> dict:
             for h in hits
         ]
     }
+
+
+@app.get("/v1/me/conversations/{conversation_id}/messages")
+def conversation_messages(conversation_id: str) -> dict:
+    """Історія розмови (spec 4.4.3) — віджет відновлює її при відкритті."""
+    with db.pool().connection() as conn:
+        row = conn.execute("SELECT id FROM ai_conversations WHERE id = %s", (conversation_id,)).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="conversation_not_found")
+        rows = conn.execute(
+            "SELECT m.id, m.sender, m.content, m.confidence, m.retrieved_article_ids "
+            "FROM ai_messages m WHERE m.conversation_id = %s ORDER BY m.created_at, m.id",
+            (conversation_id,),
+        ).fetchall()
+        out = []
+        for mid, sender, content, confidence, article_ids in rows:
+            sources = []
+            if article_ids:
+                for aid, title, url in conn.execute(
+                    "SELECT id, title, source_url FROM knowledge_articles WHERE id = ANY(%s)",
+                    (list(article_ids),),
+                ).fetchall():
+                    sources.append({
+                        "article_id": str(aid),
+                        "title": title,
+                        "url": None if (url or "").startswith("pdf://") else url,
+                    })
+            out.append({
+                "id": str(mid),
+                "sender": sender,
+                "content": content,
+                "confidence": confidence,
+                "sources": sources,
+            })
+    return {"data": out}
 
 
 @app.post("/v1/me/conversations/messages")

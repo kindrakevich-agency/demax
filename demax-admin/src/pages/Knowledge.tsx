@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Plus, RefreshCw, Search } from 'lucide-react'
 import { useApp, fmtDate } from '../lib/app'
-import { PageHeader, Card, Table, Tr, Td, Status, Button, Input, Select, LoadMore, EmptyState, Modal, SectionTitle } from '../components/ui'
+import { PageHeader, Card, Table, Tr, Td, Status, Button, Input, Select, LoadMore, EmptyState, Modal, SectionTitle, applySort } from '../components/ui'
+import type { SortState } from '../components/ui'
 import { articles } from '../lib/mock'
 
 export default function Knowledge() {
@@ -14,6 +15,7 @@ export default function Knowledge() {
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [searchOpen, setSearchOpen] = useState(false)
   const [semQuery, setSemQuery] = useState('')
+  const [sort, setSort] = useState<SortState>(null)
 
   const rows = useMemo(
     () =>
@@ -21,6 +23,15 @@ export default function Knowledge() {
         (a) => (!q || a.title.toLowerCase().includes(q.toLowerCase())) && (!st || a.status === st) && (!cat || a.category === cat),
       ),
     [q, st, cat],
+  )
+
+  const sorted = useMemo(
+    () =>
+      applySort(rows, sort, (a, k) =>
+        k === 'title' ? a.title : k === 'category' ? a.category : k === 'version' ? a.version
+        : k === 'status' ? a.status : k === 'cited' ? a.cited : k === 'updated' ? Date.parse(a.updated) : null,
+      ),
+    [rows, sort],
   )
 
   const toggle = (id: string) =>
@@ -34,15 +45,15 @@ export default function Knowledge() {
   return (
     <div>
       <PageHeader
-        title={{ ru: 'База знаний', en: 'Knowledge Base' }}
-        subtitle={{ ru: 'Единственный источник ответов AI. Публикация запускает чанкинг и эмбеддинги.', en: 'The only source of AI answers. Publishing triggers chunking and embeddings.' }}
+        title={{ uk: 'База знань', ru: 'База знаний', en: 'Knowledge Base' }}
+        subtitle={{ uk: 'Єдине джерело відповідей AI. Публікація запускає чанкінг та ембединги.', ru: 'Единственный источник ответов AI. Публикация запускает чанкинг и эмбеддинги.', en: 'The only source of AI answers. Publishing triggers chunking and embeddings.' }}
         actions={
           <>
             <Button variant="secondary" size="sm" onClick={() => setSearchOpen(true)}>
-              <Search size={14} /> {L({ ru: 'Поиск как AI', en: 'Search as AI' })}
+              <Search size={14} /> {L({ uk: 'Пошук як AI', ru: 'Поиск как AI', en: 'Search as AI' })}
             </Button>
             <Button size="sm" onClick={() => nav('/knowledge/a7')}>
-              <Plus size={15} /> {L({ ru: 'Новая статья', en: 'New article' })}
+              <Plus size={15} /> {L({ uk: 'Нова стаття', ru: 'Новая статья', en: 'New article' })}
             </Button>
           </>
         }
@@ -50,13 +61,13 @@ export default function Knowledge() {
 
       <Card pad={false}>
         <div className="flex flex-wrap items-center gap-3 border-b border-ink-100 p-4 dark:border-ink-800">
-          <Input placeholder={L({ ru: 'Поиск по заголовку…', en: 'Search titles…' })} value={q} onChange={(e) => setQ(e.target.value)} className="max-w-xs" />
+          <Input placeholder={L({ uk: 'Пошук за заголовком…', ru: 'Поиск по заголовку…', en: 'Search titles…' })} value={q} onChange={(e) => setQ(e.target.value)} className="max-w-xs" />
           <Select value={st} onChange={(e) => setSt(e.target.value)} className="w-44">
-            <option value="">{L({ ru: 'Статус: все', en: 'Status: all' })}</option>
+            <option value="">{L({ uk: 'Статус: усі', ru: 'Статус: все', en: 'Status: all' })}</option>
             {['draft', 'in_review', 'approved', 'published', 'archived'].map((s) => <option key={s} value={s}>{s}</option>)}
           </Select>
           <Select value={cat} onChange={(e) => setCat(e.target.value)} className="w-44">
-            <option value="">{L({ ru: 'Категория: все', en: 'Category: all' })}</option>
+            <option value="">{L({ uk: 'Категорія: усі', ru: 'Категория: все', en: 'Category: all' })}</option>
             {['skincare', 'protocols', 'products', 'faq'].map((c) => <option key={c} value={c}>{c}</option>)}
           </Select>
         </div>
@@ -64,34 +75,36 @@ export default function Knowledge() {
         {selected.size > 0 && (
           <div className="flex items-center gap-3 border-b border-copper-500/30 bg-copper-500/8 px-4 py-2.5">
             <span className="text-sm font-bold text-copper-700 dark:text-copper-300">
-              {selected.size} {L({ ru: 'выбрано', en: 'selected' })}
+              {selected.size} {L({ uk: 'вибрано', ru: 'выбрано', en: 'selected' })}
             </span>
-            <Button size="sm" variant="secondary" onClick={() => { toast({ ru: `Реиндексация ${selected.size} статей поставлена в очередь`, en: `Re-index queued for ${selected.size} articles` }); setSelected(new Set()) }}>
-              <RefreshCw size={13} /> {L({ ru: 'Реиндексировать', en: 'Re-index' })}
+            <Button size="sm" variant="secondary" onClick={() => { toast({ uk: `Переіндексацію ${selected.size} статей поставлено в чергу`, ru: `Реиндексация ${selected.size} статей поставлена в очередь`, en: `Re-index queued for ${selected.size} articles` }); setSelected(new Set()) }}>
+              <RefreshCw size={13} /> {L({ uk: 'Переіндексувати', ru: 'Реиндексировать', en: 'Re-index' })}
             </Button>
-            <Button size="sm" variant="ghost" onClick={() => { toast({ ru: 'Демо: статьи в архиве', en: 'Demo: articles archived' }); setSelected(new Set()) }}>
-              {L({ ru: 'В архив', en: 'Archive' })}
+            <Button size="sm" variant="ghost" onClick={() => { toast({ uk: 'Демо: статті в архіві', ru: 'Демо: статьи в архиве', en: 'Demo: articles archived' }); setSelected(new Set()) }}>
+              {L({ uk: 'В архів', ru: 'В архив', en: 'Archive' })}
             </Button>
           </div>
         )}
 
         {rows.length === 0 ? (
-          <EmptyState text={{ ru: 'Статей не найдено', en: 'No articles found' }} />
+          <EmptyState text={{ uk: 'Статей не знайдено', ru: 'Статей не найдено', en: 'No articles found' }} />
         ) : (
           <>
             <Table
+              sort={sort}
+              onSort={setSort}
               head={[
-                { ru: '', en: '' },
-                { ru: 'Статья', en: 'Article' },
-                { ru: 'Категория', en: 'Category' },
-                { ru: 'Версия', en: 'Version' },
-                { ru: 'Статус', en: 'Status' },
-                { ru: 'Эмбеддинг', en: 'Embedding' },
-                { ru: 'Цитирований', en: 'Cited' },
-                { ru: 'Обновлена', en: 'Updated' },
+                { uk: '', ru: '', en: '' },
+                { uk: 'Стаття', ru: 'Статья', en: 'Article', sortKey: 'title' },
+                { uk: 'Категорія', ru: 'Категория', en: 'Category', sortKey: 'category' },
+                { uk: 'Версія', ru: 'Версия', en: 'Version', sortKey: 'version' },
+                { uk: 'Статус', ru: 'Статус', en: 'Status', sortKey: 'status' },
+                { uk: 'Ембединг', ru: 'Эмбеддинг', en: 'Embedding' },
+                { uk: 'Цитувань', ru: 'Цитирований', en: 'Cited', sortKey: 'cited' },
+                { uk: 'Оновлена', ru: 'Обновлена', en: 'Updated', sortKey: 'updated' },
               ]}
             >
-              {rows.map((a) => (
+              {sorted.map((a) => (
                 <Tr key={a.id} onClick={() => nav(`/knowledge/${a.id}`)}>
                   <Td>
                     <input
@@ -118,11 +131,11 @@ export default function Knowledge() {
       </Card>
 
       {/* semantic search preview */}
-      <Modal open={searchOpen} onClose={() => setSearchOpen(false)} title={{ ru: 'Поиск глазами AI', en: 'Search as the AI sees it' }} wide>
+      <Modal open={searchOpen} onClose={() => setSearchOpen(false)} title={{ uk: 'Пошук очима AI', ru: 'Поиск глазами AI', en: 'Search as the AI sees it' }} wide>
         <p className="mb-3 text-sm text-ink-500 dark:text-ink-400">
-          {L({ ru: 'Гибридный поиск (pgvector + FTS) по опубликованным чанкам — так AI выбирает источники.', en: 'Hybrid retrieval (pgvector + FTS) over published chunks — how the AI picks sources.' })}
+          {L({ uk: 'Гібридний пошук (pgvector + FTS) за опублікованими чанками — так AI обирає джерела.', ru: 'Гибридный поиск (pgvector + FTS) по опубликованным чанкам — так AI выбирает источники.', en: 'Hybrid retrieval (pgvector + FTS) over published chunks — how the AI picks sources.' })}
         </p>
-        <Input autoFocus value={semQuery} onChange={(e) => setSemQuery(e.target.value)} placeholder={L({ ru: 'сухая кожа зимой…', en: 'dry skin in winter…' })} />
+        <Input autoFocus value={semQuery} onChange={(e) => setSemQuery(e.target.value)} placeholder={L({ uk: 'суха шкіра взимку…', ru: 'сухая кожа зимой…', en: 'dry skin in winter…' })} />
         {semQuery.length > 2 && (
           <div className="mt-4 space-y-2">
             {[
@@ -136,7 +149,7 @@ export default function Knowledge() {
                   <span className="font-mono text-xs font-bold text-sage-600 dark:text-sage-400">{score.toFixed(2)}</span>
                 </div>
                 <p className="text-xs text-ink-500 dark:text-ink-400">
-                  {L({ ru: '…плотный крем с керамидами восстанавливает барьер; наносить за 30 минут до выхода…', en: '…rich ceramide cream restores the barrier; apply 30 minutes before going outside…' })}
+                  {L({ uk: '…щільний крем із керамідами відновлює бар’єр; наносити за 30 хвилин до виходу…', ru: '…плотный крем с керамидами восстанавливает барьер; наносить за 30 минут до выхода…', en: '…rich ceramide cream restores the barrier; apply 30 minutes before going outside…' })}
                 </p>
               </div>
             ))}

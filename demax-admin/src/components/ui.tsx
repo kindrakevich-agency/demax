@@ -1,6 +1,6 @@
 import type { ReactNode, ButtonHTMLAttributes, InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 import { useEffect } from 'react'
-import { X, Inbox } from 'lucide-react'
+import { X, Inbox, ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react'
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
 
@@ -81,30 +81,30 @@ const tone: Record<string, string> = {
 }
 
 const statusLabels: Record<string, Bi> = {
-  approved: { ru: 'Одобрено', en: 'Approved' },
-  published: { ru: 'Опубликовано', en: 'Published' },
-  delivered: { ru: 'Доставлено', en: 'Delivered' },
-  resolved: { ru: 'Решено', en: 'Resolved' },
-  active: { ru: 'Активно', en: 'Active' },
-  open: { ru: 'Открыто', en: 'Open' },
-  ready: { ru: 'Готово', en: 'Ready' },
-  attended: { ru: 'Посетил', en: 'Attended' },
-  pending: { ru: 'Ожидает', en: 'Pending' },
-  in_review: { ru: 'На проверке', en: 'In review' },
-  queued: { ru: 'В очереди', en: 'Queued' },
-  assigned: { ru: 'Назначено', en: 'Assigned' },
-  sent: { ru: 'Отправлено', en: 'Sent' },
-  escalated: { ru: 'Эскалация', en: 'Escalated' },
-  rejected: { ru: 'Отклонено', en: 'Rejected' },
-  failed: { ru: 'Ошибка', en: 'Failed' },
-  cancelled: { ru: 'Отменено', en: 'Cancelled' },
-  dismissed: { ru: 'Снято', en: 'Dismissed' },
-  no_show: { ru: 'Не пришёл', en: 'No-show' },
-  draft: { ru: 'Черновик', en: 'Draft' },
-  closed: { ru: 'Закрыто', en: 'Closed' },
-  archived: { ru: 'Архив', en: 'Archived' },
-  finished: { ru: 'Завершено', en: 'Finished' },
-  none: { ru: '—', en: '—' },
+  approved: { uk: 'Схвалено', ru: 'Одобрено', en: 'Approved' },
+  published: { uk: 'Опубліковано', ru: 'Опубликовано', en: 'Published' },
+  delivered: { uk: 'Доставлено', ru: 'Доставлено', en: 'Delivered' },
+  resolved: { uk: 'Вирішено', ru: 'Решено', en: 'Resolved' },
+  active: { uk: 'Активно', ru: 'Активно', en: 'Active' },
+  open: { uk: 'Відкрито', ru: 'Открыто', en: 'Open' },
+  ready: { uk: 'Готово', ru: 'Готово', en: 'Ready' },
+  attended: { uk: 'Відвідав', ru: 'Посетил', en: 'Attended' },
+  pending: { uk: 'Очікує', ru: 'Ожидает', en: 'Pending' },
+  in_review: { uk: 'На перевірці', ru: 'На проверке', en: 'In review' },
+  queued: { uk: 'У черзі', ru: 'В очереди', en: 'Queued' },
+  assigned: { uk: 'Призначено', ru: 'Назначено', en: 'Assigned' },
+  sent: { uk: 'Надіслано', ru: 'Отправлено', en: 'Sent' },
+  escalated: { uk: 'Ескалація', ru: 'Эскалация', en: 'Escalated' },
+  rejected: { uk: 'Відхилено', ru: 'Отклонено', en: 'Rejected' },
+  failed: { uk: 'Помилка', ru: 'Ошибка', en: 'Failed' },
+  cancelled: { uk: 'Скасовано', ru: 'Отменено', en: 'Cancelled' },
+  dismissed: { uk: 'Знято', ru: 'Снято', en: 'Dismissed' },
+  no_show: { uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' },
+  draft: { uk: 'Чернетка', ru: 'Черновик', en: 'Draft' },
+  closed: { uk: 'Закрито', ru: 'Закрыто', en: 'Closed' },
+  archived: { uk: 'Архів', ru: 'Архив', en: 'Archived' },
+  finished: { uk: 'Завершено', ru: 'Завершено', en: 'Finished' },
+  none: { uk: '—', ru: '—', en: '—' },
 }
 
 export function Status({ s }: { s: string }) {
@@ -146,24 +146,87 @@ export function Stat({ label, value, hint, accent }: { label: Bi; value: string;
 
 /* ---------- Table kit ---------- */
 
-export function Table({ head, children }: { head: Bi[]; children: ReactNode }) {
+export type SortState = { key: string; dir: 'asc' | 'desc' } | null
+
+/**
+ * Таблиця з сортуванням по кліку на заголовок.
+ * Колонка стає сортовною, якщо для неї передано `sortKey` — клік перемикає
+ * asc → desc → без сортування.
+ */
+export function Table({
+  head,
+  children,
+  sort,
+  onSort,
+}: {
+  head: (Bi & { sortKey?: string })[]
+  children: ReactNode
+  sort?: SortState
+  onSort?: (s: SortState) => void
+}) {
   const { L } = useApp()
+
+  const toggle = (key: string) => {
+    if (!onSort) return
+    if (!sort || sort.key !== key) onSort({ key, dir: 'asc' })
+    else if (sort.dir === 'asc') onSort({ key, dir: 'desc' })
+    else onSort(null)
+  }
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-160 border-collapse text-sm">
         <thead>
           <tr className="border-b border-ink-200/70 dark:border-ink-700/70">
-            {head.map((h, i) => (
-              <th key={i} className="sticky top-0 px-3 py-2.5 text-left text-[11px] font-bold tracking-widest whitespace-nowrap text-ink-400 uppercase dark:text-ink-500">
-                {L(h)}
-              </th>
-            ))}
+            {head.map((h, i) => {
+              const key = h.sortKey
+              const sortable = !!key && !!onSort
+              const active = sortable && sort?.key === key
+              return (
+                <th
+                  key={i}
+                  aria-sort={active ? (sort!.dir === 'asc' ? 'ascending' : 'descending') : undefined}
+                  className="sticky top-0 px-3 py-2.5 text-left text-[11px] font-bold tracking-widest whitespace-nowrap text-ink-400 uppercase dark:text-ink-500"
+                >
+                  {sortable ? (
+                    <button
+                      type="button"
+                      onClick={() => toggle(key!)}
+                      className={`inline-flex items-center gap-1 rounded transition-colors hover:text-ink-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper-500 dark:hover:text-ivory-100 ${active ? 'text-copper-700 dark:text-copper-300' : ''}`}
+                    >
+                      {L(h)}
+                      {active ? (
+                        sort!.dir === 'asc' ? <ChevronUp size={12} /> : <ChevronDown size={12} />
+                      ) : (
+                        <ChevronsUpDown size={12} className="opacity-40" />
+                      )}
+                    </button>
+                  ) : (
+                    L(h)
+                  )}
+                </th>
+              )
+            })}
           </tr>
         </thead>
         <tbody className="divide-y divide-ink-100 dark:divide-ink-800">{children}</tbody>
       </table>
     </div>
   )
+}
+
+/** Сортує масив за поточним станом заголовка (числа, дати й рядки). */
+export function applySort<T>(rows: T[], sort: SortState, get: (row: T, key: string) => unknown): T[] {
+  if (!sort) return rows
+  const dir = sort.dir === 'asc' ? 1 : -1
+  return [...rows].sort((a, b) => {
+    const va = get(a, sort.key)
+    const vb = get(b, sort.key)
+    if (va == null) return 1
+    if (vb == null) return -1
+    if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * dir
+    return String(va).localeCompare(String(vb), 'uk') * dir
+  })
 }
 
 export function Tr({ children, onClick }: { children: ReactNode; onClick?: () => void }) {
@@ -185,8 +248,8 @@ export function LoadMore({ onClick }: { onClick?: () => void }) {
   const { L, toast } = useApp()
   return (
     <div className="flex justify-center border-t border-ink-100 py-3 dark:border-ink-800">
-      <Button variant="ghost" size="sm" onClick={onClick ?? (() => toast({ ru: 'Демо: все данные загружены', en: 'Demo: all data loaded' }))}>
-        {L({ ru: 'Загрузить ещё', en: 'Load more' })}
+      <Button variant="ghost" size="sm" onClick={onClick ?? (() => toast({ uk: 'Демо: всі дані завантажено', ru: 'Демо: все данные загружены', en: 'Demo: all data loaded' }))}>
+        {L({ uk: 'Завантажити ще', ru: 'Загрузить ещё', en: 'Load more' })}
       </Button>
     </div>
   )
