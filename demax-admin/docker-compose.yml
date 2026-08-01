@@ -1,0 +1,7 @@
+services:
+  demax-admin:
+    build: .
+    container_name: demax-admin-demo
+    ports:
+      - "5199:80"
+    restart: unless-stopped
