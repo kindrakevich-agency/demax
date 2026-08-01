@@ -115,17 +115,18 @@ def system_prompt(language: str) -> str:
 def retrieve(query: str) -> list[dict]:
     """Hybrid retrieval → [{chunk_id, article_id, title, source_url, content, score}]."""
     qvec = embed_query(query)
+    cols = ("c.id, c.article_id, a.title, a.source_url, c.content, "
+            "a.image_url, a.price, a.is_product")
     with db.pool().connection() as conn:
         knn = conn.execute(
-            "SELECT c.id, c.article_id, a.title, a.source_url, c.content, "
-            "       1 - (c.embedding <=> %s) AS sim "
+            f"SELECT {cols}, 1 - (c.embedding <=> %s) AS sim "
             "FROM knowledge_chunks c JOIN knowledge_articles a ON a.id = c.article_id "
             "WHERE a.status = 'published' "
             "ORDER BY c.embedding <=> %s LIMIT %s",
             (qvec, qvec, CANDIDATES),
         ).fetchall()
         fts = conn.execute(
-            "SELECT c.id, c.article_id, a.title, a.source_url, c.content, "
+            f"SELECT {cols}, "
             "       ts_rank(to_tsvector('simple', c.content), websearch_to_tsquery('simple', %s)) AS r "
             "FROM knowledge_chunks c JOIN knowledge_articles a ON a.id = c.article_id "
             "WHERE a.status = 'published' "
@@ -142,7 +143,7 @@ def retrieve(query: str) -> list[dict]:
         cid = str(row[0])
         scores[cid] = scores.get(cid, 0) + 1.0 / (60 + rank)
         rows[cid] = row
-        sim_by_id[cid] = float(row[5])
+        sim_by_id[cid] = float(row[8])
     for rank, row in enumerate(fts):
         cid = str(row[0])
         scores[cid] = scores.get(cid, 0) + 1.0 / (60 + rank)
@@ -158,6 +159,9 @@ def retrieve(query: str) -> list[dict]:
             "title": row[2],
             "source_url": row[3],
             "content": row[4],
+            "image_url": row[5],
+            "price": row[6],
+            "is_product": bool(row[7]),
             "score": sim_by_id.get(cid, 0.0),
         })
     return out
@@ -278,6 +282,7 @@ def answer(question: str, history: list[dict], language: str = "ru") -> dict:
             "confidence": round(top_score, 2),
             "escalated": True,
             "sources": [],
+            "products": [],
         }
 
     reply = None
@@ -295,23 +300,31 @@ def answer(question: str, history: list[dict], language: str = "ru") -> dict:
             "confidence": round(min(top_score, 0.4), 2),
             "escalated": True,
             "sources": [],
+            "products": [],
         }
 
     seen: set[str] = set()
-    sources = []
+    sources, products = [], []
     for c in context:
         if c["article_id"] in seen:
             continue
         seen.add(c["article_id"])
-        sources.append({
-            "article_id": c["article_id"],
-            "title": c["title"],
-            "url": None if (c["source_url"] or "").startswith("pdf://") else c["source_url"],
-        })
+        url = None if (c["source_url"] or "").startswith("pdf://") else c["source_url"]
+        sources.append({"article_id": c["article_id"], "title": c["title"], "url": url})
+        # Товарні картки: показуємо у віджеті з фото, ціною й посиланням.
+        if c.get("is_product") and c.get("image_url"):
+            products.append({
+                "article_id": c["article_id"],
+                "title": c["title"],
+                "url": url,
+                "image_url": c["image_url"],
+                "price": c.get("price"),
+            })
     return {
         "reply": reply,
         "intent": intent,
         "confidence": round(min(0.98, 0.5 + top_score / 2), 2),
         "escalated": False,
         "sources": sources[:3],
+        "products": products[:4],
     }

@@ -53,6 +53,15 @@ function renderBlocks(input: string): string {
       flushParagraph()
       continue
     }
+    // Заголовки (#, ##, ###) — модель інколи структурує довшу відповідь
+    const hMatch = /^(#{1,3})\s+(.+)$/.exec(trimmed)
+    if (hMatch) {
+      flushList()
+      flushParagraph()
+      const level = hMatch[1].length === 1 ? 'h3' : 'h4'
+      out.push(`<${level}>${inlineMd(hMatch[2])}</${level}>`)
+      continue
+    }
     const ulMatch = /^(?:[-*])\s+(.+)$/.exec(trimmed)
     const olMatch = /^\d+[.)]\s+(.+)$/.exec(trimmed)
     if (ulMatch) pushItem('ul', ulMatch[1])
@@ -210,6 +219,15 @@ export const RAG_ORIGIN =
 
 export type Source = { article_id: string; title: string; url?: string | null }
 
+/** Рекомендований товар із каталогу demax.com.ua — фото, ціна, посилання. */
+export type Product = {
+  article_id: string
+  title: string
+  url?: string | null
+  image_url: string
+  price?: string | null
+}
+
 export type ChatResponse = {
   conversation_id: string
   message_id: string
@@ -218,6 +236,7 @@ export type ChatResponse = {
   confidence: number
   escalated: boolean
   sources: Source[]
+  products: Product[]
 }
 
 export async function sendChat(

@@ -12,7 +12,7 @@ import {
   clearConversationId, fetchConversation, readConversationId, readOpenState, renderMarkdown,
   sendChat, useTypewriter, writeConversationId, writeOpenState,
 } from './lib'
-import type { Source } from './lib'
+import type { Source, Product } from './lib'
 
 type Msg = {
   kind: 'user' | 'assistant'
@@ -20,6 +20,7 @@ type Msg = {
   text: string
   animate?: boolean
   sources?: Source[]
+  products?: Product[]
   escalated?: boolean
   confidence?: number
 }
@@ -86,6 +87,40 @@ function TypingIndicator() {
   )
 }
 
+/* ---------- рекомендовані товари ---------- */
+
+function ProductCards({ products }: { products: Product[] }) {
+  return (
+    <div className="mt-3 grid grid-cols-2 gap-2.5">
+      {products.map((p) => (
+        <a
+          key={p.article_id}
+          href={p.url ?? undefined}
+          target="_blank"
+          rel="noreferrer"
+          className="group overflow-hidden rounded-2xl bg-white ring-1 ring-neutral-200 transition-shadow hover:shadow-md"
+        >
+          <div className="aspect-square overflow-hidden bg-[#f4f4f4]">
+            <img
+              src={p.image_url}
+              alt={p.title}
+              loading="lazy"
+              className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+              onError={(e) => {
+                (e.currentTarget.closest('a') as HTMLElement | null)?.style.setProperty('display', 'none')
+              }}
+            />
+          </div>
+          <div className="px-2.5 py-2">
+            <div className="line-clamp-2 text-[12.5px] leading-snug font-medium text-neutral-800">{p.title}</div>
+            {p.price && <div className="mt-1 text-[12px] font-semibold text-neutral-900">{p.price}</div>}
+          </div>
+        </a>
+      ))}
+    </div>
+  )
+}
+
 /* ---------- one message ---------- */
 
 function Bubble({ msg, actionable, L }: { msg: Msg; actionable: boolean; L: (b: { uk: string; ru: string; en: string }) => string }) {
@@ -118,6 +153,11 @@ function Bubble({ msg, actionable, L }: { msg: Msg; actionable: boolean; L: (b: 
         <div className="plg-md" dangerouslySetInnerHTML={{ __html: html }} />
         {isTyping && <span aria-hidden="true" className="ml-0.5 inline-block h-3 w-1 animate-pulse bg-neutral-400" />}
       </div>
+
+      {/* рекомендовані товари з каталогу — з фото, ціною й посиланням */}
+      {!isTyping && msg.products && msg.products.length > 0 && (
+        <ProductCards products={msg.products} />
+      )}
 
       {/* admin context: show grounding — source pills + escalation notice */}
       {!isTyping && msg.sources && msg.sources.length > 0 && (
@@ -272,7 +312,8 @@ export default function AssistantWidget() {
     }
   }, [open])
 
-  const startTurn = async (text: string) => {
+  /** `convOverride === null` явно починає нову розмову (демо-питання). */
+  const startTurn = async (text: string, convOverride?: string | null) => {
     setError(null)
     abortRef.current?.abort()
     const ac = new AbortController()
@@ -280,7 +321,8 @@ export default function AssistantWidget() {
     setStreaming(true)
     setMessages((m) => [...m, { kind: 'user', id: tempId('u'), text }])
     try {
-      const res = await sendChat(text, conversationId, lang, ac.signal)
+      const conv = convOverride === undefined ? conversationId : convOverride
+      const res = await sendChat(text, conv, lang, ac.signal)
       setConversationId(res.conversation_id)
       writeConversationId(res.conversation_id)
       setMessages((m) => [
@@ -291,6 +333,7 @@ export default function AssistantWidget() {
           text: res.reply,
           animate: true,
           sources: res.sources,
+          products: res.products,
           escalated: res.escalated,
           confidence: res.confidence,
         },
@@ -339,8 +382,18 @@ export default function AssistantWidget() {
     const onAsk = (e: Event) => {
       const text = (e as CustomEvent<string>).detail
       if (!text) return
+      // Демо-питання завжди починає чисту розмову: інакше ефект відновлення
+      // історії домальовував стару переписку вже після того, як користувач
+      // побачив нове питання — виглядало як зламаний набір тексту.
+      restoredRef.current = true
+      abortRef.current?.abort()
+      clearConversationId()
+      setConversationId(null)
+      setMessages([])
+      setError(null)
+      setRestoring(false)
       setOpen(true)
-      void startTurn(text)
+      void startTurn(text, null)
     }
     window.addEventListener('demax-assistant-ask', onAsk)
     return () => window.removeEventListener('demax-assistant-ask', onAsk)

@@ -274,6 +274,7 @@ def chat(body: ChatIn) -> dict:
         "confidence": result["confidence"],
         "escalated": result["escalated"],
         "sources": result["sources"],
+        "products": result.get("products", []),
     }
     if result["escalated"]:
         out["escalation"] = {"id": str(uuid.uuid4()), "reason": "low_confidence", "status": "open"}

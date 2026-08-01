@@ -75,6 +75,40 @@ def _category(url: str) -> str:
     return "pages"
 
 
+def _product_meta(soup: BeautifulSoup, url: str) -> tuple[str | None, str | None]:
+    """Фото й ціна товару зі сторінки WooCommerce.
+
+    og:image на demax.com.ua віддає логотип теми, тож беремо перше зображення
+    з /wp-content/uploads/, пропускаючи мініатюри (-50x50) та іконки теми.
+    Головне фото товару має суфікс `_main`, тому воно в пріоритеті.
+    """
+    image = None
+    candidates: list[str] = []
+    for img in soup.select("img"):
+        u = img.get("data-large_image") or img.get("data-src") or img.get("src") or ""
+        if "/wp-content/uploads/" not in u:
+            continue
+        if re.search(r"-\d{2,3}x\d{2,3}\.", u):  # мініатюра
+            continue
+        candidates.append(u)
+    if candidates:
+        image = next((u for u in candidates if "_main" in u), candidates[0])
+
+    price = None
+    meta_price = soup.find("meta", property="product:price:amount")
+    if meta_price and meta_price.get("content"):
+        cur = soup.find("meta", property="product:price:currency")
+        price = f"{meta_price['content']} {cur['content'] if cur and cur.get('content') else 'UAH'}".strip()
+    if not price:
+        el = soup.select_one("p.price, .summary .price, span.woocommerce-Price-amount")
+        if el:
+            txt = re.sub(r"\s+", " ", el.get_text(" ", strip=True))[:40]
+            price = txt or None
+    if image and image.startswith("//"):
+        image = "https:" + image
+    return image, price
+
+
 def _extract(html: str) -> tuple[str, str]:
     soup = BeautifulSoup(html, "lxml")
     for tag in soup(["script", "style", "nav", "header", "footer", "form", "noscript", "iframe"]):
@@ -116,19 +150,21 @@ def _chunk(text: str) -> list[str]:
     return [c for c in chunks if len(c) > 80]
 
 
-def _store(title: str, content: str, url: str | None, category: str) -> int:
+def _store(title: str, content: str, url: str | None, category: str,
+           image: str | None = None, price: str | None = None, is_product: bool = False) -> int:
     chunks = _chunk(f"{title}\n\n{content}")
     if not chunks:
         return 0
     vectors = embed_passages(chunks)
     with db.pool().connection() as conn:
         row = conn.execute(
-            "INSERT INTO knowledge_articles (category, title, content, source_url) "
-            "VALUES (%s, %s, %s, %s) "
+            "INSERT INTO knowledge_articles (category, title, content, source_url, image_url, price, is_product) "
+            "VALUES (%s, %s, %s, %s, %s, %s, %s) "
             "ON CONFLICT (source_url) DO UPDATE SET title = EXCLUDED.title, "
-            "content = EXCLUDED.content, version = knowledge_articles.version + 1 "
+            "content = EXCLUDED.content, image_url = EXCLUDED.image_url, price = EXCLUDED.price, "
+            "is_product = EXCLUDED.is_product, version = knowledge_articles.version + 1 "
             "RETURNING id",
-            (category, title or url or "Без назви", content, url),
+            (category, title or url or "Без назви", content, url, image, price, is_product),
         ).fetchone()
         art_id = row[0]
         conn.execute("DELETE FROM knowledge_chunks WHERE article_id = %s", (art_id,))
@@ -171,7 +207,12 @@ def run_ingest() -> None:
                     if r.status_code == 200:
                         title, text = _extract(r.text)
                         if len(text) > 200:
-                            _store(title, text, url, _category(url))
+                            cat = _category(url)
+                            is_prod = "/product/" in url
+                            image = price = None
+                            if is_prod:
+                                image, price = _product_meta(BeautifulSoup(r.text, "lxml"), url)
+                            _store(title, text, url, cat, image, price, is_prod)
                 except Exception as e:  # noqa: BLE001
                     log.warning("skip %s: %s", url, e)
                 state["done"] = i + 1

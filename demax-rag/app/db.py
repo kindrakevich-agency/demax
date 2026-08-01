@@ -52,6 +52,12 @@ CREATE TABLE IF NOT EXISTS knowledge_articles (
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Картка товару: фото й ціна з demax.com.ua, щоб консультант показував
+-- рекомендації візуально, а не лише текстом.
+ALTER TABLE knowledge_articles ADD COLUMN IF NOT EXISTS image_url TEXT;
+ALTER TABLE knowledge_articles ADD COLUMN IF NOT EXISTS price TEXT;
+ALTER TABLE knowledge_articles ADD COLUMN IF NOT EXISTS is_product BOOLEAN NOT NULL DEFAULT FALSE;
+
 CREATE TABLE IF NOT EXISTS knowledge_chunks (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     article_id UUID NOT NULL REFERENCES knowledge_articles(id) ON DELETE CASCADE,
