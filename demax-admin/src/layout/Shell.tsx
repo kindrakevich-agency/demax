@@ -123,7 +123,7 @@ export default function Shell() {
       {/* sidebar mobile */}
       {mobileNav && (
         <div className="fixed inset-0 z-80 lg:hidden">
-          <div className="absolute inset-0 bg-ink-950/50" onClick={() => setMobileNav(false)} />
+          <div className="animate-fade absolute inset-0 bg-ink-950/60 backdrop-blur-lg" onClick={() => setMobileNav(false)} />
           <aside className="animate-rise absolute inset-y-0 left-0 w-72 bg-ivory-50 shadow-pop dark:bg-ink-900">
             <button className="absolute top-5 right-4 text-ink-400" onClick={() => setMobileNav(false)} aria-label="close">
               <X size={20} />

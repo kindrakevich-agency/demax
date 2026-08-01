@@ -8,7 +8,7 @@
  */
 
 import { useEffect, useRef, useState } from 'react'
-import { Sparkles, CornerDownLeft, X, Loader2 } from 'lucide-react'
+import { Sparkles, CornerDownLeft, X, Loader2, AlertTriangle, CalendarCheck, Users, Gauge } from 'lucide-react'
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
 import { renderMarkdown, RAG_ORIGIN } from './lib'
@@ -17,8 +17,9 @@ import { customers, escalations, verifications, seminars, articles, managers, co
 /** Хто зараз у панелі — у проді береться з JWT (spec §2). */
 const CURRENT_USER = { name: 'Ольга Коваль', role: { uk: 'Адміністратор', ru: 'Администратор', en: 'Administrator' } as Bi }
 
-const PRESETS: { label: Bi; q: Bi }[] = [
+const PRESETS: { label: Bi; q: Bi; icon: typeof Sparkles }[] = [
   {
+    icon: AlertTriangle,
     label: { uk: 'Що потребує уваги', ru: 'Что требует внимания', en: 'Needs attention' },
     q: {
       uk: 'Що зараз найбільше потребує моєї уваги?',
@@ -27,6 +28,7 @@ const PRESETS: { label: Bi; q: Bi }[] = [
     },
   },
   {
+    icon: CalendarCheck,
     label: { uk: 'Звіт за сьогодні', ru: 'Отчёт за сегодня', en: "Today's report" },
     q: {
       uk: 'Дай коротке зведення за сьогодні: діалоги, ескалації, верифікації.',
@@ -35,6 +37,7 @@ const PRESETS: { label: Bi; q: Bi }[] = [
     },
   },
   {
+    icon: Users,
     label: { uk: 'Мої клієнти', ru: 'Мои клиенты', en: 'My customers' },
     q: {
       uk: 'Що відбувається з моїм портфелем клієнтів?',
@@ -43,6 +46,7 @@ const PRESETS: { label: Bi; q: Bi }[] = [
     },
   },
   {
+    icon: Gauge,
     label: { uk: 'Якість AI', ru: 'Качество AI', en: 'AI quality' },
     q: {
       uk: 'Як працює AI-асистент і де прогалини в базі знань?',
@@ -175,9 +179,10 @@ export default function SystemInsights() {
 
       {open && (
         <div className="fixed inset-0 z-100 flex items-start justify-center p-4 pt-[8vh]" role="dialog" aria-modal="true">
-          <div className="absolute inset-0 bg-ink-950/50 backdrop-blur-xs" onClick={() => setOpen(false)} />
+          <div className="animate-fade absolute inset-0 bg-ink-950/60 backdrop-blur-lg" onClick={() => setOpen(false)} />
 
-          <div className="animate-rise relative flex max-h-[78vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-ink-200/60 bg-white shadow-pop dark:border-ink-700 dark:bg-ink-900">
+          <div className="animate-pop relative w-full max-w-2xl rounded-[20px] bg-linear-to-b from-copper-400/40 via-copper-400/10 to-transparent p-px shadow-pop">
+            <div className="flex max-h-[78vh] flex-col overflow-hidden rounded-[19px] bg-white dark:bg-ink-900">
             {/* рядок запиту */}
             <form
               onSubmit={(e) => {
@@ -223,9 +228,15 @@ export default function SystemInsights() {
                         setQ(L(p.q))
                         void run(L(p.q))
                       }}
-                      className="rounded-xl border border-ink-200/70 px-3.5 py-2.5 text-left text-sm font-medium text-ink-700 transition-all hover:-translate-y-0.5 hover:border-copper-500 hover:text-copper-800 dark:border-ink-700 dark:text-ink-200 dark:hover:border-copper-400 dark:hover:text-copper-300"
+                      className="group flex items-center gap-3 rounded-xl border border-ink-200/70 px-3.5 py-3 text-left transition-all hover:-translate-y-0.5 hover:border-copper-500 hover:shadow-card dark:border-ink-700 dark:hover:border-copper-400"
                     >
-                      {L(p.label)}
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-copper-600/10 text-copper-700 transition-colors group-hover:bg-copper-600 group-hover:text-ivory-50 dark:bg-copper-400/15 dark:text-copper-300">
+                        <p.icon size={15} />
+                      </span>
+                      <span className="flex-1 text-sm font-medium text-ink-700 group-hover:text-copper-800 dark:text-ink-200 dark:group-hover:text-copper-300">
+                        {L(p.label)}
+                      </span>
+                      <CornerDownLeft size={13} className="shrink-0 text-ink-300 opacity-0 transition-opacity group-hover:opacity-100" />
                     </button>
                   ))}
                 </div>
@@ -278,6 +289,7 @@ export default function SystemInsights() {
                 )}
               </div>
             )}
+            </div>
           </div>
         </div>
       )}

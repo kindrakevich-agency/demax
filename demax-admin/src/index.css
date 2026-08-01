@@ -63,6 +63,15 @@ body {
 .animate-rise-2 { animation: rise .45s .1s cubic-bezier(.22,1,.36,1) both; }
 .animate-rise-3 { animation: rise .45s .15s cubic-bezier(.22,1,.36,1) both; }
 
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade { animation: fade .2s ease-out both; }
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(-8px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+.animate-pop { animation: pop .28s cubic-bezier(.22,1,.36,1) both; }
+
 @keyframes toast-in { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
 .animate-toast { animation: toast-in .3s cubic-bezier(.22,1,.36,1) both; }
 
