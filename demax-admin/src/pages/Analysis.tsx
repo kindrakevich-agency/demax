@@ -1,7 +1,7 @@
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
 import { PageHeader, Card, SectionTitle, Status } from '../components/ui'
-import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle } from 'lucide-react'
+import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle, Gift, ShoppingBag } from 'lucide-react'
 
 const demoQuestions: Bi[] = [
   { uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How should I care for skin after a peeling?' },
@@ -102,6 +102,52 @@ export default function Analysis() {
             >
               {L(q)}
             </button>
+          ))}
+        </div>
+      </Card>
+
+
+      {/* понад ТЗ — те, чого клієнт не замовляв, але що вирішує його задачі */}
+      <Card className="animate-rise-2 mb-4 border-copper-500/40">
+        <div className="mb-3 flex items-center gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><Gift size={19} /></span>
+          <div>
+            <SectionTitle>{L({ uk: 'Понад технічне завдання', ru: 'Сверх технического задания', en: 'Beyond the specification' })}</SectionTitle>
+            <p className="-mt-2 text-xs text-ink-500 dark:text-ink-400">
+              {L({
+                uk: 'Цього не було у ваших ТЗ — ми додали, бо це прямо працює на ваші задачі. Обидві функції вже живі в цьому демо.',
+                ru: 'Этого не было в ваших ТЗ — мы добавили, потому что это прямо работает на ваши задачи. Обе функции уже живые в этом демо.',
+                en: 'None of this was in your specifications — we added it because it directly serves your goals. Both features are already live in this demo.',
+              })}
+            </p>
+          </div>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {([
+            {
+              icon: ShoppingBag,
+              t: { uk: 'Картки товарів у відповідях', ru: 'Карточки товаров в ответах', en: 'Product cards in answers' } as Bi,
+              d: {
+                uk: 'Асистент не просто називає засіб — показує фото з каталогу, ціну й посилання на сторінку товару. Клієнт бачить, що саме йому радять, і одразу переходить на сайт.',
+                ru: 'Ассистент не просто называет средство — показывает фото из каталога, цену и ссылку на страницу товара. Клиент видит, что именно ему советуют, и сразу переходит на сайт.',
+                en: 'The assistant does not merely name a product — it shows the catalogue photo, the price and a link to the product page, so the customer sees what is recommended and goes straight to the site.',
+              } as Bi,
+            },
+            {
+              icon: Sparkles,
+              t: { uk: 'AI-звіти по системі (⌘K)', ru: 'AI-отчёты по системе (⌘K)', en: 'AI system briefings (⌘K)' } as Bi,
+              d: {
+                uk: 'Замість рядка пошуку — рядок запитання. Менеджер питає «що зараз важливо?» і отримує персональний брифінг: свої ескалації, черга дипломів, заповнюваність семінарів, прогалини в базі знань.',
+                ru: 'Вместо строки поиска — строка вопроса. Менеджер спрашивает «что сейчас важно?» и получает персональный брифинг: свои эскалации, очередь дипломов, заполняемость семинаров, пробелы в базе знаний.',
+                en: 'The search bar became a question bar. A manager asks “what matters now?” and gets a personal briefing: their escalations, the diploma queue, seminar fill rates, knowledge gaps.',
+              } as Bi,
+            },
+          ] as { icon: typeof Gift; t: Bi; d: Bi }[]).map((f) => (
+            <div key={f.t.en} className="rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
+              <f.icon size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
+              <div className="text-sm font-bold">{L(f.t)}</div>
+              <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">{L(f.d)}</p>
+            </div>
           ))}
         </div>
       </Card>

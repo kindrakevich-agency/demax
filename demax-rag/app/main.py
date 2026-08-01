@@ -151,6 +151,27 @@ def upsert_translation(body: TranslationIn) -> dict:
     return {"status": "saved", "namespace": body.namespace, "key": body.key}
 
 
+class InsightsIn(BaseModel):
+    question: str = Field(min_length=1, max_length=500)
+    language: str = Field(default="uk", pattern="^(ru|en|uk)$")
+    name: str = Field(default="", max_length=120)
+    role: str = Field(default="", max_length=60)
+    # Зріз операційних даних, які бачить користувач у панелі. У проді ці
+    # цифри читалися б із CRM напряму; у демо джерело те саме, що й для UI.
+    snapshot: dict = Field(default_factory=dict)
+
+
+@app.post("/v1/admin/insights")
+def admin_insights(body: InsightsIn) -> dict:
+    """AI-зведення по стану системи для конкретного менеджера."""
+    try:
+        report = rag.insights(body.question, body.snapshot, body.name, body.role, body.language)
+    except Exception:  # noqa: BLE001
+        logging.getLogger("insights").exception("insights failed")
+        report = ""
+    return {"report": report, "generated_for": body.name}
+
+
 @app.get("/v1/admin/knowledge/articles")
 def articles() -> dict:
     return {"data": db.article_stats(), "total_chunks": db.chunk_count()}

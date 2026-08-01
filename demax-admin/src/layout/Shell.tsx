@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, BookOpen, Users, MessagesSquare, Flame, BadgeCheck, GraduationCap,
-  Megaphone, Activity, BarChart3, UserCog, ScrollText, Settings, Search, Sun, Moon,
+  Megaphone, Activity, BarChart3, UserCog, ScrollText, Settings, Sun, Moon,
   Bell, ChevronDown, FileSpreadsheet, Menu, X, Bot, Languages,
 } from 'lucide-react'
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
 import { escalations, verifications } from '../lib/mock'
 import AssistantWidget from '../assistant/Widget'
+import SystemInsights from '../assistant/SystemInsights'
 
 type Item = { to: string; label: Bi; icon: typeof LayoutDashboard; count?: number }
 
@@ -139,13 +140,8 @@ export default function Shell() {
             <Menu size={20} />
           </button>
 
-          <div className="relative max-w-md flex-1">
-            <Search size={15} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-ink-400" />
-            <input
-              placeholder={L({ uk: 'Пошук: клієнти, статті, товари…', ru: 'Поиск: клиенты, статьи, товары…', en: 'Search customers, articles, products…' })}
-              className="w-full rounded-full border-transparent bg-white/70 py-2 pr-4 pl-9.5 text-sm shadow-none placeholder:text-ink-400 focus:border-copper-500 focus:bg-white focus:ring-copper-500/25 dark:bg-ink-800/70 dark:text-ivory-100 dark:focus:bg-ink-800"
-              onKeyDown={(e) => e.key === 'Enter' && toast({ uk: 'Демо: глобальний пошук', ru: 'Демо: глобальный поиск', en: 'Demo: global search' })}
-            />
+          <div className="max-w-md flex-1">
+            <SystemInsights />
           </div>
 
           <div className="ml-auto flex items-center gap-1.5">

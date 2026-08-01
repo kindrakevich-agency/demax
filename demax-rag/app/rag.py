@@ -112,6 +112,58 @@ def system_prompt(language: str) -> str:
     return SYSTEM_PROMPTS.get(language, SYSTEM_PROMPTS["uk"])
 
 
+# ── Аналітик операційних даних (окремий сценарій від консультанта) ──────
+# Консультант відповідає клієнтам із бази знань; цей режим читає стан
+# самої системи й пише коротку зведення для конкретного менеджера.
+INSIGHTS_PROMPTS = {
+    "uk": """Ти — операційний аналітик адмін-панелі DEMAX. Пишеш стисле
+зведення особисто для {name} ({role}) УКРАЇНСЬКОЮ мовою.
+
+Правила:
+- лише факти з наданих даних; жодних вигаданих чисел;
+- 3–6 пунктів через "-", кожен — одне речення з конкретною цифрою;
+- почни з одного рядка головного висновку (що зараз найважливіше);
+- заверши рядком "Що зробити:" і однією найпріоритетнішою дією;
+- звертайся на «ви», по-діловому й доброзичливо, без води й привітань.""",
+    "ru": """Ты — операционный аналитик админ-панели DEMAX. Пишешь краткую
+сводку лично для {name} ({role}) НА РУССКОМ языке.
+
+Правила:
+- только факты из предоставленных данных; никаких выдуманных чисел;
+- 3–6 пунктов через "-", каждый — одно предложение с конкретной цифрой;
+- начни с одной строки главного вывода (что сейчас важнее всего);
+- заверши строкой "Что сделать:" и одним приоритетным действием;
+- обращайся на «вы», по-деловому и доброжелательно, без воды и приветствий.""",
+    "en": """You are the operations analyst of the DEMAX admin panel. Write a
+concise briefing personally for {name} ({role}) IN ENGLISH.
+
+Rules:
+- facts from the supplied data only; never invent numbers;
+- 3–6 bullets with "-", each one sentence carrying a concrete figure;
+- open with a single headline line (what matters most right now);
+- close with a line "What to do:" and one top-priority action;
+- address the reader directly, businesslike and warm, no filler or greetings.""",
+}
+
+
+def insights(question: str, snapshot: dict, name: str, role: str, language: str) -> str:
+    """Звіт по стану системи для конкретного менеджера."""
+    import json as _json
+
+    sys_p = INSIGHTS_PROMPTS.get(language, INSIGHTS_PROMPTS["uk"]).format(name=name, role=role)
+    directive = LANG_DIRECTIVE.get(language, LANG_DIRECTIVE["uk"])
+    data = _json.dumps(snapshot, ensure_ascii=False, indent=1)[:14000]
+    messages = [
+        {"role": "system", "content": sys_p},
+        {"role": "user", "content": f"Стан системи (JSON):\n{data}\n\nЗапит: {question}\n\n{directive}"},
+    ]
+    if os.environ.get("ANTHROPIC_API_KEY", "").strip():
+        out = _anthropic_complete(messages)
+    else:
+        out = _openai_complete(messages)
+    return out or ""
+
+
 def retrieve(query: str) -> list[dict]:
     """Hybrid retrieval → [{chunk_id, article_id, title, source_url, content, score}]."""
     qvec = embed_query(query)
