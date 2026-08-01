@@ -1,7 +1,7 @@
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
 import { PageHeader, Card, SectionTitle, Status } from '../components/ui'
-import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle, Gift, ShoppingBag, Globe, Gauge, TrendingUp } from 'lucide-react'
+import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle, Gift, ShoppingBag, Globe, Gauge, TrendingUp, Layers, BookOpen, BarChart3 } from 'lucide-react'
 
 const demoQuestions: Bi[] = [
   { uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How should I care for skin after a peeling?' },
@@ -112,12 +112,17 @@ export default function Analysis() {
         <div className="mb-3 flex items-center gap-3">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><Gift size={19} /></span>
           <div>
-            <SectionTitle>{L({ uk: 'Понад технічне завдання', ru: 'Сверх технического задания', en: 'Beyond the specification' })}</SectionTitle>
+            <div className="flex flex-wrap items-center gap-2">
+              <SectionTitle>{L({ uk: 'Понад технічне завдання', ru: 'Сверх технического задания', en: 'Beyond the specification' })}</SectionTitle>
+              <span className="mb-3 rounded-full bg-sage-100 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-sage-700 uppercase dark:bg-sage-700/25 dark:text-sage-400">
+                {L({ uk: 'вже у ціні', ru: 'уже в цене', en: 'already included' })}
+              </span>
+            </div>
             <p className="-mt-2 text-xs text-ink-500 dark:text-ink-400">
               {L({
-                uk: 'Цього не було у ваших ТЗ — ми додали, бо це прямо працює на ваші задачі. Обидві функції вже живі в цьому демо.',
-                ru: 'Этого не было в ваших ТЗ — мы добавили, потому что это прямо работает на ваши задачи. Обе функции уже живые в этом демо.',
-                en: 'None of this was in your specifications — we added it because it directly serves your goals. Both features are already live in this demo.',
+                uk: 'Цього не було у ваших ТЗ — ми додали, бо це прямо працює на ваші задачі. Обидві функції вже живі в цьому демо й входять у ціну проєкту.',
+                ru: 'Этого не было в ваших ТЗ — мы добавили, потому что это прямо работает на ваши задачи. Обе функции уже живые в этом демо и входят в цену проекта.',
+                en: 'None of this was in your specifications — we added it because it directly serves your goals. Both features are already live in this demo and included in the price.',
               })}
             </p>
           </div>
@@ -217,6 +222,94 @@ export default function Analysis() {
             en: 'Both tracks are quoted separately from this project — they are not part of the 2 months and $25K. We can scope them after the demo.',
           })}
         </p>
+      </Card>
+
+
+      {/* окремі напрями розвитку — поза ціною проєкту */}
+      <Card className="animate-rise-3 mb-4">
+        <div className="mb-4 flex flex-wrap items-start gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-ink-100 text-ink-500 dark:bg-ink-800 dark:text-ink-300"><Layers size={19} /></span>
+          <div className="min-w-64 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <SectionTitle>{L({ uk: 'Що можемо вдосконалити далі', ru: 'Что можем усовершенствовать дальше', en: 'What we can improve next' })}</SectionTitle>
+              <span className="mb-3 rounded-full border border-copper-500/50 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-copper-700 uppercase dark:text-copper-300">
+                {L({ uk: 'не входить у ціну', ru: 'не входит в цену', en: 'not included in the price' })}
+              </span>
+            </div>
+            <p className="-mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+              {L({
+                uk: 'Напрями, які ми бачимо як логічне продовження. Жоден із них не входить у 2 місяці та $25K — кожен оцінюється окремо, і братися за них варто після запуску основного проєкту.',
+                ru: 'Направления, которые мы видим как логичное продолжение. Ни одно из них не входит в 2 месяца и $25K — каждое оценивается отдельно, и браться за них стоит после запуска основного проекта.',
+                en: 'Directions we see as the logical continuation. None of them is part of the 2 months and $25K — each is quoted separately and is best tackled after the core project ships.',
+              })}
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {([
+            {
+              icon: Gauge,
+              t: { uk: 'Швидкий і захищений сайт', ru: 'Быстрый и защищённый сайт', en: 'A fast, secured site' } as Bi,
+              d: {
+                uk: 'Вітрина на Next.js, WooCommerce лишається джерелом товарів. Головна за пів секунди замість 2,5, стиснені зображення, заголовки безпеки.',
+                ru: 'Витрина на Next.js, WooCommerce остаётся источником товаров. Главная за полсекунды вместо 2,5, сжатые изображения, заголовки безопасности.',
+                en: 'A Next.js storefront with WooCommerce still the product source. Homepage in half a second instead of 2.5, compressed images, security headers.',
+              } as Bi,
+            },
+            {
+              icon: TrendingUp,
+              t: { uk: 'Консультант для покупців', ru: 'Консультант для покупателей', en: 'Consultant for shoppers' } as Bi,
+              d: {
+                uk: 'Той самий асистент на demax.com.ua як продавець: підбір за типом шкіри, картки товарів, шлях у кошик, передача опту менеджеру.',
+                ru: 'Тот же ассистент на demax.com.ua как продавец: подбор по типу кожи, карточки товаров, путь в корзину, передача опта менеджеру.',
+                en: 'The same assistant on demax.com.ua as a salesperson: matching by skin type, product cards, a path to the cart, wholesale handed to a manager.',
+              } as Bi,
+            },
+            {
+              icon: MessageCircle,
+              t: { uk: 'Нові канали спілкування', ru: 'Новые каналы общения', en: 'More channels' } as Bi,
+              d: {
+                uk: 'WhatsApp, Instagram Direct і Viber поверх того самого ядра. Архітектура вже канал-незалежна, тож це підключення конекторів, а не переписування.',
+                ru: 'WhatsApp, Instagram Direct и Viber поверх того же ядра. Архитектура уже канал-независимая, так что это подключение коннекторов, а не переписывание.',
+                en: 'WhatsApp, Instagram Direct and Viber on the same core. The architecture is already channel-independent, so this is connecting adapters, not rewriting.',
+              } as Bi,
+            },
+            {
+              icon: BookOpen,
+              t: { uk: 'База знань, що росте сама', ru: 'База знаний, растущая сама', en: 'A self-growing knowledge base' } as Bi,
+              d: {
+                uk: 'Питання без відповіді групуються за темами, і асистент готує чернетки статей. Адміністратору лишається вичитати й опублікувати.',
+                ru: 'Вопросы без ответа группируются по темам, и ассистент готовит черновики статей. Администратору остаётся вычитать и опубликовать.',
+                en: 'Unanswered questions cluster into topics and the assistant drafts the articles. The administrator only reviews and publishes.',
+              } as Bi,
+            },
+            {
+              icon: Database,
+              t: { uk: 'Інтеграція з обліковою системою', ru: 'Интеграция с учётной системой', en: 'Accounting-system integration' } as Bi,
+              d: {
+                uk: 'Залишки, ціни та статуси замовлень із вашої облікової системи. У ТЗ це свідомо винесено за межі MVP, але архітектура під це готова.',
+                ru: 'Остатки, цены и статусы заказов из вашей учётной системы. В ТЗ это сознательно вынесено за пределы MVP, но архитектура под это готова.',
+                en: 'Stock, prices and order statuses from your accounting system. The specification deliberately keeps this out of the MVP, but the architecture is ready for it.',
+              } as Bi,
+            },
+            {
+              icon: BarChart3,
+              t: { uk: 'Аналітика продажів', ru: 'Аналитика продаж', en: 'Sales analytics' } as Bi,
+              d: {
+                uk: 'Які питання ведуть до покупки, які теми лишаються без відповіді, які товари питають найчастіше — і скільки виручки приносить асистент.',
+                ru: 'Какие вопросы ведут к покупке, какие темы остаются без ответа, какие товары спрашивают чаще всего — и сколько выручки приносит ассистент.',
+                en: 'Which questions lead to a purchase, which topics stay unanswered, which products are asked about most — and how much revenue the assistant brings.',
+              } as Bi,
+            },
+          ] as { icon: typeof Gauge; t: Bi; d: Bi }[]).map((f) => (
+            <div key={f.t.en} className="rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
+              <f.icon size={17} className="mb-2 text-ink-400" />
+              <div className="text-sm font-bold">{L(f.t)}</div>
+              <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">{L(f.d)}</p>
+            </div>
+          ))}
+        </div>
       </Card>
 
       {/* Polylog — the proven platform this assistant is built on */}
