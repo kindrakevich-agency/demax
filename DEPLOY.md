@@ -171,6 +171,14 @@ location /assets/ {
     add_header Cache-Control "public, max-age=31536000, immutable";
 }
 
+# Заголовки безпеки — застосовуються до всіх відповідей сайту
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-Frame-Options "SAMEORIGIN" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+# Сторінка самодостатня (шрифти з Google Fonts, зображення з demax.com.ua)
+add_header Content-Security-Policy "default-src 'self'; img-src 'self' https://www.demax.com.ua data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'self'" always;
+
 # RAG API
 location /api/ {
     proxy_pass http://127.0.0.1:8100/;
@@ -271,7 +279,41 @@ curl -X POST https://demax.kindrakevich.com/api/v1/me/conversations/messages \
 
 ---
 
-## 7. Обслуговування
+## 7. Безпека
+
+Модель загроз, потоки даних і перелік того, що треба закрити перед
+продакшеном, — у [SECURITY.md](SECURITY.md). Мінімум на етапі розгортання:
+
+```bash
+# файл із ключами читає лише власник процесу
+chmod 600 /www/wwwroot/demax.kindrakevich.com/demax-rag/.env
+
+# PostgreSQL і API слухають лише локальний інтерфейс
+ss -tlnp | grep -E '5432|8100'   # має бути 127.0.0.1, не 0.0.0.0
+```
+
+У Cloudflare режим SSL — **Full (strict)**. Заголовки безпеки додано в
+конфігурацію Nginx вище; перевірити можна так:
+
+```bash
+curl -sI https://demax.kindrakevich.com/ | grep -iE 'strict-transport|content-security|x-frame|x-content-type'
+```
+
+**Регламент, який варто ввести одразу:**
+
+| Що | Як часто | Дія |
+|---|---|---|
+| Ротація ключа LLM | раз на квартал і негайно при підозрі | новий ключ у `.env` → рестарт проєкту |
+| Ротація пароля бази | раз на пів року | змінити в aaPanel → оновити `DATABASE_URL` |
+| Тестове відновлення бекапу | раз на місяць | розгорнути дамп у тимчасову базу й перевірити кількість чанків |
+| Оновлення системних пакетів | раз на місяць | aaPanel → **Software** |
+
+> ⚠️ Демо не має автентифікації — API відкритий. Перед показом реальним
+> користувачам реалізується шар JWT + MFA зі специфікації (§2).
+
+---
+
+## 8. Обслуговування
 
 | Задача | Де |
 |---|---|
@@ -284,7 +326,7 @@ curl -X POST https://demax.kindrakevich.com/api/v1/me/conversations/messages \
 
 ---
 
-## Типові проблеми
+## 9. Типові проблеми
 
 **`502 Bad Gateway` на `/api/`**
 Python-проєкт не запущений або слухає інший порт. Перевірити в aaPanel → Python Project статус
