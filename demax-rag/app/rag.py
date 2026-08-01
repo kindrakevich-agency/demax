@@ -321,11 +321,26 @@ def _anthropic_complete(messages: list[dict]) -> str | None:
     return next((b["text"] for b in data.get("content", []) if b.get("type") == "text"), None)
 
 
-def generate(question: str, context: list[dict], history: list[dict], language: str) -> str | None:
+def generate(
+    question: str,
+    context: list[dict],
+    history: list[dict],
+    language: str,
+    products: list[dict] | None = None,
+) -> str | None:
     """LLM answer; None if no provider key is configured."""
     ctx = "\n\n---\n\n".join(
         f"[{i + 1}] {c['title']}\n{c['content']}" for i, c in enumerate(context)
     )
+    # Знайдені товари додаємо в контекст окремим блоком: сторінки товарів
+    # короткі й програють оглядовим у пошуку, через що модель відповідала
+    # «інформації немає», хоча картки під відповіддю показували ці ж товари.
+    if products:
+        lines = [
+            f"- {p['title']}" + (f" — {p['price']}" if p.get("price") else "")
+            for p in products
+        ]
+        ctx += "\n\n---\n\nТовари з каталогу DEMAX, доречні до питання:\n" + "\n".join(lines)
     directive = LANG_DIRECTIVE.get(language, LANG_DIRECTIVE["uk"])
     messages = [
         {"role": "system", "content": system_prompt(language)},
@@ -363,9 +378,18 @@ def answer(question: str, history: list[dict], language: str = "ru") -> dict:
             "products": [],
         }
 
+    # Товари шукаємо ДО генерації, щоб модель бачила їх у контексті —
+    # інакше текст відповіді суперечив би карткам під нею.
+    products: list[dict] = []
+    if intent not in NON_PRODUCT_INTENTS:
+        try:
+            products = retrieve_products(question)
+        except Exception:  # noqa: BLE001 — картки не критичні для відповіді
+            products = []
+
     reply = None
     try:
-        reply = generate(question, context, history, language)
+        reply = generate(question, context, history, language, products)
     except Exception:  # noqa: BLE001 — LLM outage → graceful degradation per spec
         reply = None
 
@@ -389,15 +413,6 @@ def answer(question: str, history: list[dict], language: str = "ru") -> dict:
         seen.add(c["article_id"])
         url = None if (c["source_url"] or "").startswith("pdf://") else c["source_url"]
         sources.append({"article_id": c["article_id"], "title": c["title"], "url": url})
-
-    # Картки товарів шукаємо окремо — див. retrieve_products(). Для питань
-    # не про продукцію (семінари, верифікація, ціни) картки не показуємо.
-    products: list[dict] = []
-    if intent not in NON_PRODUCT_INTENTS:
-        try:
-            products = retrieve_products(question)
-        except Exception:  # noqa: BLE001 — картки не критичні для відповіді
-            products = []
 
     return {
         "reply": reply,
