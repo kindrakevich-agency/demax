@@ -200,10 +200,10 @@ export default function AssistantWidget() {
 
   const greeting = L({ uk: 'Чим я можу допомогти з доглядом DEMAX?', ru: 'Чем я могу помочь с уходом DEMAX?', en: 'How can I help with DEMAX care?' })
   const starters = [
-    L({ uk: 'Який крем підійде для сухої шкіри?', ru: 'Какой крем подойдёт для сухой кожи?', en: 'Which cream suits dry skin?' }),
-    L({ uk: 'Що таке карбокситерапія DEMAX?', ru: 'Что такое карбокситерапия DEMAX?', en: 'What is DEMAX carboxytherapy?' }),
-    L({ uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How to care for skin after peeling?' }),
-    L({ uk: 'Які семінари проводить DEMAX?', ru: 'Какие семинары проводит DEMAX?', en: 'What seminars does DEMAX run?' }),
+    L({ uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How should I care for skin after a peeling?' }),
+    L({ uk: 'Які засоби DEMAX є для проблемної шкіри?', ru: 'Какие средства DEMAX есть для проблемной кожи?', en: 'Which DEMAX products are for problem skin?' }),
+    L({ uk: 'Які засоби для догляду за тілом є у DEMAX?', ru: 'Какие средства для ухода за телом есть у DEMAX?', en: 'What body-care products does DEMAX have?' }),
+    L({ uk: 'Які семінари DEMAX проводить для косметологів?', ru: 'Какие семинары DEMAX проводит для косметологов?', en: 'What seminars does DEMAX run for cosmetologists?' }),
   ]
 
   // Стан «відкрито» переживає перезавантаження сторінки.

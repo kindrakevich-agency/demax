@@ -4,12 +4,16 @@ import { PageHeader, Card, SectionTitle, Status } from '../components/ui'
 import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle } from 'lucide-react'
 
 const demoQuestions: Bi[] = [
+  { uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How should I care for skin after a peeling?' },
+  { uk: 'Які засоби DEMAX є для проблемної шкіри?', ru: 'Какие средства DEMAX есть для проблемной кожи?', en: 'Which DEMAX products are for problem skin?' },
+  { uk: 'Які засоби для догляду за тілом є у DEMAX?', ru: 'Какие средства для ухода за телом есть у DEMAX?', en: 'What body-care products does DEMAX have?' },
+  { uk: 'Які семінари DEMAX проводить для косметологів?', ru: 'Какие семинары DEMAX проводит для косметологов?', en: 'What seminars does DEMAX run for cosmetologists?' },
+  { uk: 'Навіщо потрібен SPF і які засоби із захистом є у DEMAX?', ru: 'Зачем нужен SPF и какие средства с защитой есть у DEMAX?', en: 'Why is SPF needed and which DEMAX products have it?' },
+  { uk: 'Чим професійна лінійка DEMAX відрізняється від домашнього догляду?', ru: 'Чем профессиональная линейка DEMAX отличается от домашнего ухода?', en: 'How does the DEMAX professional line differ from home care?' },
+  { uk: 'Які пептидні засоби пропонує DEMAX?', ru: 'Какие пептидные средства предлагает DEMAX?', en: 'Which peptide products does DEMAX offer?' },
   { uk: 'Який крем DEMAX підійде для сухої шкіри взимку?', ru: 'Какой крем DEMAX подойдёт для сухой кожи зимой?', en: 'Which DEMAX cream suits dry skin in winter?' },
   { uk: 'Що таке карбокситерапія і як вона працює?', ru: 'Что такое карбокситерапия и как она работает?', en: 'What is carboxytherapy and how does it work?' },
-  { uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How should I care for skin after a peeling?' },
-  { uk: 'Які семінари DEMAX проводить для косметологів?', ru: 'Какие семинары DEMAX проводит для косметологов?', en: 'What seminars does DEMAX run for cosmetologists?' },
   { uk: 'Розкажи про лінійку Anti-Age', ru: 'Расскажи про линейку Anti-Age', en: 'Tell me about the Anti-Age line' },
-  { uk: 'Чи є у DEMAX засоби від демодекозу?', ru: 'Есть ли у DEMAX средства от демодекоза?', en: 'Does DEMAX have anti-demodex products?' },
 ]
 
 const workstreams: { icon: typeof Server; name: Bi; scope: Bi; days: string }[] = [
@@ -88,7 +92,7 @@ export default function Analysis() {
             </p>
           </div>
         </div>
-        <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {demoQuestions.map((q) => (
             <button
               key={q.en}
