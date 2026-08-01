@@ -177,15 +177,16 @@ def retrieve(query: str) -> list[dict]:
             "ORDER BY c.embedding <=> %s LIMIT %s",
             (qvec, qvec, CANDIDATES),
         ).fetchall()
+        tsq = fts_query(query)
         fts = conn.execute(
             f"SELECT {cols}, "
-            "       ts_rank(to_tsvector('simple', c.content), websearch_to_tsquery('simple', %s)) AS r "
+            "       ts_rank(to_tsvector('simple', c.content), to_tsquery('simple', %s)) AS r "
             "FROM knowledge_chunks c JOIN knowledge_articles a ON a.id = c.article_id "
             "WHERE a.status = 'published' "
-            "  AND to_tsvector('simple', c.content) @@ websearch_to_tsquery('simple', %s) "
+            "  AND to_tsvector('simple', c.content) @@ to_tsquery('simple', %s) "
             "ORDER BY r DESC LIMIT %s",
-            (query, query, CANDIDATES),
-        ).fetchall()
+            (tsq, tsq, CANDIDATES),
+        ).fetchall() if tsq else []
 
     # Reciprocal Rank Fusion over both ranked lists.
     scores: dict[str, float] = {}
@@ -231,6 +232,22 @@ STOPWORDS = {
     "мені", "будь", "ласка", "please", "розкажи", "расскажи", "tell", "about",
     "пропонує", "предлагает", "offer", "offers", "підійде", "подойдёт", "suits",
 }
+
+
+def fts_query(query: str) -> str | None:
+    """Питання → tsquery з АБО між значущими словами.
+
+    `websearch_to_tsquery` і `plainto_tsquery` з'єднують усі слова через AND,
+    включно зі стоп-словами: «Які пептидні засоби пропонує DEMAX?» вимагало
+    фрагмента, де є одночасно «які», «пропонує» й «demax» — таких немає, тож
+    лексична гілка мовчала на 11 питаннях із 12 і RRF фактично не працював.
+    Значущі слова через `|` дають кандидатів, а порядок задає ts_rank.
+    """
+    terms = {
+        t for t in (re.sub(r"[^\w'-]", "", w.lower()) for w in query.split())
+        if len(t) > 3 and t not in STOPWORDS
+    }
+    return " | ".join(sorted(terms)) or None
 
 
 def retrieve_products(query: str, limit: int = 3) -> list[dict]:
