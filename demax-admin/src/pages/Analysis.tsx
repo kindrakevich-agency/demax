@@ -1,7 +1,7 @@
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
 import { PageHeader, Card, SectionTitle, Status } from '../components/ui'
-import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle, Gift, ShoppingBag, Globe, Gauge, TrendingUp, Layers, BookOpen, BarChart3 } from 'lucide-react'
+import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle, ShoppingBag, Gauge, TrendingUp, Layers, BookOpen, BarChart3 } from 'lucide-react'
 
 const demoQuestions: Bi[] = [
   { uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How should I care for skin after a peeling?' },
@@ -107,210 +107,10 @@ export default function Analysis() {
       </Card>
 
 
-      {/* понад ТЗ — те, чого клієнт не замовляв, але що вирішує його задачі */}
-      <Card className="animate-rise-2 mb-4 border-copper-500/40">
-        <div className="mb-3 flex items-center gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><Gift size={19} /></span>
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <SectionTitle>{L({ uk: 'Понад технічне завдання', ru: 'Сверх технического задания', en: 'Beyond the specification' })}</SectionTitle>
-              <span className="mb-3 rounded-full bg-sage-100 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-sage-700 uppercase dark:bg-sage-700/25 dark:text-sage-400">
-                {L({ uk: 'вже у ціні', ru: 'уже в цене', en: 'already included' })}
-              </span>
-            </div>
-            <p className="-mt-2 text-xs text-ink-500 dark:text-ink-400">
-              {L({
-                uk: 'Цього не було у ваших ТЗ — ми додали, бо це прямо працює на ваші задачі. Обидві функції вже живі в цьому демо й входять у ціну проєкту.',
-                ru: 'Этого не было в ваших ТЗ — мы добавили, потому что это прямо работает на ваши задачи. Обе функции уже живые в этом демо и входят в цену проекта.',
-                en: 'None of this was in your specifications — we added it because it directly serves your goals. Both features are already live in this demo and included in the price.',
-              })}
-            </p>
-          </div>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {([
-            {
-              icon: ShoppingBag,
-              t: { uk: 'Картки товарів у відповідях', ru: 'Карточки товаров в ответах', en: 'Product cards in answers' } as Bi,
-              d: {
-                uk: 'Асистент не просто називає засіб — показує фото з каталогу, ціну й посилання на сторінку товару. Клієнт бачить, що саме йому радять, і одразу переходить на сайт.',
-                ru: 'Ассистент не просто называет средство — показывает фото из каталога, цену и ссылку на страницу товара. Клиент видит, что именно ему советуют, и сразу переходит на сайт.',
-                en: 'The assistant does not merely name a product — it shows the catalogue photo, the price and a link to the product page, so the customer sees what is recommended and goes straight to the site.',
-              } as Bi,
-            },
-            {
-              icon: Sparkles,
-              t: { uk: 'AI-звіти по системі (⌘K)', ru: 'AI-отчёты по системе (⌘K)', en: 'AI system briefings (⌘K)' } as Bi,
-              d: {
-                uk: 'Замість рядка пошуку — рядок запитання. Менеджер питає «що зараз важливо?» і отримує персональний брифінг: свої ескалації, черга дипломів, заповнюваність семінарів, прогалини в базі знань.',
-                ru: 'Вместо строки поиска — строка вопроса. Менеджер спрашивает «что сейчас важно?» и получает персональный брифинг: свои эскалации, очередь дипломов, заполняемость семинаров, пробелы в базе знаний.',
-                en: 'The search bar became a question bar. A manager asks “what matters now?” and gets a personal briefing: their escalations, the diploma queue, seminar fill rates, knowledge gaps.',
-              } as Bi,
-            },
-          ] as { icon: typeof Gift; t: Bi; d: Bi }[]).map((f) => (
-            <div key={f.t.en} className="rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
-              <f.icon size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
-              <div className="text-sm font-bold">{L(f.t)}</div>
-              <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">{L(f.d)}</p>
-            </div>
-          ))}
-        </div>
-      </Card>
 
 
-      {/* окрема пропозиція: сайт + консультант для клієнтів */}
-      <Card className="animate-rise-3 mb-4">
-        <div className="mb-4 flex items-start gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><Globe size={19} /></span>
-          <div className="flex-1">
-            <SectionTitle>{L({ uk: 'Наступний крок: сайт і продажі', ru: 'Следующий шаг: сайт и продажи', en: 'Next step: the site and sales' })}</SectionTitle>
-            <p className="-mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-              {L({
-                uk: 'Ми проіндексували demax.com.ua і дорогою поміряли його. Нижче — що показали заміри 1 серпня 2026 і що ми пропонуємо з цим зробити.',
-                ru: 'Мы проиндексировали demax.com.ua и попутно его измерили. Ниже — что показали замеры 1 августа 2026 и что мы предлагаем с этим сделать.',
-                en: 'While indexing demax.com.ua we measured it. Below are the findings from 1 August 2026 and what we propose to do about them.',
-              })}
-            </p>
-          </div>
-        </div>
-
-        {/* заміри */}
-        <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {([
-            { v: '2,5 с', l: { uk: 'відповідь головної', ru: 'ответ главной', en: 'homepage response' } as Bi, bad: true },
-            { v: '52', l: { uk: 'нестиснених фото', ru: 'несжатых фото', en: 'unoptimised images' } as Bi, bad: true },
-            { v: '21', l: { uk: 'окремих JS та CSS', ru: 'отдельных JS и CSS', en: 'separate JS and CSS files' } as Bi, bad: true },
-            { v: '0', l: { uk: 'заголовків безпеки', ru: 'заголовков безопасности', en: 'security headers' } as Bi, bad: true },
-          ] as { v: string; l: Bi; bad?: boolean }[]).map((m) => (
-            <div key={m.l.en} className="rounded-xl border border-ink-200/70 px-3.5 py-3 dark:border-ink-700">
-              <div className={`font-display text-2xl font-semibold ${m.bad ? 'text-rose-700 dark:text-rose-400' : ''}`}>{m.v}</div>
-              <div className="mt-0.5 text-[11px] leading-tight text-ink-500 dark:text-ink-400">{L(m.l)}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="grid gap-3 lg:grid-cols-2">
-          <div className="rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
-            <Gauge size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
-            <div className="text-sm font-bold">{L({ uk: 'Переробити сайт', ru: 'Переделать сайт', en: 'Rebuild the site' })}</div>
-            <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
-              {L({
-                uk: 'Сайт на WordPress віддає головну за 2,5 секунди — Google вважає прийнятним до 0,8. Фото віддаються без стиснення, скрипти не зібрані в бандл, заголовків безпеки немає жодного, а версія WordPress відкрито вказана в коді сторінки. Ми переносимо вітрину на Next.js, лишаючи WooCommerce як джерело товарів: контент-менеджер працює у звичній адмінці, а покупець отримує сторінку за пів секунди.',
-                ru: 'Сайт на WordPress отдаёт главную за 2,5 секунды — Google считает приемлемым до 0,8. Фото отдаются без сжатия, скрипты не собраны в бандл, заголовков безопасности нет ни одного, а версия WordPress открыто указана в коде страницы. Мы переносим витрину на Next.js, оставляя WooCommerce как источник товаров: контент-менеджер работает в привычной админке, а покупатель получает страницу за полсекунды.',
-                en: 'The WordPress site serves its homepage in 2.5 seconds — Google considers up to 0.8 acceptable. Images ship uncompressed, scripts are not bundled, not a single security header is set, and the WordPress version is exposed in the page source. We move the storefront to Next.js and keep WooCommerce as the product source: your content manager keeps the familiar admin, the shopper gets a page in half a second.',
-              })}
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-copper-500/40 p-4">
-            <TrendingUp size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
-            <div className="text-sm font-bold">{L({ uk: 'Консультант на сайті — для покупців', ru: 'Консультант на сайте — для покупателей', en: 'The consultant on your site — for shoppers' })}</div>
-            <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
-              {L({
-                uk: 'Той самий асистент, що працює тут, стає продавцем-консультантом на demax.com.ua: підбирає засіб під тип шкіри, показує картки з фото й ціною, веде в кошик. Він знає лише ваш каталог, тож не порадить чужого бренду, і передає менеджеру все, що стосується оптових умов. Кожне питання, на яке він не знайшов відповіді, потрапляє у звіт — це готовий список того, що варто дописати на сайті.',
-                ru: 'Тот же ассистент, что работает здесь, становится продавцом-консультантом на demax.com.ua: подбирает средство под тип кожи, показывает карточки с фото и ценой, ведёт в корзину. Он знает только ваш каталог, поэтому не посоветует чужой бренд, и передаёт менеджеру всё, что касается оптовых условий. Каждый вопрос, на который он не нашёл ответа, попадает в отчёт — это готовый список того, что стоит дописать на сайте.',
-                en: 'The same assistant that works here becomes a sales consultant on demax.com.ua: it matches products to skin type, shows cards with photo and price, and guides shoppers to the cart. It knows only your catalogue, so it will never recommend a competitor, and it hands wholesale questions to a manager. Every question it could not answer lands in a report — a ready-made list of what to add to the site.',
-              })}
-            </p>
-          </div>
-        </div>
-
-        <p className="mt-3 text-xs leading-relaxed text-ink-400">
-          {L({
-            uk: 'Обидва напрями оцінюємо окремо від цього проєкту — вони не входять у 2 місяці та $25K. Можемо порахувати після демо.',
-            ru: 'Оба направления оцениваем отдельно от этого проекта — они не входят в 2 месяца и $25K. Можем посчитать после демо.',
-            en: 'Both tracks are quoted separately from this project — they are not part of the 2 months and $25K. We can scope them after the demo.',
-          })}
-        </p>
-      </Card>
 
 
-      {/* окремі напрями розвитку — поза ціною проєкту */}
-      <Card className="animate-rise-3 mb-4">
-        <div className="mb-4 flex flex-wrap items-start gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-ink-100 text-ink-500 dark:bg-ink-800 dark:text-ink-300"><Layers size={19} /></span>
-          <div className="min-w-64 flex-1">
-            <div className="flex flex-wrap items-center gap-2">
-              <SectionTitle>{L({ uk: 'Що можемо вдосконалити далі', ru: 'Что можем усовершенствовать дальше', en: 'What we can improve next' })}</SectionTitle>
-              <span className="mb-3 rounded-full border border-copper-500/50 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-copper-700 uppercase dark:text-copper-300">
-                {L({ uk: 'не входить у ціну', ru: 'не входит в цену', en: 'not included in the price' })}
-              </span>
-            </div>
-            <p className="-mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-              {L({
-                uk: 'Напрями, які ми бачимо як логічне продовження. Жоден із них не входить у 2 місяці та $25K — кожен оцінюється окремо, і братися за них варто після запуску основного проєкту.',
-                ru: 'Направления, которые мы видим как логичное продолжение. Ни одно из них не входит в 2 месяца и $25K — каждое оценивается отдельно, и браться за них стоит после запуска основного проекта.',
-                en: 'Directions we see as the logical continuation. None of them is part of the 2 months and $25K — each is quoted separately and is best tackled after the core project ships.',
-              })}
-            </p>
-          </div>
-        </div>
-
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {([
-            {
-              icon: Gauge,
-              t: { uk: 'Швидкий і захищений сайт', ru: 'Быстрый и защищённый сайт', en: 'A fast, secured site' } as Bi,
-              d: {
-                uk: 'Вітрина на Next.js, WooCommerce лишається джерелом товарів. Головна за пів секунди замість 2,5, стиснені зображення, заголовки безпеки.',
-                ru: 'Витрина на Next.js, WooCommerce остаётся источником товаров. Главная за полсекунды вместо 2,5, сжатые изображения, заголовки безопасности.',
-                en: 'A Next.js storefront with WooCommerce still the product source. Homepage in half a second instead of 2.5, compressed images, security headers.',
-              } as Bi,
-            },
-            {
-              icon: TrendingUp,
-              t: { uk: 'Консультант для покупців', ru: 'Консультант для покупателей', en: 'Consultant for shoppers' } as Bi,
-              d: {
-                uk: 'Той самий асистент на demax.com.ua як продавець: підбір за типом шкіри, картки товарів, шлях у кошик, передача опту менеджеру.',
-                ru: 'Тот же ассистент на demax.com.ua как продавец: подбор по типу кожи, карточки товаров, путь в корзину, передача опта менеджеру.',
-                en: 'The same assistant on demax.com.ua as a salesperson: matching by skin type, product cards, a path to the cart, wholesale handed to a manager.',
-              } as Bi,
-            },
-            {
-              icon: MessageCircle,
-              t: { uk: 'Нові канали спілкування', ru: 'Новые каналы общения', en: 'More channels' } as Bi,
-              d: {
-                uk: 'WhatsApp, Instagram Direct і Viber поверх того самого ядра. Архітектура вже канал-незалежна, тож це підключення конекторів, а не переписування.',
-                ru: 'WhatsApp, Instagram Direct и Viber поверх того же ядра. Архитектура уже канал-независимая, так что это подключение коннекторов, а не переписывание.',
-                en: 'WhatsApp, Instagram Direct and Viber on the same core. The architecture is already channel-independent, so this is connecting adapters, not rewriting.',
-              } as Bi,
-            },
-            {
-              icon: BookOpen,
-              t: { uk: 'База знань, що росте сама', ru: 'База знаний, растущая сама', en: 'A self-growing knowledge base' } as Bi,
-              d: {
-                uk: 'Питання без відповіді групуються за темами, і асистент готує чернетки статей. Адміністратору лишається вичитати й опублікувати.',
-                ru: 'Вопросы без ответа группируются по темам, и ассистент готовит черновики статей. Администратору остаётся вычитать и опубликовать.',
-                en: 'Unanswered questions cluster into topics and the assistant drafts the articles. The administrator only reviews and publishes.',
-              } as Bi,
-            },
-            {
-              icon: Database,
-              t: { uk: 'Інтеграція з обліковою системою', ru: 'Интеграция с учётной системой', en: 'Accounting-system integration' } as Bi,
-              d: {
-                uk: 'Залишки, ціни та статуси замовлень із вашої облікової системи. У ТЗ це свідомо винесено за межі MVP, але архітектура під це готова.',
-                ru: 'Остатки, цены и статусы заказов из вашей учётной системы. В ТЗ это сознательно вынесено за пределы MVP, но архитектура под это готова.',
-                en: 'Stock, prices and order statuses from your accounting system. The specification deliberately keeps this out of the MVP, but the architecture is ready for it.',
-              } as Bi,
-            },
-            {
-              icon: BarChart3,
-              t: { uk: 'Аналітика продажів', ru: 'Аналитика продаж', en: 'Sales analytics' } as Bi,
-              d: {
-                uk: 'Які питання ведуть до покупки, які теми лишаються без відповіді, які товари питають найчастіше — і скільки виручки приносить асистент.',
-                ru: 'Какие вопросы ведут к покупке, какие темы остаются без ответа, какие товары спрашивают чаще всего — и сколько выручки приносит ассистент.',
-                en: 'Which questions lead to a purchase, which topics stay unanswered, which products are asked about most — and how much revenue the assistant brings.',
-              } as Bi,
-            },
-          ] as { icon: typeof Gauge; t: Bi; d: Bi }[]).map((f) => (
-            <div key={f.t.en} className="rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
-              <f.icon size={17} className="mb-2 text-ink-400" />
-              <div className="text-sm font-bold">{L(f.t)}</div>
-              <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">{L(f.d)}</p>
-            </div>
-          ))}
-        </div>
-      </Card>
 
       {/* Polylog — the proven platform this assistant is built on */}
       <Card className="animate-rise-2 mb-4">
@@ -439,6 +239,124 @@ export default function Analysis() {
           </p>
         </Card>
       </div>
+
+      {/* усе, що можемо зробити понад ТЗ — окремо від ціни, у самому низу */}
+      <Card className="animate-rise-3 mt-4 lg:col-span-5">
+        <div className="mb-5 flex flex-wrap items-start gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><Layers size={19} /></span>
+          <div className="min-w-64 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <SectionTitle>{L({ uk: 'Що ще можемо зробити', ru: 'Что ещё можем сделать', en: 'What else we can do' })}</SectionTitle>
+              <span className="mb-3 rounded-full border border-copper-500/50 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-copper-700 uppercase dark:text-copper-300">
+                {L({ uk: 'не входить у ціну', ru: 'не входит в цену', en: 'not included in the price' })}
+              </span>
+            </div>
+            <p className="-mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+              {L({
+                uk: 'Це не входить у 2 місяці та $25K і не є обіцянкою — це напрями, які ми вміємо робити й пропонуємо обговорити. Задачі непрості, кожна оцінюється окремо; перші дві вже показані в цьому демо, щоб було видно, як вони виглядають у роботі.',
+                ru: 'Это не входит в 2 месяца и $25K и не является обещанием — это направления, которые мы умеем делать и предлагаем обсудить. Задачи непростые, каждая оценивается отдельно; первые две уже показаны в этом демо, чтобы было видно, как они выглядят в работе.',
+                en: 'None of this is part of the 2 months and $25K, and none of it is a promise — these are directions we know how to build and would like to discuss. The work is non-trivial and each item is quoted separately; the first two are already demonstrated here so you can see how they behave.',
+              })}
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {([
+            {
+              icon: ShoppingBag, shown: true,
+              t: { uk: 'Картки товарів у відповідях', ru: 'Карточки товаров в ответах', en: 'Product cards in answers' } as Bi,
+              d: {
+                uk: 'Асистент не просто називає засіб — показує фото з каталогу, ціну й посилання на сторінку товару.',
+                ru: 'Ассистент не просто называет средство — показывает фото из каталога, цену и ссылку на страницу товара.',
+                en: 'The assistant does not merely name a product — it shows the catalogue photo, the price and a link to the page.',
+              } as Bi,
+            },
+            {
+              icon: Sparkles, shown: true,
+              t: { uk: 'AI-звіти по системі (⌘K)', ru: 'AI-отчёты по системе (⌘K)', en: 'AI system briefings (⌘K)' } as Bi,
+              d: {
+                uk: 'Замість рядка пошуку — рядок запитання: менеджер питає «що зараз важливо?» і отримує персональний брифінг.',
+                ru: 'Вместо строки поиска — строка вопроса: менеджер спрашивает «что сейчас важно?» и получает персональный брифинг.',
+                en: 'The search bar became a question bar: a manager asks “what matters now?” and gets a personal briefing.',
+              } as Bi,
+            },
+            {
+              icon: Gauge,
+              t: { uk: 'Швидкий і захищений сайт', ru: 'Быстрый и защищённый сайт', en: 'A fast, secured site' } as Bi,
+              d: {
+                uk: 'Заміри 01.08.2026: головна віддається 2,5 с (норма Google — до 0,8), 52 нестиснених фото, 21 окремий JS та CSS, жодного заголовка безпеки. Вітрину переносимо на Next.js, WooCommerce лишається джерелом товарів.',
+                ru: 'Замеры 01.08.2026: главная отдаётся 2,5 с (норма Google — до 0,8), 52 несжатых фото, 21 отдельный JS и CSS, ни одного заголовка безопасности. Витрину переносим на Next.js, WooCommerce остаётся источником товаров.',
+                en: 'Measured 01.08.2026: the homepage takes 2.5 s (Google’s bar is 0.8), 52 uncompressed images, 21 separate JS and CSS files, not one security header. We move the storefront to Next.js, WooCommerce stays the product source.',
+              } as Bi,
+            },
+            {
+              icon: TrendingUp,
+              t: { uk: 'Консультант для покупців', ru: 'Консультант для покупателей', en: 'Consultant for shoppers' } as Bi,
+              d: {
+                uk: 'Той самий асистент на demax.com.ua як продавець: підбір за типом шкіри, картки товарів, шлях у кошик, опт — менеджеру.',
+                ru: 'Тот же ассистент на demax.com.ua как продавец: подбор по типу кожи, карточки товаров, путь в корзину, опт — менеджеру.',
+                en: 'The same assistant on demax.com.ua as a salesperson: matching by skin type, product cards, a path to the cart, wholesale to a manager.',
+              } as Bi,
+            },
+            {
+              icon: MessageCircle,
+              t: { uk: 'Нові канали спілкування', ru: 'Новые каналы общения', en: 'More channels' } as Bi,
+              d: {
+                uk: 'WhatsApp, Instagram Direct і Viber поверх того самого ядра — архітектура вже канал-незалежна.',
+                ru: 'WhatsApp, Instagram Direct и Viber поверх того же ядра — архитектура уже канал-независимая.',
+                en: 'WhatsApp, Instagram Direct and Viber on the same core — the architecture is already channel-independent.',
+              } as Bi,
+            },
+            {
+              icon: BookOpen,
+              t: { uk: 'База знань, що росте сама', ru: 'База знаний, растущая сама', en: 'A self-growing knowledge base' } as Bi,
+              d: {
+                uk: 'Питання без відповіді групуються за темами, асистент готує чернетки статей — адміністратору лишається вичитати.',
+                ru: 'Вопросы без ответа группируются по темам, ассистент готовит черновики статей — администратору остаётся вычитать.',
+                en: 'Unanswered questions cluster into topics and the assistant drafts the articles — the administrator only reviews.',
+              } as Bi,
+            },
+            {
+              icon: Database,
+              t: { uk: 'Інтеграція з обліковою системою', ru: 'Интеграция с учётной системой', en: 'Accounting-system integration' } as Bi,
+              d: {
+                uk: 'Залишки, ціни та статуси замовлень. У ТЗ це свідомо поза MVP, але архітектура під це готова.',
+                ru: 'Остатки, цены и статусы заказов. В ТЗ это сознательно вне MVP, но архитектура под это готова.',
+                en: 'Stock, prices and order statuses. The specification keeps this out of the MVP, but the architecture is ready.',
+              } as Bi,
+            },
+            {
+              icon: BarChart3,
+              t: { uk: 'Аналітика продажів', ru: 'Аналитика продаж', en: 'Sales analytics' } as Bi,
+              d: {
+                uk: 'Які питання ведуть до покупки, які теми лишаються без відповіді й скільки виручки приносить асистент.',
+                ru: 'Какие вопросы ведут к покупке, какие темы остаются без ответа и сколько выручки приносит ассистент.',
+                en: 'Which questions lead to a purchase, which topics stay unanswered, and how much revenue the assistant brings.',
+              } as Bi,
+            },
+          ] as { icon: typeof Gauge; t: Bi; d: Bi; shown?: boolean }[]).map((f) => (
+            <div key={f.t.en} className="relative rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
+              {f.shown && (
+                <span className="absolute top-3 right-3 rounded-full bg-sage-100 px-2 py-0.5 text-[9px] font-bold tracking-wide text-sage-700 uppercase dark:bg-sage-700/25 dark:text-sage-400">
+                  {L({ uk: 'у демо', ru: 'в демо', en: 'in demo' })}
+                </span>
+              )}
+              <f.icon size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
+              <div className="pr-14 text-sm font-bold">{L(f.t)}</div>
+              <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">{L(f.d)}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-4 border-t border-ink-100 pt-4 text-xs leading-relaxed text-ink-400 dark:border-ink-800">
+          {L({
+            uk: 'Готові порахувати будь-який із напрямів після демо — окремим кошторисом і окремими строками.',
+            ru: 'Готовы посчитать любое из направлений после демо — отдельной сметой и отдельными сроками.',
+            en: 'We are ready to scope any of these after the demo — separate estimate, separate timeline.',
+          })}
+        </p>
+      </Card>
     </div>
   )
 }
