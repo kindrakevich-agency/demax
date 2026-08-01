@@ -1,7 +1,7 @@
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
 import { PageHeader, Card, SectionTitle, Status } from '../components/ui'
-import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle, Gift, ShoppingBag } from 'lucide-react'
+import { CalendarClock, Wallet, Users2, Server, Bot, MonitorSmartphone, Database, ShieldCheck, Rocket, Sparkles, ExternalLink, MessageCircle, Gift, ShoppingBag, Globe, Gauge, TrendingUp } from 'lucide-react'
 
 const demoQuestions: Bi[] = [
   { uk: 'Як доглядати за шкірою після пілінгу?', ru: 'Как ухаживать за кожей после пилинга?', en: 'How should I care for skin after a peeling?' },
@@ -150,6 +150,73 @@ export default function Analysis() {
             </div>
           ))}
         </div>
+      </Card>
+
+
+      {/* окрема пропозиція: сайт + консультант для клієнтів */}
+      <Card className="animate-rise-3 mb-4">
+        <div className="mb-4 flex items-start gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><Globe size={19} /></span>
+          <div className="flex-1">
+            <SectionTitle>{L({ uk: 'Наступний крок: сайт і продажі', ru: 'Следующий шаг: сайт и продажи', en: 'Next step: the site and sales' })}</SectionTitle>
+            <p className="-mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+              {L({
+                uk: 'Ми проіндексували demax.com.ua і дорогою поміряли його. Нижче — що показали заміри 1 серпня 2026 і що ми пропонуємо з цим зробити.',
+                ru: 'Мы проиндексировали demax.com.ua и попутно его измерили. Ниже — что показали замеры 1 августа 2026 и что мы предлагаем с этим сделать.',
+                en: 'While indexing demax.com.ua we measured it. Below are the findings from 1 August 2026 and what we propose to do about them.',
+              })}
+            </p>
+          </div>
+        </div>
+
+        {/* заміри */}
+        <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {([
+            { v: '2,5 с', l: { uk: 'відповідь головної', ru: 'ответ главной', en: 'homepage response' } as Bi, bad: true },
+            { v: '52', l: { uk: 'нестиснених фото', ru: 'несжатых фото', en: 'unoptimised images' } as Bi, bad: true },
+            { v: '21', l: { uk: 'окремих JS та CSS', ru: 'отдельных JS и CSS', en: 'separate JS and CSS files' } as Bi, bad: true },
+            { v: '0', l: { uk: 'заголовків безпеки', ru: 'заголовков безопасности', en: 'security headers' } as Bi, bad: true },
+          ] as { v: string; l: Bi; bad?: boolean }[]).map((m) => (
+            <div key={m.l.en} className="rounded-xl border border-ink-200/70 px-3.5 py-3 dark:border-ink-700">
+              <div className={`font-display text-2xl font-semibold ${m.bad ? 'text-rose-700 dark:text-rose-400' : ''}`}>{m.v}</div>
+              <div className="mt-0.5 text-[11px] leading-tight text-ink-500 dark:text-ink-400">{L(m.l)}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid gap-3 lg:grid-cols-2">
+          <div className="rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
+            <Gauge size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
+            <div className="text-sm font-bold">{L({ uk: 'Переробити сайт', ru: 'Переделать сайт', en: 'Rebuild the site' })}</div>
+            <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
+              {L({
+                uk: 'Сайт на WordPress віддає головну за 2,5 секунди — Google вважає прийнятним до 0,8. Фото віддаються без стиснення, скрипти не зібрані в бандл, заголовків безпеки немає жодного, а версія WordPress відкрито вказана в коді сторінки. Ми переносимо вітрину на Next.js, лишаючи WooCommerce як джерело товарів: контент-менеджер працює у звичній адмінці, а покупець отримує сторінку за пів секунди.',
+                ru: 'Сайт на WordPress отдаёт главную за 2,5 секунды — Google считает приемлемым до 0,8. Фото отдаются без сжатия, скрипты не собраны в бандл, заголовков безопасности нет ни одного, а версия WordPress открыто указана в коде страницы. Мы переносим витрину на Next.js, оставляя WooCommerce как источник товаров: контент-менеджер работает в привычной админке, а покупатель получает страницу за полсекунды.',
+                en: 'The WordPress site serves its homepage in 2.5 seconds — Google considers up to 0.8 acceptable. Images ship uncompressed, scripts are not bundled, not a single security header is set, and the WordPress version is exposed in the page source. We move the storefront to Next.js and keep WooCommerce as the product source: your content manager keeps the familiar admin, the shopper gets a page in half a second.',
+              })}
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-copper-500/40 p-4">
+            <TrendingUp size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
+            <div className="text-sm font-bold">{L({ uk: 'Консультант на сайті — для покупців', ru: 'Консультант на сайте — для покупателей', en: 'The consultant on your site — for shoppers' })}</div>
+            <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
+              {L({
+                uk: 'Той самий асистент, що працює тут, стає продавцем-консультантом на demax.com.ua: підбирає засіб під тип шкіри, показує картки з фото й ціною, веде в кошик. Він знає лише ваш каталог, тож не порадить чужого бренду, і передає менеджеру все, що стосується оптових умов. Кожне питання, на яке він не знайшов відповіді, потрапляє у звіт — це готовий список того, що варто дописати на сайті.',
+                ru: 'Тот же ассистент, что работает здесь, становится продавцом-консультантом на demax.com.ua: подбирает средство под тип кожи, показывает карточки с фото и ценой, ведёт в корзину. Он знает только ваш каталог, поэтому не посоветует чужой бренд, и передаёт менеджеру всё, что касается оптовых условий. Каждый вопрос, на который он не нашёл ответа, попадает в отчёт — это готовый список того, что стоит дописать на сайте.',
+                en: 'The same assistant that works here becomes a sales consultant on demax.com.ua: it matches products to skin type, shows cards with photo and price, and guides shoppers to the cart. It knows only your catalogue, so it will never recommend a competitor, and it hands wholesale questions to a manager. Every question it could not answer lands in a report — a ready-made list of what to add to the site.',
+              })}
+            </p>
+          </div>
+        </div>
+
+        <p className="mt-3 text-xs leading-relaxed text-ink-400">
+          {L({
+            uk: 'Обидва напрями оцінюємо окремо від цього проєкту — вони не входять у 2 місяці та $25K. Можемо порахувати після демо.',
+            ru: 'Оба направления оцениваем отдельно от этого проекта — они не входят в 2 месяца и $25K. Можем посчитать после демо.',
+            en: 'Both tracks are quoted separately from this project — they are not part of the 2 months and $25K. We can scope them after the demo.',
+          })}
+        </p>
       </Card>
 
       {/* Polylog — the proven platform this assistant is built on */}
