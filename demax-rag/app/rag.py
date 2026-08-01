@@ -248,7 +248,11 @@ def retrieve_products(query: str, limit: int = 3) -> list[dict]:
 INTENTS = [
     (re.compile(r"семінар|вебінар|навчанн|обучени|семинар|тренинг|schedule|seminar", re.I), "seminar_info"),
     (re.compile(r"ціна|цін|стоимост|прайс|price|купит|замов|заказ|опт", re.I), "commercial"),
-    (re.compile(r"скарг|жалоб|поверн|возврат|брак|complain", re.I), "complaint"),
+    (re.compile(
+        r"скарг|жалоб|поверн|возврат|бракован|брак\b|претенз|обман|незадовол|"
+        r"недовол|complain|refund|return|defect|broken|damaged",
+        re.I,
+    ), "complaint"),
     (re.compile(r"верифік|диплом|professional|професійн.*доступ", re.I), "verification"),
     (re.compile(r"протокол|процедур|пілінг|пилинг|карбокси|мезо", re.I), "protocol_question"),
 ]
@@ -367,6 +371,19 @@ def answer(question: str, history: list[dict], language: str = "ru") -> dict:
     context = retrieve(question)
     intent = detect_intent(question)
     top_score = context[0]["score"] if context else 0.0
+
+    # Скарги передаємо людині детерміновано, не покладаючись на рішення
+    # моделі: у тестах вона інколи бралася відповідати на «прийшов
+    # бракований товар», хоча це прямий випадок для менеджера.
+    if intent == "complaint":
+        return {
+            "reply": ESCALATE_TEXT_2.get(language, ESCALATE_TEXT_2["uk"]),
+            "intent": "complaint",
+            "confidence": 0.0,
+            "escalated": True,
+            "sources": [],
+            "products": [],
+        }
 
     if not context or top_score < ESCALATE_THRESHOLD:
         return {
