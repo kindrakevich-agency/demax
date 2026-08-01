@@ -280,16 +280,23 @@ export function Field({ label, error, children, hint }: { label: Bi; error?: str
 }
 
 const ctl =
-  'block w-full rounded-xl border-ink-300 bg-white text-sm text-ink-900 shadow-none transition-colors placeholder:text-ink-300 focus:border-copper-500 focus:ring-copper-500/30 dark:border-ink-600 dark:bg-ink-800 dark:text-ivory-100 dark:placeholder:text-ink-500 dark:focus:border-copper-400'
+  'block rounded-xl border-ink-300 bg-white text-sm text-ink-900 shadow-none transition-colors placeholder:text-ink-300 focus:border-copper-500 focus:ring-copper-500/30 dark:border-ink-600 dark:bg-ink-800 dark:text-ivory-100 dark:placeholder:text-ink-500 dark:focus:border-copper-400'
+
+/**
+ * `w-full` додається лише тоді, коли ширину не задано ззовні: у Tailwind
+ * конфлікт `w-full` і `w-44` вирішується порядком у CSS, а не в атрибуті
+ * class, тож фільтри з власною шириною інакше розтягувались на всю ширину.
+ */
+const widthOf = (cls?: string) => (/(^|\s)(w-|max-w-|flex-1)/.test(cls ?? '') ? '' : 'w-full')
 
 export function Input(props: InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...props} className={`${ctl} ${props.className ?? ''}`} />
+  return <input {...props} className={`${ctl} ${widthOf(props.className)} ${props.className ?? ''}`} />
 }
 export function Select(props: SelectHTMLAttributes<HTMLSelectElement>) {
-  return <select {...props} className={`${ctl} pr-9 ${props.className ?? ''}`} />
+  return <select {...props} className={`${ctl} pr-9 ${widthOf(props.className)} ${props.className ?? ''}`} />
 }
 export function Textarea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  return <textarea {...props} className={`${ctl} ${props.className ?? ''}`} />
+  return <textarea {...props} className={`${ctl} ${widthOf(props.className)} ${props.className ?? ''}`} />
 }
 
 /* ---------- Tabs ---------- */
