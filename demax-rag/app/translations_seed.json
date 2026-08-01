@@ -869,10 +869,10 @@
  },
  {
   "namespace": "Analysis",
-  "key": "super_seniors_the_kindrakevych_brothers_fully_dedicated",
-  "uk": "супер-сеньйори — брати Кіндракевичі, повне занурення",
-  "ru": "супер-сеньора — братья Киндракевичи, полное погружение",
-  "en": "super-seniors — the Kindrakevych brothers, fully dedicated"
+  "key": "senior_engineers_on_the_project_no_manager_layer_no_task_handoffs",
+  "uk": "senior-інженери на проєкті — без прошарку менеджерів і передачі задач",
+  "ru": "senior-инженера на проекте — без прослойки менеджеров и передачи задач",
+  "en": "senior engineers on the project — no manager layer, no task handoffs"
  },
  {
   "namespace": "Analysis",
@@ -898,9 +898,9 @@
  {
   "namespace": "Analysis",
   "key": "the_demax_consultant_is_built_on_the_same_technology_as_our_own_product_polylog_",
-  "uk": "Консультант DEMAX побудований на тій самій технології, що й наш власний продукт Polylog: багатомовний AI-асистент з RAG, відповідями лише з бази знань, цитуванням джерел та ескалацією на людину. Ми не винаходимо з нуля — переносимо перевірене. Команда — два брати-програмісти: kindrakevich.com.",
-  "ru": "Консультант DEMAX построен на той же технологии, что и наш собственный продукт Polylog: мультиязычный AI-ассистент с RAG, ответами только из базы знаний, цитированием источников и эскалацией на человека. Мы не изобретаем с нуля — переносим проверенное. Команда — два брата-программиста: kindrakevich.com.",
-  "en": "The DEMAX consultant is built on the same technology as our own product Polylog: a multilingual AI assistant with RAG, knowledge-grounded answers, source citations and human handoff. We are not inventing from scratch — we are porting the proven. The team — two programmer brothers: kindrakevich.com."
+  "uk": "Консультант DEMAX побудований на тій самій технології, що й наш власний продукт Polylog: багатомовний AI-асистент з RAG, гібридним пошуком і перевіркою, що відповідь спирається на джерела, а не вигадана. Ми не винаходимо з нуля — переносимо перевірене в продакшені. Веде проєкт Віталій Кіндракевич, засновник DevMotion Studio: 10+ років у веб-розробці, 40+ проєктів у продакшені, щоденна робота з AI із 2024 року.",
+  "ru": "Консультант DEMAX построен на той же технологии, что и наш собственный продукт Polylog: мультиязычный AI-ассистент с RAG, гибридным поиском и проверкой, что ответ опирается на источники, а не выдуман. Мы не изобретаем с нуля — переносим проверенное в продакшене. Ведёт проект Виталий Киндракевич, основатель DevMotion Studio: 10+ лет в веб-разработке, 40+ проектов в продакшене, ежедневная работа с AI с 2024 года.",
+  "en": "The DEMAX consultant is built on the same technology as our own product Polylog: a multilingual AI assistant with RAG, hybrid retrieval and a groundedness check that blocks answers not supported by sources. We are not inventing from scratch — we are porting what already runs in production. Led by Vitalii Kindrakevych, founder of DevMotion Studio: 10+ years in web development, 40+ production projects, working with AI daily since 2024."
  },
  {
   "namespace": "Analysis",
@@ -981,10 +981,10 @@
  },
  {
   "namespace": "Analysis",
-  "key": "a_team_with_zero_overhead_two_super_seniors_the_kindrakevych_brothers_direct_cli",
-  "uk": "Команда без накладних витрат: два супер-сеньйори — брати Кіндракевичі, пряма комунікація із замовником, нульова бюрократія.",
-  "ru": "Команда без накладных расходов: два супер-сеньора — братья Киндракевичи, прямая коммуникация с заказчиком, нулевая бюрократия.",
-  "en": "A team with zero overhead: two super-seniors — the Kindrakevych brothers — direct client communication, no bureaucracy."
+  "key": "a_team_with_zero_overhead_two_senior_engineers_direct_client_communication_no_bu",
+  "uk": "Команда без накладних витрат: два senior-інженери, пряма комунікація із замовником, нульова бюрократія — за весь шлях від архітектури до продакшену відповідає одна людина, а не ланцюжок передачі задач.",
+  "ru": "Команда без накладных расходов: два senior-инженера, прямая коммуникация с заказчиком, нулевая бюрократия — за весь путь от архитектуры до продакшена отвечает один человек, а не цепочка передачи задач.",
+  "en": "A team with zero overhead: two senior engineers, direct client communication, no bureaucracy — one person is accountable for the whole path from architecture to production, not a chain of handoffs."
  },
  {
   "namespace": "Analysis",
