@@ -8,6 +8,7 @@
  */
 
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Sparkles, CornerDownLeft, X, Loader2, AlertTriangle, CalendarCheck, Users, Gauge } from 'lucide-react'
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
@@ -177,7 +178,10 @@ export default function SystemInsights() {
         </kbd>
       </button>
 
-      {open && (
+      {/* Портал у body — обов'язковий. Шапка має backdrop-blur, а елемент із
+          backdrop-filter стає контейнером для position:fixed нащадків, тож
+          `inset-0` розтягувався на висоту шапки, і затемнювалася лише вона. */}
+      {open && createPortal(
         <div className="fixed inset-0 z-100 flex items-start justify-center p-4 pt-[8vh]" role="dialog" aria-modal="true">
           <div className="animate-fade absolute inset-0 bg-ink-950/60 backdrop-blur-lg" onClick={() => setOpen(false)} />
 
@@ -291,7 +295,8 @@ export default function SystemInsights() {
             )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   )

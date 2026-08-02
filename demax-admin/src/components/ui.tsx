@@ -1,5 +1,6 @@
 import type { ReactNode, ButtonHTMLAttributes, InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { X, Inbox, ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react'
 import { useApp } from '../lib/app'
 import type { Bi } from '../lib/app'
@@ -338,7 +339,9 @@ export function Modal({ open, onClose, title, children, wide }: { open: boolean;
     return () => window.removeEventListener('keydown', h)
   }, [open, onClose])
   if (!open) return null
-  return (
+  // Портал у body: будь-який предок із backdrop-filter / transform стає
+  // контейнером для position:fixed, і затемнення накрило б лише його.
+  return createPortal(
     <div className="fixed inset-0 z-90 flex items-center justify-center p-4" role="dialog" aria-modal="true">
       <div className="animate-fade absolute inset-0 bg-ink-950/60 backdrop-blur-lg" onClick={onClose} />
       <div className={`animate-rise relative max-h-[88vh] w-full ${wide ? 'max-w-3xl' : 'max-w-lg'} overflow-y-auto rounded-2xl border border-ink-200/60 bg-white p-6 shadow-pop dark:border-ink-700 dark:bg-ink-900`}>
@@ -350,7 +353,8 @@ export function Modal({ open, onClose, title, children, wide }: { open: boolean;
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
 

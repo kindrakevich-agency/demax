@@ -78,21 +78,46 @@ def _category(url: str) -> str:
 def _product_meta(soup: BeautifulSoup, url: str) -> tuple[str | None, str | None]:
     """Фото й ціна товару зі сторінки WooCommerce.
 
-    og:image на demax.com.ua віддає логотип теми, тож беремо перше зображення
-    з /wp-content/uploads/, пропускаючи мініатюри (-50x50) та іконки теми.
-    Головне фото товару має суфікс `_main`, тому воно в пріоритеті.
+    og:image на demax.com.ua віддає логотип теми, тож шукаємо в розмітці.
+
+    Головне фото товару лежить у слайдері галереї (`.splide__slide`). Блок
+    `.ark-woo-product-item-img` — це карусель СХОЖИХ товарів, там фото інших
+    продуктів. Раніше ми брали будь-яке зображення із суфіксом `_main`, а такі
+    файли трапляються саме в цій каруселі — через це 43 товари ділили 25 фото,
+    і одна картинка повторювалася на шести сторінках.
     """
-    image = None
-    candidates: list[str] = []
+    def _src(img) -> str:
+        return img.get("data-large_image") or img.get("data-src") or img.get("src") or ""
+
+    def _usable(u: str) -> bool:
+        return (
+            "/wp-content/uploads/" in u
+            and not re.search(r"-\d{2,3}x\d{2,3}\.", u)  # мініатюра
+            and not u.lower().endswith(".svg")  # іконки теми
+        )
+
+    def _from_related(img) -> bool:
+        return any(
+            "ark-woo-product-item-img" in (p.get("class") or [])
+            for p in img.parents
+            if getattr(p, "get", None)
+        )
+
+    def _in_gallery(img) -> bool:
+        return any(
+            "splide__slide" in (p.get("class") or [])
+            for p in img.parents
+            if getattr(p, "get", None)
+        )
+
+    gallery, fallback = [], []
     for img in soup.select("img"):
-        u = img.get("data-large_image") or img.get("data-src") or img.get("src") or ""
-        if "/wp-content/uploads/" not in u:
+        u = _src(img)
+        if not _usable(u) or _from_related(img):
             continue
-        if re.search(r"-\d{2,3}x\d{2,3}\.", u):  # мініатюра
-            continue
-        candidates.append(u)
-    if candidates:
-        image = next((u for u in candidates if "_main" in u), candidates[0])
+        (gallery if _in_gallery(img) else fallback).append(u)
+
+    image = next(iter(gallery), None) or next(iter(fallback), None)
 
     price = None
     meta_price = soup.find("meta", property="product:price:amount")
@@ -152,7 +177,13 @@ def _chunk(text: str) -> list[str]:
 
 def _store(title: str, content: str, url: str | None, category: str,
            image: str | None = None, price: str | None = None, is_product: bool = False) -> int:
-    chunks = _chunk(f"{title}\n\n{content}")
+    # Заголовок додається до КОЖНОГО фрагмента, а не лише до першого.
+    # Раніше `_chunk(title + content)` лишав назву тільки в нульовому фрагменті,
+    # тож «Demax сироватка Anti Redness» не потрапляла у вектор решти шматків —
+    # короткі товарні сторінки через це програвали оглядовим у пошуку.
+    # Заголовок у тексті фрагмента допомагає обом гілкам: і векторній, і лексичній.
+    head = (title or "").strip()
+    chunks = [f"{head}\n\n{c}" if head else c for c in _chunk(content)]
     if not chunks:
         return 0
     vectors = embed_passages(chunks)

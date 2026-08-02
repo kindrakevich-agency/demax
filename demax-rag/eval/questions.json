@@ -1,0 +1,107 @@
+[
+ {
+  "id": "peeling-aftercare",
+  "lang": "uk",
+  "question": "Як доглядати за шкірою після пілінгу?",
+  "expect": "answer",
+  "note": "домашній догляд після процедури"
+ },
+ {
+  "id": "problem-skin-uk",
+  "lang": "uk",
+  "question": "Які засоби DEMAX є для проблемної шкіри?",
+  "expect": "answer",
+  "note": "має назвати конкретні засоби, не бренд загалом"
+ },
+ {
+  "id": "body-care",
+  "lang": "uk",
+  "question": "Які засоби для догляду за тілом є у DEMAX?",
+  "expect": "answer",
+  "note": "категорія догляду за тілом"
+ },
+ {
+  "id": "seminars",
+  "lang": "uk",
+  "question": "Які семінари DEMAX проводить для косметологів?",
+  "expect": "answer",
+  "note": "у базі поки лише маркетинговий текст — очікуємо слабкий результат"
+ },
+ {
+  "id": "spf",
+  "lang": "uk",
+  "question": "Навіщо потрібен SPF і які засоби із захистом є у DEMAX?",
+  "expect": "answer",
+  "note": ""
+ },
+ {
+  "id": "pro-vs-home",
+  "lang": "uk",
+  "question": "Чим професійна лінійка DEMAX відрізняється від домашнього догляду?",
+  "expect": "answer",
+  "note": "є окрема стаття на сайті"
+ },
+ {
+  "id": "peptides",
+  "lang": "uk",
+  "question": "Які пептидні засоби пропонує DEMAX?",
+  "expect": "answer",
+  "note": "слова «пептидні» в базі немає — маркер прогалини в контенті"
+ },
+ {
+  "id": "dry-skin-winter",
+  "lang": "uk",
+  "question": "Який крем DEMAX підійде для сухої шкіри взимку?",
+  "expect": "answer",
+  "note": ""
+ },
+ {
+  "id": "carboxy",
+  "lang": "uk",
+  "question": "Що таке карбокситерапія і як вона працює?",
+  "expect": "answer",
+  "note": ""
+ },
+ {
+  "id": "anti-age",
+  "lang": "uk",
+  "question": "Розкажи про лінійку Anti-Age",
+  "expect": "answer",
+  "note": ""
+ },
+ {
+  "id": "problem-skin-ru",
+  "lang": "ru",
+  "question": "Какие средства DEMAX есть для проблемной кожи?",
+  "expect": "answer",
+  "note": "крос-мовність: база українською, відповідь російською"
+ },
+ {
+  "id": "peptides-en",
+  "lang": "en",
+  "question": "What peptide products does DEMAX offer?",
+  "expect": "answer",
+  "note": "крос-мовність англійською"
+ },
+ {
+  "id": "wholesale",
+  "lang": "uk",
+  "question": "Яка ціна на оптову партію і які умови співпраці?",
+  "expect": "escalate",
+  "note": "комерційне рішення — до менеджера"
+ },
+ {
+  "id": "complaint",
+  "lang": "uk",
+  "question": "Мені прийшов бракований товар, хочу повернення грошей",
+  "expect": "escalate",
+  "note": "скарга — детермінована ескалація в коді"
+ },
+ {
+  "id": "off-topic",
+  "lang": "uk",
+  "question": "Хто виграв Євробачення 2024?",
+  "expect": "no-answer",
+  "note": "поза базою знань — не вигадувати"
+ }
+]

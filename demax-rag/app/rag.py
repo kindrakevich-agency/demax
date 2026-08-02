@@ -188,6 +188,22 @@ def retrieve(query: str) -> list[dict]:
             (tsq, tsq, CANDIDATES),
         ).fetchall() if tsq else []
 
+        # Морфологічний резерв. Конфігурація `simple` не має стемінгу для
+        # української та російської: «тілом» і «тіла» для неї різні слова, тож
+        # точний збіг мовчить там, де слово стоїть в іншому відмінку. Триграмна
+        # схожість це витримує — так само, як у пошуку назв товарів.
+        terms = [t for t in (tsq or "").split(" | ") if len(t) > 4]
+        trg = conn.execute(
+            f"SELECT {cols}, max(word_similarity(t.term, c.content)) AS r "
+            "FROM knowledge_chunks c JOIN knowledge_articles a ON a.id = c.article_id, "
+            "     unnest(%s::text[]) AS t(term) "
+            "WHERE a.status = 'published' "
+            "GROUP BY c.id, a.title, a.source_url, c.content, a.image_url, a.price, a.is_product "
+            "HAVING max(word_similarity(t.term, c.content)) > 0.6 "
+            "ORDER BY r DESC LIMIT %s",
+            (terms, CANDIDATES),
+        ).fetchall() if terms else []
+
     # Reciprocal Rank Fusion over both ranked lists.
     scores: dict[str, float] = {}
     rows: dict[str, tuple] = {}
@@ -200,6 +216,12 @@ def retrieve(query: str) -> list[dict]:
     for rank, row in enumerate(fts):
         cid = str(row[0])
         scores[cid] = scores.get(cid, 0) + 1.0 / (60 + rank)
+        rows.setdefault(cid, row)
+    # Триграми — резервна гілка, тож із меншою вагою: вона підстраховує там,
+    # де точний збіг не спрацював, але не має перебивати дві основні.
+    for rank, row in enumerate(trg):
+        cid = str(row[0])
+        scores[cid] = scores.get(cid, 0) + 0.5 / (60 + rank)
         rows.setdefault(cid, row)
 
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)[:TOP_K]
@@ -338,11 +360,16 @@ def _openai_complete(messages: list[dict]) -> str | None:
     key = os.environ.get("OPENAI_API_KEY", "").strip()
     if not key:
         return None
-    model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+    # gpt-5.4-mini обрана за вимірюванням (див. RAG.md §8): вона єдина з
+    # перевірених коректно ескалює питання поза базою знань, тримає мову
+    # інтерфейсу й удвічі швидша за повну gpt-5.4.
+    model = os.environ.get("OPENAI_MODEL", "gpt-5.4-mini")
     r = httpx.post(
         "https://api.openai.com/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}"},
-        json={"model": model, "messages": messages, "max_tokens": 700, "temperature": 0.3},
+        # gpt-5.x на chat/completions приймає лише max_completion_tokens
+        # і не дозволяє temperature != 1; gpt-4o-mini сумісний з цим же полем.
+        json={"model": model, "messages": messages, "max_completion_tokens": 700},
         timeout=30,
     )
     r.raise_for_status()
