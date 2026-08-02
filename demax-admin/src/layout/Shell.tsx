@@ -64,12 +64,19 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const { L } = useApp()
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <div className="flex items-center gap-3 px-6 pt-6 pb-7">
-        <div className="flex size-9 items-center justify-center rounded-xl bg-copper-600 font-display text-lg font-bold text-ivory-50 shadow-sm">D</div>
-        <div>
-          <div className="font-display text-xl leading-none font-semibold tracking-wide text-ink-950 dark:text-ivory-50">DEMAX</div>
-          <div className="mt-0.5 text-[10px] font-bold tracking-[0.2em] text-copper-600 uppercase dark:text-copper-400">AI Assistant</div>
-        </div>
+      <div className="px-6 pt-6 pb-7">
+        {/* Логотип бренду лежить у нас (public/demax-logo.png), а не тягнеться
+            з demax.com.ua: зовнішнє посилання зламалося б від будь-якої зміни
+            на їхньому боці, та й CSP дозволяє лише власний домен.
+            Накреслення чорне на прозорому, тож у темній темі інвертуємо. */}
+        <img
+          src="/demax-logo.png"
+          alt="DEMAX Professional"
+          width={601}
+          height={152}
+          className="h-9 w-auto dark:invert"
+        />
+        <div className="mt-2 text-[10px] font-bold tracking-[0.2em] text-copper-600 uppercase dark:text-copper-400">AI Assistant</div>
       </div>
       <nav className="flex-1 space-y-5 px-3 pb-6">
         {groups.map((g) => (
