@@ -14,6 +14,7 @@ import logging
 import re
 import time
 import threading
+from functools import lru_cache
 from xml.etree import ElementTree
 
 import httpx
@@ -75,6 +76,47 @@ def _category(url: str) -> str:
     return "pages"
 
 
+STORE_API = "https://www.demax.com.ua/wp-json/wc/store/v1/products?per_page=100"
+
+
+@lru_cache(maxsize=1)
+def _store_catalog() -> dict[str, tuple[str | None, str | None]]:
+    """Фото й ціни з офіційного Store API WooCommerce: slug → (фото, ціна).
+
+    Надійніше за розбір HTML: у розмітці лежить фото ВАРІАЦІЇ, яке скрипт теми
+    підміняє вже в браузері, тож зі сторінки ми діставали не те зображення.
+
+    Фото з суфіксом «-k-» — це знімок з коробкою (к = коробка в іменуванні
+    бренду). Для картки консультанта потрібен сам засіб, тож пробуємо той самий
+    файл без цього суфікса й беремо його, якщо він існує.
+    """
+    catalog: dict[str, tuple[str | None, str | None]] = {}
+    try:
+        with httpx.Client(timeout=45, follow_redirects=True) as client:
+            products = client.get(STORE_API).json()
+            for p in products:
+                slug = (p.get("permalink") or "").rstrip("/").split("/")[-1]
+                if not slug:
+                    continue
+                images = p.get("images") or []
+                image = images[0].get("src") if images else None
+                if image and "-k-" in image:
+                    plain = image.replace("-k-", "-", 1)
+                    try:
+                        if client.head(plain).status_code == 200:
+                            image = plain
+                    except Exception:  # noqa: BLE001 — не критично, лишаємо коробку
+                        pass
+                prices = p.get("prices") or {}
+                amount, currency = prices.get("price"), prices.get("currency_code")
+                price = f"{amount} {currency}".strip() if amount else None
+                catalog[slug] = (image, price)
+        log.info("store api: %d товарів", len(catalog))
+    except Exception as e:  # noqa: BLE001 — падати через каталог не можна
+        log.warning("store api недоступний, лишаємось на розборі HTML: %s", e)
+    return catalog
+
+
 def _product_meta(soup: BeautifulSoup, url: str) -> tuple[str | None, str | None]:
     """Фото й ціна товару зі сторінки WooCommerce.
 
@@ -86,6 +128,11 @@ def _product_meta(soup: BeautifulSoup, url: str) -> tuple[str | None, str | None
     файли трапляються саме в цій каруселі — через це 43 товари ділили 25 фото,
     і одна картинка повторювалася на шести сторінках.
     """
+    slug = url.rstrip("/").split("/")[-1]
+    api_image, api_price = _store_catalog().get(slug, (None, None))
+    if api_image:
+        return api_image, api_price
+
     def _src(img) -> str:
         return img.get("data-large_image") or img.get("data-src") or img.get("src") or ""
 
@@ -110,6 +157,18 @@ def _product_meta(soup: BeautifulSoup, url: str) -> tuple[str | None, str | None
             if getattr(p, "get", None)
         )
 
+    # Найнадійніше джерело — <link rel="preload" as="image">: тема попередньо
+    # завантажує саме те фото, яке показує користувачеві. Розмітка галереї в
+    # сирому HTML цьому суперечить: там лежить фото варіації (файли з «-k-»),
+    # яке JS підміняє на головне вже в браузері. Товар «Ліфт Актив» через це
+    # отримав знімок іншої упаковки.
+    preload = [
+        h for h in (
+            (ln.get("href") or "") for ln in soup.select('link[rel="preload"][as="image"]')
+        )
+        if _usable(h)
+    ]
+
     gallery, fallback = [], []
     for img in soup.select("img"):
         u = _src(img)
@@ -117,7 +176,7 @@ def _product_meta(soup: BeautifulSoup, url: str) -> tuple[str | None, str | None
             continue
         (gallery if _in_gallery(img) else fallback).append(u)
 
-    image = next(iter(gallery), None) or next(iter(fallback), None)
+    image = next(iter(preload), None) or next(iter(gallery), None) or next(iter(fallback), None)
 
     price = None
     meta_price = soup.find("meta", property="product:price:amount")
