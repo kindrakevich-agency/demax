@@ -225,6 +225,21 @@ def retrieve(query: str) -> list[dict]:
         rows.setdefault(cid, row)
 
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)[:TOP_K]
+
+    # Впевненість — це косинусна близькість, і рахувати її треба для ВСІХ
+    # відібраних фрагментів. Раніше `sim_by_id` заповнювався лише з векторної
+    # гілки: щойно лексична запрацювала, топ-результат часто приходив саме з
+    # неї, отримував score 0.0 і питання хибно летіло в ескалацію.
+    missing = [cid for cid, _ in ranked if cid not in sim_by_id]
+    if missing:
+        with db.pool().connection() as conn:
+            for cid, sim in conn.execute(
+                "SELECT id::text, 1 - (embedding <=> %s) FROM knowledge_chunks "
+                "WHERE id = ANY(%s::uuid[])",
+                (qvec, missing),
+            ).fetchall():
+                sim_by_id[cid] = float(sim)
+
     out = []
     for cid, _ in ranked:
         row = rows[cid]
