@@ -362,9 +362,9 @@ export default function Analysis() {
               icon: Gauge,
               t: { uk: 'Швидкий і захищений сайт', ru: 'Быстрый и защищённый сайт', en: 'A fast, secured site' } as Bi,
               d: {
-                uk: 'Заміри 01.08.2026: головна віддається 2,5 с (норма Google — до 0,8), 52 нестиснених фото, 21 окремий JS та CSS, жодного заголовка безпеки. Вітрину переносимо на Next.js, WooCommerce лишається джерелом товарів.',
-                ru: 'Замеры 01.08.2026: главная отдаётся 2,5 с (норма Google — до 0,8), 52 несжатых фото, 21 отдельный JS и CSS, ни одного заголовка безопасности. Витрину переносим на Next.js, WooCommerce остаётся источником товаров.',
-                en: 'Measured 01.08.2026: the homepage takes 2.5 s (Google’s bar is 0.8), 52 uncompressed images, 21 separate JS and CSS files, not one security header. We move the storefront to Next.js, WooCommerce stays the product source.',
+                uk: 'Заміри 01.08.2026: головна віддається 2,2 с до першого байта (норма Google — до 0,8) і важить 418 КБ, жодного заголовка безпеки. Вітрина переїжджає на Next.js, WordPress прибирається повністю — деталі у блоці вище.',
+                ru: 'Замеры 01.08.2026: главная отдаётся 2,2 с до первого байта (норма Google — до 0,8) и весит 418 КБ, ни одного заголовка безопасности. Витрина переезжает на Next.js, WordPress убирается полностью — детали в блоке выше.',
+                en: 'Measured 01.08.2026: the homepage takes 2.2 s to first byte (Google’s bar is 0.8) and weighs 418 KB, with not one security header. The storefront moves to Next.js and WordPress goes away entirely — details in the block above.',
               } as Bi,
             },
             {
