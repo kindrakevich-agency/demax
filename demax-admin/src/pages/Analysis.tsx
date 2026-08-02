@@ -240,6 +240,83 @@ export default function Analysis() {
         </Card>
       </div>
 
+      {/* окремий скоуп: вітрина на Next.js, товари переїжджають у нашу адмінку */}
+      <Card className="animate-rise-3 mt-4 border-copper-500/40 lg:col-span-5">
+        <div className="mb-5 flex flex-wrap items-start gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><ShoppingBag size={19} /></span>
+          <div className="min-w-64 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <SectionTitle>{L({ uk: 'Новий сайт: вітрина на Next.js, товари — у цій же адмінці', ru: 'Новый сайт: витрина на Next.js, товары — в этой же админке', en: 'A new site: Next.js storefront, products in this same admin' })}</SectionTitle>
+              <span className="mb-3 rounded-full border border-copper-500/50 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-copper-700 uppercase dark:text-copper-300">
+                {L({ uk: 'окремий проєкт', ru: 'отдельный проект', en: 'separate project' })}
+              </span>
+            </div>
+            <p className="-mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+              {L({
+                uk: 'WordPress прибирається повністю. Каталог, контент і замовлення живуть у нашій базі, вітрина — Next.js. Головний виграш не в технології: товари стають рідним джерелом для AI, а продажі опиняються в тій самій панелі, де клієнти, діалоги й семінари.',
+                ru: 'WordPress убирается полностью. Каталог, контент и заказы живут в нашей базе, витрина — Next.js. Главный выигрыш не в технологии: товары становятся родным источником для AI, а продажи оказываются в той же панели, где клиенты, диалоги и семинары.',
+                en: 'WordPress goes away entirely. Catalog, content and orders live in our database; the storefront is Next.js. The gain is not the technology: products become a native source for the AI, and sales end up in the same panel as customers, conversations and seminars.',
+              })}
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {([
+            { icon: Sparkles, t: { uk: 'AI бачить каталог одразу', ru: 'AI видит каталог сразу', en: 'The AI sees the catalog instantly' }, d: { uk: 'Зараз консультант зчитує сайт і бореться з чужою розміткою — саме через це фото товарів бралися з каруселі «схожі товари». Коли товар у нашій базі, зміна ціни чи опису доступна асистенту тієї ж миті, без переіндексації.', ru: 'Сейчас консультант считывает сайт и борется с чужой разметкой — именно поэтому фото товаров брались из карусели «похожие товары». Когда товар в нашей базе, изменение цены или описания доступно ассистенту в тот же момент, без переиндексации.', en: 'Today the consultant scrapes the site and fights someone else’s markup — that is exactly why product photos were pulled from the “related products” carousel. With products in our database, a price or copy change reaches the assistant instantly, with no re-indexing.' } },
+            { icon: TrendingUp, t: { uk: 'Продажі під контролем', ru: 'Продажи под контролем', en: 'Sales under control' }, d: { uk: 'Замовлення, залишки, оптові ціни для косметологів, промокоди й партнерська програма — в одній панелі з клієнтами. Профіль 360° нарешті стає повним: розмови з AI, семінари й покупки в одному місці.', ru: 'Заказы, остатки, оптовые цены для косметологов, промокоды и партнёрская программа — в одной панели с клиентами. Профиль 360° наконец становится полным: разговоры с AI, семинары и покупки в одном месте.', en: 'Orders, stock, wholesale pricing for cosmetologists, promo codes and the affiliate programme sit in the same panel as customers. The 360° profile finally becomes complete: AI conversations, seminars and purchases in one place.' } },
+            { icon: Gauge, t: { uk: 'Швидкість замість 2,2 секунди', ru: 'Скорость вместо 2,2 секунды', en: 'Speed instead of 2.2 seconds' }, d: { uk: 'Ми зміряли поточний сайт: 2,2 с до першого байта і 418 КБ на головній. Статична генерація з миттєвою ревалідацією дає десятки мілісекунд — це прямо впливає на позиції та конверсію.', ru: 'Мы измерили текущий сайт: 2,2 с до первого байта и 418 КБ на главной. Статическая генерация с мгновенной ревалидацией даёт десятки миллисекунд — это прямо влияет на позиции и конверсию.', en: 'We measured the current site: 2.2 s to first byte and 418 KB on the home page. Static generation with instant revalidation gives tens of milliseconds — that moves rankings and conversion directly.' } },
+            { icon: ShieldCheck, t: { uk: 'Зникає найбільша поверхня атаки', ru: 'Исчезает крупнейшая поверхность атаки', en: 'The largest attack surface disappears' }, d: { uk: 'Разом із WordPress іде набір плагінів, кожен із яких — окреме джерело вразливостей і оновлень. Лишається один застосунок, який ми контролюємо повністю.', ru: 'Вместе с WordPress уходит набор плагинов, каждый из которых — отдельный источник уязвимостей и обновлений. Остаётся одно приложение, которое мы контролируем полностью.', en: 'WordPress takes its plugin stack with it — each one a separate source of vulnerabilities and updates. What remains is a single application we control end to end.' } },
+          ] as { icon: typeof Server; t: Bi; d: Bi }[]).map((b, i) => (
+            <div key={i} className="rounded-2xl border border-ink-200/70 p-4 dark:border-ink-700">
+              <b.icon size={17} className="mb-2 text-copper-600 dark:text-copper-400" />
+              <div className="mb-1 text-sm font-bold text-ink-900 dark:text-ivory-100">{L(b.t)}</div>
+              <p className="text-xs leading-relaxed text-ink-600 dark:text-ink-300">{L(b.d)}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-5 rounded-2xl bg-ink-50 p-4 dark:bg-ink-800/60">
+          <div className="mb-2 text-[11px] font-bold tracking-widest text-ink-500 uppercase dark:text-ink-400">
+            {L({ uk: 'Що ми вже зміряли на вашому сайті', ru: 'Что мы уже измерили на вашем сайте', en: 'What we already measured on your site' })}
+          </div>
+          <p className="text-sm leading-relaxed text-ink-700 dark:text-ink-200">
+            {L({
+              uk: '86 товарів (43 × дві мови), 13 категорій, 39 сторінок, 36 статей і два власні типи контенту. Атрибути вже нормалізовані як таксономії — об’єм, лінія догляду, проблема, тип шкіри, тип товару, — тож фасетні фільтри будуються на готовій структурі. Каталог переноситься імпортом, а не руками.',
+              ru: '86 товаров (43 × два языка), 13 категорий, 39 страниц, 36 статей и два собственных типа контента. Атрибуты уже нормализованы как таксономии — объём, линия ухода, проблема, тип кожи, тип товара, — поэтому фасетные фильтры строятся на готовой структуре. Каталог переносится импортом, а не руками.',
+              en: '86 products (43 × two languages), 13 categories, 39 pages, 36 posts and two custom content types. Attributes are already normalised as taxonomies — volume, care line, concern, skin type, product type — so faceted filtering builds on an existing structure. The catalog migrates by import, not by hand.',
+            })}
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <div className="mb-2 text-[11px] font-bold tracking-widest text-copper-700 uppercase dark:text-copper-300">
+              {L({ uk: 'Що треба врахувати чесно', ru: 'Что нужно учесть честно', en: 'What must be accounted for honestly' })}
+            </div>
+            <p className="text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+              {L({
+                uk: 'Разом із WordPress зникає й те, що він робив мовчки: платіжний шлюз, Нова Пошта з накладними, фіскалізація ПРРО, партнерська програма з реальними виплатами, відгуки та історія замовлень. Це не ризик, а перелік робіт — але він має бути в кошторисі від початку, інакше домовимося про вітрину, а зіткнемося з магазином.',
+                ru: 'Вместе с WordPress исчезает и то, что он делал молча: платёжный шлюз, Новая Почта с накладными, фискализация ПРРО, партнёрская программа с реальными выплатами, отзывы и история заказов. Это не риск, а перечень работ — но он должен быть в смете с самого начала, иначе договоримся о витрине, а столкнёмся с магазином.',
+                en: 'WordPress also takes with it everything it did quietly: the payment gateway, Nova Poshta with waybills, fiscal receipts (PRRO), the affiliate programme with real payouts, reviews and order history. That is not a risk but a work list — and it belongs in the estimate from the start, or we agree on a storefront and meet a shop.',
+              })}
+            </p>
+          </div>
+          <div>
+            <div className="mb-2 text-[11px] font-bold tracking-widest text-copper-700 uppercase dark:text-copper-300">
+              {L({ uk: 'Обсяг і порядок робіт', ru: 'Объём и порядок работ', en: 'Scope and sequence' })}
+            </div>
+            <p className="text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+              {L({
+                uk: 'Вітрина, каталог, контент і SEO-міграція зі збереженням URL — 55–70 людино-днів. Комерційний бекенд: замовлення, оплата, доставка, ПРРО, склад, промо, партнерка — ще 60–90. Разом 120–160 людино-днів, тобто 3–4 місяці вдвох, приблизно $17–22K окремо від $25K. Старий сайт вимикається лише після того, як нова комерція відпрацює на реальних замовленнях.',
+                ru: 'Витрина, каталог, контент и SEO-миграция с сохранением URL — 55–70 человеко-дней. Коммерческий бэкенд: заказы, оплата, доставка, ПРРО, склад, промо, партнёрка — ещё 60–90. Итого 120–160 человеко-дней, то есть 3–4 месяца вдвоём, примерно $17–22K отдельно от $25K. Старый сайт выключается только после того, как новая коммерция отработает на реальных заказах.',
+                en: 'Storefront, catalog, content and a URL-preserving SEO migration — 55–70 person-days. The commerce backend — orders, payments, shipping, fiscal receipts, stock, promotions, affiliates — another 60–90. That is 120–160 person-days in total: 3–4 months for the two of us, roughly $17–22K on top of the $25K. The old site is switched off only after the new commerce has handled real orders.',
+              })}
+            </p>
+          </div>
+        </div>
+      </Card>
+
       {/* усе, що можемо зробити понад ТЗ — окремо від ціни, у самому низу */}
       <Card className="animate-rise-3 mt-4 lg:col-span-5">
         <div className="mb-5 flex flex-wrap items-start gap-3">
