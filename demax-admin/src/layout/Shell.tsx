@@ -76,7 +76,6 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
           height={152}
           className="h-9 w-auto dark:invert"
         />
-        <div className="mt-2 text-[10px] font-bold tracking-[0.2em] text-copper-600 uppercase dark:text-copper-400">AI Assistant</div>
       </div>
       <nav className="flex-1 space-y-5 px-3 pb-6">
         {groups.map((g) => (
