@@ -43,6 +43,7 @@ export function TrendChart({ data, xKey, series, height = 240 }: {
   const tt = useTooltipStyle()
   const colors = [t.s1, t.s2]
   return (
+    <div className="w-full min-w-0">
     <ResponsiveContainer width="100%" height={height}>
       <AreaChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: -18 }}>
         <defs>
@@ -63,6 +64,7 @@ export function TrendChart({ data, xKey, series, height = 240 }: {
         ))}
       </AreaChart>
     </ResponsiveContainer>
+    </div>
   )
 }
 
@@ -77,6 +79,7 @@ export function BarsChart({ data, xKey, yKey, name, height = 240, highlightLast 
   const t = useChartTheme()
   const tt = useTooltipStyle()
   return (
+    <div className="w-full min-w-0">
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: -18 }} barCategoryGap="28%">
         <CartesianGrid stroke={t.grid} vertical={false} />
@@ -90,6 +93,7 @@ export function BarsChart({ data, xKey, yKey, name, height = 240, highlightLast 
         </Bar>
       </BarChart>
     </ResponsiveContainer>
+    </div>
   )
 }
 

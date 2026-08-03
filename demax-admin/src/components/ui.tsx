@@ -22,7 +22,9 @@ export function PageHeader({ title, subtitle, actions }: { title: Bi; subtitle?:
 
 export function Card({ children, className = '', pad = true }: { children: ReactNode; className?: string; pad?: boolean }) {
   return (
-    <div className={`rounded-2xl border border-ink-200/60 bg-white shadow-card dark:border-ink-700/60 dark:bg-ink-900 ${pad ? 'p-5' : ''} ${className}`}>
+    // min-w-0: як елемент grid чи flex картка інакше не може стиснутись менше
+    // за свій вміст — графік Recharts розпирав її ширше за екран на телефоні.
+    <div className={`min-w-0 rounded-2xl border border-ink-200/60 bg-white shadow-card dark:border-ink-700/60 dark:bg-ink-900 ${pad ? 'p-5' : ''} ${className}`}>
       {children}
     </div>
   )
