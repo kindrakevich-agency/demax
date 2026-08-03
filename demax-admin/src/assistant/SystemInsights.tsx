@@ -169,10 +169,10 @@ export default function SystemInsights() {
           setOpen(true)
           setTimeout(() => inputRef.current?.focus(), 40)
         }}
-        className="group flex w-full max-w-md items-center gap-2.5 rounded-full border border-transparent bg-white/70 py-2 pr-3 pl-3.5 text-left text-sm transition-colors hover:border-copper-500/40 dark:bg-ink-800/70"
+        className="group flex w-full min-w-0 max-w-md items-center gap-2.5 rounded-full border border-transparent bg-white/70 py-2 pr-3 pl-3.5 text-left text-sm transition-colors hover:border-copper-500/40 dark:bg-ink-800/70"
       >
         <Sparkles size={15} className="shrink-0 text-copper-600 dark:text-copper-400" />
-        <span className="flex-1 truncate text-ink-400 dark:text-ink-500">{greeting}</span>
+        <span className="min-w-0 flex-1 truncate text-ink-400 dark:text-ink-500">{greeting}</span>
         <kbd className="hidden shrink-0 rounded border border-ink-200 px-1.5 py-0.5 font-mono text-[10px] text-ink-400 sm:block dark:border-ink-600">
           ⌘K
         </kbd>

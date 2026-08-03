@@ -146,11 +146,14 @@ export default function Shell() {
             <Menu size={20} />
           </button>
 
-          <div className="max-w-md flex-1">
+          {/* min-w-0 обов'язковий: без нього flex-елемент не може стиснутись
+              менше за свій вміст, довге привітання розпирало шапку, і вся
+              сторінка отримувала горизонтальний скрол на телефоні. */}
+          <div className="min-w-0 max-w-md flex-1">
             <SystemInsights />
           </div>
 
-          <div className="ml-auto flex items-center gap-1.5">
+          <div className="ml-auto flex shrink-0 items-center gap-1.5">
             <span className="mr-1 hidden rounded-full border border-copper-500/40 bg-copper-500/10 px-2.5 py-1 text-[10px] font-bold tracking-widest text-copper-700 uppercase sm:block dark:text-copper-300">
               Demo
             </span>
