@@ -143,7 +143,7 @@ export default function Assistant() {
         </Card>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Card className="animate-rise-1" pad={false}>
           <div className="px-5 pt-5 pb-2"><SectionTitle>{L({ uk: 'База знань за джерелами', ru: 'База знаний по источникам', en: 'Knowledge by source' })}</SectionTitle></div>
           <div className="divide-y divide-ink-100 dark:divide-ink-800">

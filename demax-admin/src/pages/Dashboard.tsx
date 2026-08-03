@@ -28,7 +28,7 @@ export default function Dashboard() {
         <Stat label={{ uk: 'Очікують верифікації', ru: 'Ждут верификации', en: 'Pending verification' }} value={String(pendingVer.length)} hint={L({ uk: 'найстаріша — 2 дні', ru: 'старейшая — 2 дня', en: 'oldest — 2 days' })} />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* charts */}
         <Card className="animate-rise-1 lg:col-span-2">
           <SectionTitle>{L({ uk: 'Діалоги та ескалації, 8 днів', ru: 'Диалоги и эскалации, 8 дней', en: 'Conversations & escalations, 8 days' })}</SectionTitle>
@@ -139,12 +139,15 @@ export default function Dashboard() {
               {L({ uk: 'Журнал аудиту', ru: 'Журнал аудита', en: 'Audit log' })} <ArrowRight size={13} />
             </Link>
           </div>
-          <div className="grid gap-x-8 px-5 pb-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-8 px-5 pb-5 sm:grid-cols-2">
             {audit.slice(0, 8).map((a) => (
               <div key={a.id} className="flex items-center gap-3 border-b border-ink-100 py-2.5 last:border-0 sm:nth-last-[2]:border-0 dark:border-ink-800">
-                <span className="font-mono text-[11px] text-copper-700 dark:text-copper-300">{a.action}</span>
-                <span className="flex-1 truncate text-xs text-ink-500 dark:text-ink-400">{a.actor}</span>
-                <span className="text-[11px] whitespace-nowrap text-ink-400">{fmtDate(a.time, lang, true)}</span>
+                {/* обидва текстові стовпці мусять уміти стискатись: без min-w-0
+                    назва дії та ім'я не обрізаються, а дата з whitespace-nowrap
+                    штовхає рядок за екран на вузьких телефонах */}
+                <span className="min-w-0 truncate font-mono text-[11px] text-copper-700 dark:text-copper-300">{a.action}</span>
+                <span className="min-w-0 flex-1 truncate text-xs text-ink-500 dark:text-ink-400">{a.actor}</span>
+                <span className="shrink-0 text-[11px] whitespace-nowrap text-ink-400">{fmtDate(a.time, lang, true)}</span>
               </div>
             ))}
           </div>

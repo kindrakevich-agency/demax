@@ -223,7 +223,7 @@ export default function SystemInsights() {
                 <div className="mb-2.5 text-[11px] font-bold tracking-widest text-ink-400 uppercase">
                   {L({ uk: 'Швидкі звіти', ru: 'Быстрые отчёты', en: 'Quick reports' })}
                 </div>
-                <div className="grid gap-2 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {PRESETS.map((p) => (
                     <button
                       key={p.label.en}

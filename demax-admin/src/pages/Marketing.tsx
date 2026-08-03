@@ -104,7 +104,7 @@ export default function Marketing() {
 
       {/* composer */}
       <Modal open={compose} onClose={() => setCompose(false)} title={{ uk: 'Нова кампанія', ru: 'Новая кампания', en: 'New campaign' }} wide>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <Field label={{ uk: 'Заголовок', ru: 'Заголовок', en: 'Title' }}>
               <Input placeholder={L({ uk: 'Назва кампанії…', ru: 'Название кампании…', en: 'Campaign title…' })} />

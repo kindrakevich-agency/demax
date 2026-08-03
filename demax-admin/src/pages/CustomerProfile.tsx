@@ -56,7 +56,7 @@ export default function CustomerProfile() {
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
 
       {tab === 'overview' && (
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <Card className="lg:col-span-2">
             <div className="mb-5 flex items-center gap-4">
               <Avatar name={c.name} size={10} />
@@ -162,7 +162,7 @@ export default function CustomerProfile() {
       )}
 
       {tab === 'notes' && (
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <Card className="lg:col-span-2" pad={false}>
             <div className="divide-y divide-ink-100 dark:divide-ink-800">
               {notes.map((n) => (

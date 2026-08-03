@@ -33,7 +33,7 @@ export default function AiMonitoring() {
         <Stat label={{ uk: 'p95 затримка', ru: 'p95 задержка', en: 'p95 latency' }} value="2.1s" hint={L({ uk: 'бюджет ≤ 3.0s', ru: 'бюджет ≤ 3.0s', en: 'budget ≤ 3.0s' })} />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Card className="animate-rise-1">
           <SectionTitle>{L({ uk: 'Затримка за етапами, мс (p95)', ru: 'Задержка по этапам, мс (p95)', en: 'Latency by stage, ms (p95)' })}</SectionTitle>
           <TrendChart

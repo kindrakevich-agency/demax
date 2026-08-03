@@ -82,10 +82,10 @@ export default function ArticleEditor() {
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
 
       {tab === 'editor' && (
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-4 lg:col-span-2">
             <Card>
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div className="sm:col-span-2">
                   <Field label={{ uk: 'Заголовок', ru: 'Заголовок', en: 'Title' }}>
                     <Input value={title} onChange={(e) => setTitle(e.target.value)} maxLength={250} />

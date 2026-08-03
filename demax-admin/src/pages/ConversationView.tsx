@@ -84,7 +84,7 @@ export default function ConversationView() {
         }
       />
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card className="space-y-4 lg:col-span-2">
           {v.messages.map((m) => <Bubble key={m.id} m={m} />)}
         </Card>

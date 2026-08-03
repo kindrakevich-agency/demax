@@ -101,7 +101,7 @@ export default function Seminars() {
       </Card>
 
       <Modal open={create} onClose={() => setCreate(false)} title={{ uk: 'Новий семінар', ru: 'Новый семинар', en: 'New seminar' }} wide>
-        <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 sm:grid-cols-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <Field label={{ uk: 'Назва', ru: 'Название', en: 'Title' }} error={errors.title && L({ uk: 'Від 3 до 250 символів', ru: 'От 3 до 250 символов', en: '3–250 characters' })}>
               <Input {...register('title')} placeholder={L({ uk: 'Наприклад: Карбокситерапія — практикум', ru: 'Например: Карбокситерапия — практикум', en: 'e.g. Carboxytherapy hands-on' })} />

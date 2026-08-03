@@ -47,7 +47,7 @@ export default function Analytics() {
         <Stat label={{ uk: 'Доставлюваність розсилок', ru: 'Доставляемость рассылок', en: 'Broadcast delivery' }} value="96.4%" />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Card className="animate-rise-1">
           <SectionTitle>{L({ uk: 'Зростання клієнтської бази', ru: 'Рост клиентской базы', en: 'Customer growth' })}</SectionTitle>
           <TrendChart data={growth} xKey="m" series={[{ key: 'customers', name: L({ uk: 'Клієнти', ru: 'Клиенты', en: 'Customers' }) }]} />

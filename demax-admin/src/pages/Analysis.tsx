@@ -92,7 +92,7 @@ export default function Analysis() {
             </p>
           </div>
         </div>
-        <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {demoQuestions.map((q) => (
             <button
               key={q.en}
@@ -147,7 +147,7 @@ export default function Analysis() {
         </div>
       </Card>
 
-      <div className="grid gap-4 lg:grid-cols-5">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
         {/* workstreams */}
         <Card className="animate-rise-1 lg:col-span-3" pad={false}>
           <div className="px-5 pt-5 pb-2">
@@ -289,7 +289,7 @@ export default function Analysis() {
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <div className="mb-2 text-[11px] font-bold tracking-widest text-copper-700 uppercase dark:text-copper-300">
               {L({ uk: 'Що треба врахувати чесно', ru: 'Что нужно учесть честно', en: 'What must be accounted for honestly' })}
@@ -338,7 +338,7 @@ export default function Analysis() {
           </div>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {([
             {
               icon: ShoppingBag, shown: true,

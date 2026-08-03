@@ -23,7 +23,7 @@ export default function SettingsPage() {
         subtitle={{ uk: 'Параметри платформи задаються на рівні деплою (12-factor). Тут — лише перегляд.', ru: 'Параметры платформы задаются на уровне деплоя (12-factor). Здесь — только просмотр.', en: 'Platform parameters are set at deployment level (12-factor). Read-only here.' }}
       />
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Card className="animate-rise border-copper-500/40">
           <div className="flex items-center gap-3">
             <span className="flex size-10 items-center justify-center rounded-xl bg-copper-600/12 text-copper-700 dark:text-copper-300"><UserCog size={19} /></span>
